@@ -1,0 +1,13 @@
+//
+//  Debug.xcconfig
+//  Pokedex
+//
+//  Created by Maharjan Binish on 2021/03/17.
+//
+
+// https://www.appcoda.com/xcconfig-guide/
+// Hint: Build Settings > Active Compilation Condition
+
+APP_DISPLAY_NAME = Pokedex-Debug
+APP_ICON = AppIconDebug
+COMPILATION_CONDITIONS = DEBUG API_DEVELOPMENT

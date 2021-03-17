@@ -1,0 +1,10 @@
+//
+//  Release.xcconfig
+//  Pokedex
+//
+//  Created by Maharjan Binish on 2021/03/17.
+//
+
+APP_DISPLAY_NAME = Pokedex
+APP_ICON = AppIconRelease
+COMPILATION_CONDITIONS = RELEASE API_RELEASE

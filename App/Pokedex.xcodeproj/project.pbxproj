@@ -35,6 +35,8 @@
 		64958F07260244E800DFD840 /* DefaultResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResolver.swift; sourceTree = "<group>"; };
 		64958F0A2602456000DFD840 /* Injectable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injectable.generated.swift; sourceTree = "<group>"; };
 		64958F0B2602456000DFD840 /* AppResolver.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolver.generated.swift; sourceTree = "<group>"; };
+		64958F3E26024DE900DFD840 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		64958F3F26024E0400DFD840 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		64958EE526023F1900DFD840 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				64958F3D26024DA900DFD840 /* Configurations */,
 				64958F3A2602495C00DFD840 /* Application */,
 				64958F002602445000DFD840 /* DI */,
 				64958F3B2602496B00DFD840 /* Resources */,
@@ -106,6 +109,15 @@
 				64958EEF26023F1B00DFD840 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		64958F3D26024DA900DFD840 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				64958F3E26024DE900DFD840 /* Debug.xcconfig */,
+				64958F3F26024E0400DFD840 /* Release.xcconfig */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +253,7 @@
 /* Begin XCBuildConfiguration section */
 		64958EF526023F1B00DFD840 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64958F3E26024DE900DFD840 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -302,6 +315,7 @@
 		};
 		64958EF626023F1B00DFD840 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64958F3F26024E0400DFD840 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -357,8 +371,9 @@
 		};
 		64958EF826023F1B00DFD840 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64958F3E26024DE900DFD840 /* Debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(APP_ICON)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QZXZME53M;
@@ -369,6 +384,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.binish.Pokedex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(COMPILATION_CONDITIONS)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -376,8 +392,9 @@
 		};
 		64958EF926023F1B00DFD840 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64958F3F26024E0400DFD840 /* Release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(APP_ICON)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QZXZME53M;
@@ -388,6 +405,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.binish.Pokedex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(COMPILATION_CONDITIONS)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
