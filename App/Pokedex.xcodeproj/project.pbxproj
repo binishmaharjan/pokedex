@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		64958EEE26023F1900DFD840 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64958EEC26023F1900DFD840 /* Main.storyboard */; };
 		64958EF026023F1B00DFD840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64958EEF26023F1B00DFD840 /* Assets.xcassets */; };
 		64958EF326023F1B00DFD840 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64958EF126023F1B00DFD840 /* LaunchScreen.storyboard */; };
+		64958EFE2602402000DFD840 /* DIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 64958EFD2602402000DFD840 /* DIKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64958EFE2602402000DFD840 /* DIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = Pokedex;
+			packageProductDependencies = (
+				64958EFD2602402000DFD840 /* DIKit */,
+			);
 			productName = Pokedex;
 			productReference = 64958EE326023F1900DFD840 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +115,9 @@
 				Base,
 			);
 			mainGroup = 64958EDA26023F1800DFD840;
+			packageReferences = (
+				64958EFC2602402000DFD840 /* XCRemoteSwiftPackageReference "DIKit" */,
+			);
 			productRefGroup = 64958EE426023F1900DFD840 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +349,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		64958EFC2602402000DFD840 /* XCRemoteSwiftPackageReference "DIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ishkawa/DIKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		64958EFD2602402000DFD840 /* DIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64958EFC2602402000DFD840 /* XCRemoteSwiftPackageReference "DIKit" */;
+			productName = DIKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 64958EDB26023F1800DFD840 /* Project object */;
 }
