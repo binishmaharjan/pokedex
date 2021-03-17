@@ -14,6 +14,11 @@
 		64958EF026023F1B00DFD840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64958EEF26023F1B00DFD840 /* Assets.xcassets */; };
 		64958EF326023F1B00DFD840 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64958EF126023F1B00DFD840 /* LaunchScreen.storyboard */; };
 		64958EFE2602402000DFD840 /* DIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 64958EFD2602402000DFD840 /* DIKit */; };
+		64958F022602447700DFD840 /* AutoInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F012602447700DFD840 /* AutoInjectable.swift */; };
+		64958F05260244AD00DFD840 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F04260244AD00DFD840 /* Resolver.swift */; };
+		64958F08260244E800DFD840 /* DefaultResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F07260244E800DFD840 /* DefaultResolver.swift */; };
+		64958F0C2602456000DFD840 /* Injectable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F0A2602456000DFD840 /* Injectable.generated.swift */; };
+		64958F0D2602456000DFD840 /* AppResolver.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F0B2602456000DFD840 /* AppResolver.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +30,11 @@
 		64958EEF26023F1B00DFD840 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64958EF226023F1B00DFD840 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64958EF426023F1B00DFD840 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64958F012602447700DFD840 /* AutoInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoInjectable.swift; sourceTree = "<group>"; };
+		64958F04260244AD00DFD840 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		64958F07260244E800DFD840 /* DefaultResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResolver.swift; sourceTree = "<group>"; };
+		64958F0A2602456000DFD840 /* Injectable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injectable.generated.swift; sourceTree = "<group>"; };
+		64958F0B2602456000DFD840 /* AppResolver.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolver.generated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,7 @@
 		64958EE526023F1900DFD840 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				64958F002602445000DFD840 /* DI */,
 				64958EE626023F1900DFD840 /* AppDelegate.swift */,
 				64958EE826023F1900DFD840 /* SceneDelegate.swift */,
 				64958EEA26023F1900DFD840 /* ViewController.swift */,
@@ -69,6 +80,18 @@
 			path = Pokedex;
 			sourceTree = "<group>";
 		};
+		64958F002602445000DFD840 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				64958F0B2602456000DFD840 /* AppResolver.generated.swift */,
+				64958F0A2602456000DFD840 /* Injectable.generated.swift */,
+				64958F012602447700DFD840 /* AutoInjectable.swift */,
+				64958F04260244AD00DFD840 /* Resolver.swift */,
+				64958F07260244E800DFD840 /* DefaultResolver.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -76,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64958EF726023F1B00DFD840 /* Build configuration list for PBXNativeTarget "Pokedex" */;
 			buildPhases = (
+				64958F2E2602468A00DFD840 /* Run DI Script */,
 				64958EDF26023F1900DFD840 /* Sources */,
 				64958EE026023F1900DFD840 /* Frameworks */,
 				64958EE126023F1900DFD840 /* Resources */,
@@ -140,13 +164,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		64958F2E2602468A00DFD840 /* Run DI Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run DI Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Release\" ]; then\n    echo \"[DIKit] Executing make di\"\n    cd $PROJECT_DIR\n    cd ..\n    make di\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		64958EDF26023F1900DFD840 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64958F05260244AD00DFD840 /* Resolver.swift in Sources */,
 				64958EEB26023F1900DFD840 /* ViewController.swift in Sources */,
+				64958F022602447700DFD840 /* AutoInjectable.swift in Sources */,
+				64958F08260244E800DFD840 /* DefaultResolver.swift in Sources */,
 				64958EE726023F1900DFD840 /* AppDelegate.swift in Sources */,
+				64958F0C2602456000DFD840 /* Injectable.generated.swift in Sources */,
+				64958F0D2602456000DFD840 /* AppResolver.generated.swift in Sources */,
 				64958EE926023F1900DFD840 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
