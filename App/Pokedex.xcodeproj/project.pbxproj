@@ -20,6 +20,10 @@
 		64958F0C2602456000DFD840 /* Injectable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F0A2602456000DFD840 /* Injectable.generated.swift */; };
 		64958F0D2602456000DFD840 /* AppResolver.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F0B2602456000DFD840 /* AppResolver.generated.swift */; };
 		64958F492602609800DFD840 /* ApplicationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958F482602609800DFD840 /* ApplicationConfiguration.swift */; };
+		64958F4D2603758800DFD840 /* APIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 64958F4C2603758800DFD840 /* APIKit */; };
+		64958F51260375BE00DFD840 /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 64958F50260375BE00DFD840 /* ReactiveSwift */; };
+		64958F552603760600DFD840 /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 64958F542603760600DFD840 /* ReactiveCocoa */; };
+		64958F592603765300DFD840 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 64958F582603765300DFD840 /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +50,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64958F4D2603758800DFD840 /* APIKit in Frameworks */,
+				64958F552603760600DFD840 /* ReactiveCocoa in Frameworks */,
+				64958F51260375BE00DFD840 /* ReactiveSwift in Frameworks */,
 				64958EFE2602402000DFD840 /* DIKit in Frameworks */,
+				64958F592603765300DFD840 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +150,10 @@
 			name = Pokedex;
 			packageProductDependencies = (
 				64958EFD2602402000DFD840 /* DIKit */,
+				64958F4C2603758800DFD840 /* APIKit */,
+				64958F50260375BE00DFD840 /* ReactiveSwift */,
+				64958F542603760600DFD840 /* ReactiveCocoa */,
+				64958F582603765300DFD840 /* Nuke */,
 			);
 			productName = Pokedex;
 			productReference = 64958EE326023F1900DFD840 /* Pokedex.app */;
@@ -172,6 +184,10 @@
 			mainGroup = 64958EDA26023F1800DFD840;
 			packageReferences = (
 				64958EFC2602402000DFD840 /* XCRemoteSwiftPackageReference "DIKit" */,
+				64958F4B2603758800DFD840 /* XCRemoteSwiftPackageReference "APIKit" */,
+				64958F4F260375BE00DFD840 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
+				64958F532603760600DFD840 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
+				64958F572603765300DFD840 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 64958EE426023F1900DFD840 /* Products */;
 			projectDirPath = "";
@@ -447,6 +463,38 @@
 				minimumVersion = 0.5.0;
 			};
 		};
+		64958F4B2603758800DFD840 /* XCRemoteSwiftPackageReference "APIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ishkawa/APIKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		64958F4F260375BE00DFD840 /* XCRemoteSwiftPackageReference "ReactiveSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+		64958F532603760600DFD840 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.2.0;
+			};
+		};
+		64958F572603765300DFD840 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -454,6 +502,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 64958EFC2602402000DFD840 /* XCRemoteSwiftPackageReference "DIKit" */;
 			productName = DIKit;
+		};
+		64958F4C2603758800DFD840 /* APIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64958F4B2603758800DFD840 /* XCRemoteSwiftPackageReference "APIKit" */;
+			productName = APIKit;
+		};
+		64958F50260375BE00DFD840 /* ReactiveSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64958F4F260375BE00DFD840 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
+			productName = ReactiveSwift;
+		};
+		64958F542603760600DFD840 /* ReactiveCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64958F532603760600DFD840 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
+			productName = ReactiveCocoa;
+		};
+		64958F582603765300DFD840 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64958F572603765300DFD840 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

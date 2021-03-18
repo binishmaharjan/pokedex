@@ -2,12 +2,48 @@
   "object": {
     "pins": [
       {
+        "package": "APIKit",
+        "repositoryURL": "https://github.com/ishkawa/APIKit",
+        "state": {
+          "branch": null,
+          "revision": "c8f5320d84c4c34c0fd965da3c7957819a1ccdd4",
+          "version": "5.2.0"
+        }
+      },
+      {
         "package": "DIKit",
         "repositoryURL": "https://github.com/ishkawa/DIKit",
         "state": {
           "branch": null,
           "revision": "4d1f26330645fe50f12cddde9ade8484f7115dcd",
           "version": "0.5.0"
+        }
+      },
+      {
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke",
+        "state": {
+          "branch": null,
+          "revision": "e2eb1b7b82983c6f6a2df496e850406a78cdef05",
+          "version": "9.3.0"
+        }
+      },
+      {
+        "package": "ReactiveCocoa",
+        "repositoryURL": "https://github.com/ReactiveCocoa/ReactiveCocoa",
+        "state": {
+          "branch": null,
+          "revision": "02580542900abb4527d96e1b6ef27bab6812278d",
+          "version": "11.2.0"
+        }
+      },
+      {
+        "package": "ReactiveSwift",
+        "repositoryURL": "https://github.com/ReactiveCocoa/ReactiveSwift",
+        "state": {
+          "branch": null,
+          "revision": "4a8e1e4a683e96daf658f68132dae781738bc862",
+          "version": "6.6.0"
         }
       },
       {
