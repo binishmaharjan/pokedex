@@ -51,6 +51,8 @@
 		64958FE826106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FE726106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift */; };
 		64958FEB26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FEA26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift */; };
 		64958FEF2610708E00DFD840 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 64958FEE2610708E00DFD840 /* KeychainAccess */; };
+		64958FF22610723C00DFD840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64958FF12610723C00DFD840 /* Images.xcassets */; };
+		64958FF52610741700DFD840 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64958FF42610741700DFD840 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		64958FE326106D2F00DFD840 /* CodableDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataStore.swift; sourceTree = "<group>"; };
 		64958FE726106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataStoreAdaptor.swift; sourceTree = "<group>"; };
 		64958FEA26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessDataStoreAdaptor.swift; sourceTree = "<group>"; };
+		64958FF12610723C00DFD840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		64958FF42610741700DFD840 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,8 @@
 				64958EF426023F1B00DFD840 /* Info.plist */,
 				64958EF126023F1B00DFD840 /* LaunchScreen.storyboard */,
 				64958EEF26023F1B00DFD840 /* Assets.xcassets */,
+				64958FF12610723C00DFD840 /* Images.xcassets */,
+				64958FF42610741700DFD840 /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -405,7 +411,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64958FF52610741700DFD840 /* Colors.xcassets in Resources */,
 				64958EF326023F1B00DFD840 /* LaunchScreen.storyboard in Resources */,
+				64958FF22610723C00DFD840 /* Images.xcassets in Resources */,
 				64958EF026023F1B00DFD840 /* Assets.xcassets in Resources */,
 				64958EEE26023F1900DFD840 /* Main.storyboard in Resources */,
 			);
