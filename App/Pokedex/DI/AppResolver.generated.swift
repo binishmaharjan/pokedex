@@ -9,12 +9,39 @@ import Foundation
 
 extension AppResolver {
 
-    func resolveAPIKitHTTPClient(session: Session, apiLogger: APILogger) -> APIKitHTTPClient {
+    func resolveAPIClient() -> APIClient {
+        return provideAPIClient()
+    }
+
+    func resolveAPIKitHTTPClient() -> APIKitHTTPClient {
+        let session = resolveSession()
+        let apiLogger = resolveAPILogger()
         return APIKitHTTPClient.makeInstance(dependency: .init(session: session, apiLogger: apiLogger))
     }
 
-    func resolveDefaultAPIClient(httpClient: HTTPClient) -> DefaultAPIClient {
+    func resolveAPILogger() -> APILogger {
+        return provideAPILogger()
+    }
+
+    func resolveAppResolver() -> AppResolver {
+        return provideAppResolver()
+    }
+
+    func resolveDefaultAPIClient() -> DefaultAPIClient {
+        let httpClient = resolveHTTPClient()
         return DefaultAPIClient.makeInstance(dependency: .init(httpClient: httpClient))
+    }
+
+    func resolveHTTPClient() -> HTTPClient {
+        return provideHTTPClient()
+    }
+
+    func resolveSession() -> Session {
+        return provideSession()
+    }
+
+    func resolveUserDefaults() -> UserDefaults {
+        return provideUserDefaults()
     }
 
 }
