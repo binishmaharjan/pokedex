@@ -1,6 +1,7 @@
 import APIKit
 import DIKit
 import Foundation
+import UIKit
 
 extension APIKitHTTPClient: FactoryMethodInjectable {
 
@@ -22,6 +23,24 @@ extension APIKitHTTPClient: FactoryMethodInjectable {
     }
 }
 
+extension AppRootViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let resolver: AppResolver
+        
+
+        init(resolver: AppResolver) {
+            self.resolver = resolver
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> AppRootViewController {
+        AppRootViewController(resolver: dependency.resolver)
+    }
+}
+
 extension DefaultAPIClient: FactoryMethodInjectable {
 
     struct Dependency {
@@ -37,5 +56,21 @@ extension DefaultAPIClient: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> DefaultAPIClient {
         DefaultAPIClient(httpClient: dependency.httpClient)
+    }
+}
+
+extension SplashViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        
+
+        init() {
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> SplashViewController {
+        SplashViewController()
     }
 }

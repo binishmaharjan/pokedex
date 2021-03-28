@@ -6,6 +6,7 @@
 import APIKit
 import DIKit
 import Foundation
+import UIKit
 
 extension AppResolver {
 
@@ -27,6 +28,11 @@ extension AppResolver {
         return provideAppResolver()
     }
 
+    func resolveAppRootViewController() -> AppRootViewController {
+        let appResolver = resolveAppResolver()
+        return AppRootViewController.makeInstance(dependency: .init(resolver: appResolver))
+    }
+
     func resolveDefaultAPIClient() -> DefaultAPIClient {
         let httpClient = resolveHTTPClient()
         return DefaultAPIClient.makeInstance(dependency: .init(httpClient: httpClient))
@@ -38,6 +44,10 @@ extension AppResolver {
 
     func resolveSession() -> Session {
         return provideSession()
+    }
+
+    func resolveSplashViewController() -> SplashViewController {
+        return SplashViewController.makeInstance(dependency: .init())
     }
 
     func resolveUserDefaults() -> UserDefaults {
