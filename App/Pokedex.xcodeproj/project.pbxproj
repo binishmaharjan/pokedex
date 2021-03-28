@@ -64,6 +64,8 @@
 		6495900E261077F800DFD840 /* ViewController+AddBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495900D261077F800DFD840 /* ViewController+AddBehaviour.swift */; };
 		6495901626107A4900DFD840 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495901526107A4800DFD840 /* SplashViewController.swift */; };
 		6495901926107C3000DFD840 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6495901826107C3000DFD840 /* SplashViewController.storyboard */; };
+		6495901D2610933F00DFD840 /* Colors.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495901C2610933E00DFD840 /* Colors.generated.swift */; };
+		649590202610C5B400DFD840 /* Images.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495901F2610C5B300DFD840 /* Images.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		6495900D261077F800DFD840 /* ViewController+AddBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+AddBehaviour.swift"; sourceTree = "<group>"; };
 		6495901526107A4800DFD840 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		6495901826107C3000DFD840 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
+		6495901C2610933E00DFD840 /* Colors.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.generated.swift; sourceTree = "<group>"; };
+		6495901F2610C5B300DFD840 /* Images.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.generated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +204,8 @@
 		64958F3B2602496B00DFD840 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6495901F2610C5B300DFD840 /* Images.generated.swift */,
+				6495901C2610933E00DFD840 /* Colors.generated.swift */,
 				64958EF426023F1B00DFD840 /* Info.plist */,
 				64958EF126023F1B00DFD840 /* LaunchScreen.storyboard */,
 				64958EEF26023F1B00DFD840 /* Assets.xcassets */,
@@ -545,6 +551,7 @@
 				64958FC9260F9A9B00DFD840 /* HTTPRequestAdaptor.swift in Sources */,
 				64958FA4260F933300DFD840 /* APIClient.swift in Sources */,
 				64958F7E260B8C2800DFD840 /* HTTPHeaderFields.swift in Sources */,
+				6495901D2610933F00DFD840 /* Colors.generated.swift in Sources */,
 				64958F05260244AD00DFD840 /* Resolver.swift in Sources */,
 				64958FCD260F9ED500DFD840 /* APIKitAdaptor.swift in Sources */,
 				649590022610775300DFD840 /* XibInstantiable.swift in Sources */,
@@ -560,6 +567,7 @@
 				649590062610775300DFD840 /* MultiContainerViewController.swift in Sources */,
 				64958F08260244E800DFD840 /* DefaultResolver.swift in Sources */,
 				64958EE726023F1900DFD840 /* AppDelegate.swift in Sources */,
+				649590202610C5B400DFD840 /* Images.generated.swift in Sources */,
 				64958FEB26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift in Sources */,
 				64958FD1260FA11E00DFD840 /* APIKitRequest.swift in Sources */,
 				64958F74260B89F600DFD840 /* HTTP.swift in Sources */,
