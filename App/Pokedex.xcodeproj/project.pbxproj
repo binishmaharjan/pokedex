@@ -46,6 +46,11 @@
 		64958FD1260FA11E00DFD840 /* APIKitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FD0260FA11E00DFD840 /* APIKitRequest.swift */; };
 		64958FD4260FA1FF00DFD840 /* JSONSerialization+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FD3260FA1FF00DFD840 /* JSONSerialization+Extension.swift */; };
 		64958FD7260FA6C600DFD840 /* APIKitHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FD6260FA6C600DFD840 /* APIKitHTTPClient.swift */; };
+		64958FE026106CB800DFD840 /* CodableDataStoreAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FDF26106CB800DFD840 /* CodableDataStoreAdaptor.swift */; };
+		64958FE426106D2F00DFD840 /* CodableDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FE326106D2F00DFD840 /* CodableDataStore.swift */; };
+		64958FE826106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FE726106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift */; };
+		64958FEB26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FEA26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift */; };
+		64958FEF2610708E00DFD840 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 64958FEE2610708E00DFD840 /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +92,10 @@
 		64958FD0260FA11E00DFD840 /* APIKitRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKitRequest.swift; sourceTree = "<group>"; };
 		64958FD3260FA1FF00DFD840 /* JSONSerialization+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+Extension.swift"; sourceTree = "<group>"; };
 		64958FD6260FA6C600DFD840 /* APIKitHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKitHTTPClient.swift; sourceTree = "<group>"; };
+		64958FDF26106CB800DFD840 /* CodableDataStoreAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataStoreAdaptor.swift; sourceTree = "<group>"; };
+		64958FE326106D2F00DFD840 /* CodableDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataStore.swift; sourceTree = "<group>"; };
+		64958FE726106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataStoreAdaptor.swift; sourceTree = "<group>"; };
+		64958FEA26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessDataStoreAdaptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +105,7 @@
 			files = (
 				64958F4D2603758800DFD840 /* APIKit in Frameworks */,
 				64958F552603760600DFD840 /* ReactiveCocoa in Frameworks */,
+				64958FEF2610708E00DFD840 /* KeychainAccess in Frameworks */,
 				64958F51260375BE00DFD840 /* ReactiveSwift in Frameworks */,
 				64958EFE2602402000DFD840 /* DIKit in Frameworks */,
 				64958F592603765300DFD840 /* Nuke in Frameworks */,
@@ -126,11 +136,11 @@
 			children = (
 				64958F3A2602495C00DFD840 /* Application */,
 				64958F3D26024DA900DFD840 /* Configurations */,
+				64958F002602445000DFD840 /* DI */,
 				64958F9E260F91B600DFD840 /* Extension */,
 				64958F5D2603777900DFD840 /* Presentation */,
-				64958F5C2603777100DFD840 /* Data */,
 				64958F5B2603776600DFD840 /* Domain */,
-				64958F002602445000DFD840 /* DI */,
+				64958F5C2603777100DFD840 /* Data */,
 				64958F5E260B73D100DFD840 /* Infrastructure */,
 				64958F3B2602496B00DFD840 /* Resources */,
 				64958EEA26023F1900DFD840 /* ViewController.swift */,
@@ -183,6 +193,7 @@
 		64958F5B2603776600DFD840 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				64958FDE26106CA600DFD840 /* Presistance */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 		64958F5C2603777100DFD840 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				64958FDD26106C4700DFD840 /* Presistance */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -301,6 +313,24 @@
 			path = APIKit;
 			sourceTree = "<group>";
 		};
+		64958FDD26106C4700DFD840 /* Presistance */ = {
+			isa = PBXGroup;
+			children = (
+				64958FE326106D2F00DFD840 /* CodableDataStore.swift */,
+				64958FE726106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift */,
+				64958FEA26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift */,
+			);
+			path = Presistance;
+			sourceTree = "<group>";
+		};
+		64958FDE26106CA600DFD840 /* Presistance */ = {
+			isa = PBXGroup;
+			children = (
+				64958FDF26106CB800DFD840 /* CodableDataStoreAdaptor.swift */,
+			);
+			path = Presistance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,6 +354,7 @@
 				64958F50260375BE00DFD840 /* ReactiveSwift */,
 				64958F542603760600DFD840 /* ReactiveCocoa */,
 				64958F582603765300DFD840 /* Nuke */,
+				64958FEE2610708E00DFD840 /* KeychainAccess */,
 			);
 			productName = Pokedex;
 			productReference = 64958EE326023F1900DFD840 /* Pokedex.app */;
@@ -358,6 +389,7 @@
 				64958F4F260375BE00DFD840 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
 				64958F532603760600DFD840 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
 				64958F572603765300DFD840 /* XCRemoteSwiftPackageReference "Nuke" */,
+				64958FED2610708E00DFD840 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 64958EE426023F1900DFD840 /* Products */;
 			projectDirPath = "";
@@ -419,19 +451,23 @@
 				64958F89260BA0C200DFD840 /* HTTPClient.swift in Sources */,
 				64958FA0260F91DD00DFD840 /* JSONDecoder+Extension.swift in Sources */,
 				64958F62260B744500DFD840 /* LoadingState.swift in Sources */,
+				64958FE826106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift in Sources */,
 				64958F86260BA07A00DFD840 /* HTTPError.swift in Sources */,
 				64958EEB26023F1900DFD840 /* ViewController.swift in Sources */,
 				64958F022602447700DFD840 /* AutoInjectable.swift in Sources */,
 				64958F08260244E800DFD840 /* DefaultResolver.swift in Sources */,
 				64958EE726023F1900DFD840 /* AppDelegate.swift in Sources */,
+				64958FEB26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift in Sources */,
 				64958FD1260FA11E00DFD840 /* APIKitRequest.swift in Sources */,
 				64958F74260B89F600DFD840 /* HTTP.swift in Sources */,
 				64958F65260B788B00DFD840 /* AnyLoadingState.swift in Sources */,
+				64958FE026106CB800DFD840 /* CodableDataStoreAdaptor.swift in Sources */,
 				64958FD7260FA6C600DFD840 /* APIKitHTTPClient.swift in Sources */,
 				64958F8D260F6D8600DFD840 /* Cancellabe.swift in Sources */,
 				64958F7A260B8AF600DFD840 /* HTTPBodyParamters.swift in Sources */,
 				64958F0C2602456000DFD840 /* Injectable.generated.swift in Sources */,
 				64958F95260F714200DFD840 /* APIRequest.swift in Sources */,
+				64958FE426106D2F00DFD840 /* CodableDataStore.swift in Sources */,
 				64958F77260B8A4700DFD840 /* HTTPRequest.swift in Sources */,
 				64958FA8260F96C500DFD840 /* URL+Extension.swift in Sources */,
 				64958F0D2602456000DFD840 /* AppResolver.generated.swift in Sources */,
@@ -687,6 +723,14 @@
 				minimumVersion = 9.3.0;
 			};
 		};
+		64958FED2610708E00DFD840 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -714,6 +758,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 64958F572603765300DFD840 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
+		};
+		64958FEE2610708E00DFD840 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64958FED2610708E00DFD840 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
