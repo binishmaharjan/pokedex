@@ -8,8 +8,8 @@ RESOURCES=$APP/Pokedex/Resources
 ### Capitalize the first letter of the word
 ### Result: hello -> Hello
 function capitalize_first_letter() {
-	# first parameter
-	local STRING=$1
+	# combine all arguments
+	local STRING="$*"
 	# variable to store result
 	local RESULT=""
 
@@ -32,6 +32,33 @@ function capitalize_first_letter() {
 	echo $RESULT 
 }
 
+### Lowerise the first letter of the word
+### Result: Hello -> hello
+function lowerize_first_letter() {
+	# combine all arguments
+	local STRING="$*"
+	# variable to store result
+	local RESULT=""
+
+	# looping throught each letters
+	for (( i=0; i<${#STRING}; i++ )); do
+
+		# storing letter in variable
+		local LETTER="${STRING:$i:1}"
+
+		# if first letter convert it to lowercase and append it in the $RESULT, else append in result as it is 
+		if [[ i -eq 0 ]]; then
+			local LOWERCASE=$LETTER
+			RESULT=$(echo $LOWERCASE | tr '[:upper:]' '[:lower:]')
+		else
+			RESULT=${RESULT}${LETTER}
+		fi
+	done
+
+	# return the first letter lowerized word
+	echo $RESULT
+}
+
 ### Convert a string into camel case
 ### Result: hello_world -> helloWorld
 function convert_to_camel_case() {
@@ -47,7 +74,9 @@ function convert_to_camel_case() {
 	do
 		local CURRENT=$(echo ${TEMP[i]})
 		if [[ $i -eq 0 ]]; then
-			RESULT=$CURRENT
+			local LOWERCASE=$(lowerize_first_letter $CURRENT)
+			RESULT=${RESULT}${LOWERCASE}
+			# RESULT=$CURRENT
 		else
 			local UPPECASE=$(capitalize_first_letter $CURRENT)
 			RESULT=${RESULT}${UPPECASE}
@@ -135,14 +164,17 @@ function generate_images() {
 		# split by "." ("icon_dummy", "imageset")
 		IFS=. read -ra ARRAY <<<"$IMAGESET"
 
-		# get first element which is image name >> ("icon_dummy")
-		local IMAGE=${ARRAY[0]}
+		# get first element which is image name, i.e original image name >> ("icon_dummy")
+		local ORIGINAL_IMAGE=${ARRAY[0]}
+
+		# replace space and special characters with in image name to "_"
+		local EDITED_IMAGE=$(echo $ORIGINAL_IMAGE | sed -e 's/[ ]/_/' -e 's/[$&+,:;=?@#|<>.^*()%!-]/_/')
 
 		# convert to camel case >> ("iconDummy")
-		local IMAGE_VAR_NAME=$(convert_to_camel_case $IMAGE)
+		local IMAGE_VAR_NAME=$(convert_to_camel_case $EDITED_IMAGE)
 
 		# define swift color
-		printf " \t static let ${IMAGE_VAR_NAME} = UIImage(named: \"${IMAGE}\")!\n"  >> $IMAGES_OUTPUT_FILE 
+		printf " \t static let ${IMAGE_VAR_NAME} = UIImage(named: \"${ORIGINAL_IMAGE}\")!\n"  >> $IMAGES_OUTPUT_FILE 
 
 		# if index is last close extension
 		if [[ $COUNT -eq $((IMAGES_COUNT - 1)) ]]; then

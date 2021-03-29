@@ -23,7 +23,7 @@ extension UIImage {
  	 static let iconRock = UIImage(named: "icon_rock")!
  	 static let iconSteel = UIImage(named: "icon_steel")!
  	 static let iconWater = UIImage(named: "icon_water")!
- 	 static let splash = UIImage(named: "splash")!
+ 	 static let imgSplash = UIImage(named: "img_splash")!
  	 static let tagBug = UIImage(named: "tag_bug")!
  	 static let tagDark = UIImage(named: "tag_dark")!
  	 static let tagDragon = UIImage(named: "tag_dragon")!
