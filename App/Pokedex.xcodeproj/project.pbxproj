@@ -443,6 +443,7 @@
 				64958EDF26023F1900DFD840 /* Sources */,
 				64958EE026023F1900DFD840 /* Frameworks */,
 				64958EE126023F1900DFD840 /* Resources */,
+				64959041261361E000DFD840 /* AutoGen Assests */,
 			);
 			buildRules = (
 			);
@@ -535,6 +536,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" != \"Release\" ]; then\n    echo \"[DIKit] Executing make di\"\n    cd $PROJECT_DIR\n    cd ..\n    make di\nfi\n";
+		};
+		64959041261361E000DFD840 /* AutoGen Assests */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "AutoGen Assests";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Release\" ]; then\n    echo \"[AutoGen] Generate Images And Colors\"\n    cd $PROJECT_DIR\n    cd ..\n    sh Tools/autogen_assest.sh\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
