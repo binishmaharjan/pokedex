@@ -59,6 +59,24 @@ extension DefaultAPIClient: FactoryMethodInjectable {
     }
 }
 
+extension MainViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let resolver: AppResolver
+        
+
+        init(resolver: AppResolver) {
+            self.resolver = resolver
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MainViewController {
+        MainViewController(resolver: dependency.resolver)
+    }
+}
+
 extension SplashViewController: FactoryMethodInjectable {
 
     struct Dependency {

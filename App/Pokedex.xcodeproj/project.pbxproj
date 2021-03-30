@@ -61,11 +61,16 @@
 		649590072610775300DFD840 /* AppRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649590002610775300DFD840 /* AppRootViewController.swift */; };
 		649590082610775300DFD840 /* SingleContainerViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649590012610775300DFD840 /* SingleContainerViewContainer.swift */; };
 		6495900B2610777C00DFD840 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495900A2610777C00DFD840 /* NSObject+Extension.swift */; };
-		6495900E261077F800DFD840 /* ViewController+AddBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495900D261077F800DFD840 /* ViewController+AddBehaviour.swift */; };
+		6495900E261077F800DFD840 /* UIViewController+AddBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495900D261077F800DFD840 /* UIViewController+AddBehaviour.swift */; };
 		6495901626107A4900DFD840 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495901526107A4800DFD840 /* SplashViewController.swift */; };
 		6495901926107C3000DFD840 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6495901826107C3000DFD840 /* SplashViewController.storyboard */; };
 		6495901D2610933F00DFD840 /* Colors.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495901C2610933E00DFD840 /* Colors.generated.swift */; };
 		649590202610C5B400DFD840 /* Images.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495901F2610C5B300DFD840 /* Images.generated.swift */; };
+		64959045261363A300DFD840 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64959044261363A300DFD840 /* MainViewController.swift */; };
+		64959049261363EF00DFD840 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64959048261363EF00DFD840 /* UIView+Extension.swift */; };
+		6495904D2613661000DFD840 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495904C2613661000DFD840 /* UINavigationController+Extension.swift */; };
+		64959051261373F100DFD840 /* GradientBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64959050261373F000DFD840 /* GradientBorder.swift */; };
+		649590562613745B00DFD840 /* BoxedBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649590552613745B00DFD840 /* BoxedBorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,11 +126,16 @@
 		649590002610775300DFD840 /* AppRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRootViewController.swift; sourceTree = "<group>"; };
 		649590012610775300DFD840 /* SingleContainerViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleContainerViewContainer.swift; sourceTree = "<group>"; };
 		6495900A2610777C00DFD840 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
-		6495900D261077F800DFD840 /* ViewController+AddBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+AddBehaviour.swift"; sourceTree = "<group>"; };
+		6495900D261077F800DFD840 /* UIViewController+AddBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddBehaviour.swift"; sourceTree = "<group>"; };
 		6495901526107A4800DFD840 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		6495901826107C3000DFD840 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
 		6495901C2610933E00DFD840 /* Colors.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.generated.swift; sourceTree = "<group>"; };
 		6495901F2610C5B300DFD840 /* Images.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.generated.swift; sourceTree = "<group>"; };
+		64959044261363A300DFD840 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		64959048261363EF00DFD840 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		6495904C2613661000DFD840 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		64959050261373F000DFD840 /* GradientBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBorder.swift; sourceTree = "<group>"; };
+		649590552613745B00DFD840 /* BoxedBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxedBorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,8 +253,10 @@
 		64958F5D2603777900DFD840 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				6495904F261373D400DFD840 /* ViewParts */,
 				64958FF72610775300DFD840 /* Common */,
 				6495901426107A3600DFD840 /* Splash */,
+				649590432613630600DFD840 /* Main */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -407,7 +419,9 @@
 		649590102610784600DFD840 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				6495900D261077F800DFD840 /* ViewController+AddBehaviour.swift */,
+				6495900D261077F800DFD840 /* UIViewController+AddBehaviour.swift */,
+				64959048261363EF00DFD840 /* UIView+Extension.swift */,
+				6495904C2613661000DFD840 /* UINavigationController+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -430,6 +444,31 @@
 				6495901826107C3000DFD840 /* SplashViewController.storyboard */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		649590432613630600DFD840 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				64959044261363A300DFD840 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6495904F261373D400DFD840 /* ViewParts */ = {
+			isa = PBXGroup;
+			children = (
+				649590542613744400DFD840 /* Unused */,
+				64959050261373F000DFD840 /* GradientBorder.swift */,
+			);
+			path = ViewParts;
+			sourceTree = "<group>";
+		};
+		649590542613744400DFD840 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				649590552613745B00DFD840 /* BoxedBorder.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -566,9 +605,11 @@
 				64958F82260B8C5800DFD840 /* HTTPHeader.swift in Sources */,
 				64958F69260B7B0800DFD840 /* APILogger.swift in Sources */,
 				64958FD4260FA1FF00DFD840 /* JSONSerialization+Extension.swift in Sources */,
+				649590562613745B00DFD840 /* BoxedBorder.swift in Sources */,
 				64958F492602609800DFD840 /* ApplicationConfiguration.swift in Sources */,
 				64958FC9260F9A9B00DFD840 /* HTTPRequestAdaptor.swift in Sources */,
 				64958FA4260F933300DFD840 /* APIClient.swift in Sources */,
+				6495904D2613661000DFD840 /* UINavigationController+Extension.swift in Sources */,
 				64958F7E260B8C2800DFD840 /* HTTPHeaderFields.swift in Sources */,
 				6495901D2610933F00DFD840 /* Colors.generated.swift in Sources */,
 				64958F05260244AD00DFD840 /* Resolver.swift in Sources */,
@@ -577,6 +618,7 @@
 				64958F89260BA0C200DFD840 /* HTTPClient.swift in Sources */,
 				64958FA0260F91DD00DFD840 /* JSONDecoder+Extension.swift in Sources */,
 				649590032610775300DFD840 /* TransparentNavigationBarBehaviour.swift in Sources */,
+				64959049261363EF00DFD840 /* UIView+Extension.swift in Sources */,
 				6495900B2610777C00DFD840 /* NSObject+Extension.swift in Sources */,
 				64958F62260B744500DFD840 /* LoadingState.swift in Sources */,
 				64958FE826106E1B00DFD840 /* UserDefaultsDataStoreAdaptor.swift in Sources */,
@@ -595,17 +637,19 @@
 				649590052610775300DFD840 /* StoryboardInstantiable.swift in Sources */,
 				64958FD7260FA6C600DFD840 /* APIKitHTTPClient.swift in Sources */,
 				649590072610775300DFD840 /* AppRootViewController.swift in Sources */,
+				64959051261373F100DFD840 /* GradientBorder.swift in Sources */,
 				64958F8D260F6D8600DFD840 /* Cancellabe.swift in Sources */,
 				649590042610775300DFD840 /* BackButtonEmptyTitleNavigationBarBehavior.swift in Sources */,
 				64958F7A260B8AF600DFD840 /* HTTPBodyParamters.swift in Sources */,
 				64958F0C2602456000DFD840 /* Injectable.generated.swift in Sources */,
 				64958F95260F714200DFD840 /* APIRequest.swift in Sources */,
 				64958FE426106D2F00DFD840 /* CodableDataStore.swift in Sources */,
+				64959045261363A300DFD840 /* MainViewController.swift in Sources */,
 				64958F77260B8A4700DFD840 /* HTTPRequest.swift in Sources */,
 				64958FA8260F96C500DFD840 /* URL+Extension.swift in Sources */,
 				6495901626107A4900DFD840 /* SplashViewController.swift in Sources */,
 				64958F0D2602456000DFD840 /* AppResolver.generated.swift in Sources */,
-				6495900E261077F800DFD840 /* ViewController+AddBehaviour.swift in Sources */,
+				6495900E261077F800DFD840 /* UIViewController+AddBehaviour.swift in Sources */,
 				64958F9C260F90F600DFD840 /* APIResultParser.swift in Sources */,
 				64958EE926023F1900DFD840 /* SceneDelegate.swift in Sources */,
 				64958F99260F906A00DFD840 /* APIError.swift in Sources */,

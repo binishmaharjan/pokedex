@@ -42,6 +42,11 @@ extension AppResolver {
         return provideHTTPClient()
     }
 
+    func resolveMainViewController() -> MainViewController {
+        let appResolver = resolveAppResolver()
+        return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
+    }
+
     func resolveSession() -> Session {
         return provideSession()
     }

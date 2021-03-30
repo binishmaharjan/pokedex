@@ -33,15 +33,15 @@ private extension AppRootViewController {
     func makeSplashViewController() -> SplashViewController {
         let splashViewController = resolver.resolveSplashViewController()
         splashViewController.onComplete = { [weak self] in
-//            self?.makeMainViewController()
+            self?.makeMainViewController()
         }
 
         return splashViewController
     }
 
-//    func makeMainViewController() {
-//        let mainViewController = resolver.resolveMainViewController()
-//
-//        replace(mainViewController, animated: true)
-//    }
+    func makeMainViewController() {
+        let mainViewController = resolver.resolveMainViewController()
+
+        replace(mainViewController, animated: true)
+    }
 }
