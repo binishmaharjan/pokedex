@@ -2,6 +2,7 @@ import UIKit
 
 extension UIImage {
 
+ 	 static let background = UIImage(named: "background")!
  	 static let iconBug = UIImage(named: "icon_bug")!
  	 static let iconDark = UIImage(named: "icon_dark")!
  	 static let iconDragon = UIImage(named: "icon_dragon")!

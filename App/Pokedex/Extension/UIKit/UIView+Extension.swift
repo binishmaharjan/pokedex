@@ -7,8 +7,10 @@
 
 import UIKit
 
+// MARK: Effects
 extension UIView {
     
+    /// Add blur
     func addBlur() {
         let blurEffect = UIBlurEffect(style: .regular)
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -17,7 +19,7 @@ extension UIView {
         addSubview(blurView)
     }
     
-    
+    /// Add default gradient
     func applyGradient() {
         let gradient = CAGradientLayer()
         gradient.type = .axial
@@ -32,5 +34,17 @@ extension UIView {
         
         gradient.frame = bounds
         layer.addSublayer(gradient)
+    }
+}
+
+// MARK: Xib
+extension UIView {
+    
+    /// Load xib which self is file owner
+    func loadOwnedXib() {
+        let v = UINib(nibName: Self.className, bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+        v.frame = bounds
+        addSubview(v)
+        v.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 }

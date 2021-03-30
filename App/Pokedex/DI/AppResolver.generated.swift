@@ -6,6 +6,7 @@
 import APIKit
 import DIKit
 import Foundation
+import ReactiveSwift
 import UIKit
 
 extension AppResolver {
@@ -45,6 +46,14 @@ extension AppResolver {
     func resolveMainViewController() -> MainViewController {
         let appResolver = resolveAppResolver()
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
+    }
+
+    func resolvePokemonListCellViewModel() -> PokemonListCellViewModel {
+        return PokemonListCellViewModel.makeInstance(dependency: .init())
+    }
+
+    func resolvePokemonListViewController() -> PokemonListViewController {
+        return PokemonListViewController.makeInstance(dependency: .init())
     }
 
     func resolveSession() -> Session {

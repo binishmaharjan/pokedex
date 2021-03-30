@@ -1,6 +1,7 @@
 import APIKit
 import DIKit
 import Foundation
+import ReactiveSwift
 import UIKit
 
 extension APIKitHTTPClient: FactoryMethodInjectable {
@@ -74,6 +75,38 @@ extension MainViewController: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> MainViewController {
         MainViewController(resolver: dependency.resolver)
+    }
+}
+
+extension PokemonListCellViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        
+
+        init() {
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonListCellViewModel {
+        PokemonListCellViewModel()
+    }
+}
+
+extension PokemonListViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        
+
+        init() {
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonListViewController {
+        PokemonListViewController()
     }
 }
 
