@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
 
 final class PokemonListView: UIView {
     
@@ -13,15 +15,28 @@ final class PokemonListView: UIView {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var searchField: SearchField!
     
-    init() {
+    private let viewModel: PokemonListViewModel
+    private var sections: PokemonListSections = .empty {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    init(viewModel: PokemonListViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
         
         loadOwnedXib()
         setup()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         nil
+    }
+    
+    func bind() {
+        reactive[\.sections] <~ viewModel.sections
     }
 }
 
@@ -49,14 +64,17 @@ extension PokemonListView {
 extension PokemonListView: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        sections.numberOfSections()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        sections.numberOfRow(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(of: PokemonListCell.self, for: indexPath)
+        let cellViewModel = PokemonListCellViewModel(pokemon: sections[indexPath])
+        
+        cell.bind(viewModel: cellViewModel)
 
         return cell
     }

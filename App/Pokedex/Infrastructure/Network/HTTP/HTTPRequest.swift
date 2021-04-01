@@ -19,8 +19,8 @@ protocol HTTPRequest {
     
     var contentType: HTTP.MimeType { get }
     
-    var queryParameter: [String: Any]? { get }
-    var bodyParameter: HTTPBodyParameters? { get }
+    var queryParameters: [String: Any]? { get }
+    var bodyParameters: HTTPBodyParameters? { get }
     
     var headerFields: HTTPHeaderFields { get }
     

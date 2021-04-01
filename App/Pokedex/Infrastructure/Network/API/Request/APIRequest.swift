@@ -26,8 +26,7 @@ extension APIRequest {
 extension APIRequest where SuccessResponse: Decodable {
     var contentType: HTTP.MimeType { .applicationJSON }
     
-    func parseResponse(from data: Data, urlResponse: HTTPURLResponse) throws -> Response {
+    func parseResult(from data: Data, urlResponse: HTTPURLResponse) throws -> Result<SuccessResponse, APIDomainError> {
         try APIResultParser.default.parseResult(from: data)
     }
 }
-

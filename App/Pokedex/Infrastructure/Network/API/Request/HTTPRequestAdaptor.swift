@@ -23,8 +23,8 @@ struct HTTPRequestAdaptor<BaseRequest: APIRequest>: HTTPRequest {
     var method: HTTP.Method { baseRequest.method }
     var path: String { baseRequest.path }
     var contentType: HTTP.MimeType { baseRequest.contentType }
-    var queryParameter: [String : Any]? { baseRequest.queryParameter }
-    var bodyParameter: HTTPBodyParameters? { baseRequest.bodyParameter }
+    var queryParameters: [String : Any]? { baseRequest.queryParameters }
+    var bodyParameters: HTTPBodyParameters? { baseRequest.bodyParameters }
     var headerFields: HTTPHeaderFields { baseRequest.headerFields }
     
     func parseResponse(from data: Data, urlResponse: HTTPURLResponse) throws -> Response {

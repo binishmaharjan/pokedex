@@ -39,4 +39,14 @@ extension ApplicationConfiguration {
             return URL(string: "https://pokeapi.co/api/v2")!
         }
     }
+    
+    func spriteUrl(appending path: String) -> URL {
+        switch self {
+        
+        case .debug:
+            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites\(path)")!
+        case .release:
+            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites\(path)")!
+        }
+    }
 }

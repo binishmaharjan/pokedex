@@ -17,6 +17,10 @@ protocol AppResolver: Resolver {
     func provideSession() -> Session
     func provideHTTPClient() -> HTTPClient
     func provideAPIClient() -> APIClient
+    
+    
+    // MARK: Repositories
+    func providePokemonRepository() -> PokemonRepository
 }
 
 extension AppResolver {
@@ -43,5 +47,14 @@ extension AppResolver {
     
     func provideAPIClient() -> APIClient {
         resolveDefaultAPIClient()
+    }
+}
+
+// MARK: Repositories
+
+extension AppResolver {
+    
+    func providePokemonRepository() -> PokemonRepository {
+        resolveDefaultPokemonRepository()
     }
 }

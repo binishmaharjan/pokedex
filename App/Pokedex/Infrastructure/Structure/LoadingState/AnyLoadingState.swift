@@ -14,7 +14,7 @@ enum AnyLoadingState: Hashable {
     }
     
     case initial
-    case loadin(nextPage: Bool)
+    case loading(nextPage: Bool)
     case success
     case failure(Failure)
     
@@ -23,7 +23,7 @@ enum AnyLoadingState: Hashable {
         case .initial:
             self = .initial
         case .loading(nextPage: let nextPage):
-            self = .loadin(nextPage: nextPage)
+            self = .loading(nextPage: nextPage)
         case .completed(.success):
             self = .success
         case .completed(.failure):
@@ -39,7 +39,7 @@ extension AnyLoadingState {
     }
     
     var isHiddenLoading: Bool {
-        self != .loadin(nextPage: false)
+        self != .loading(nextPage: false)
     }
     
     var isHiddenSuccess: Bool {

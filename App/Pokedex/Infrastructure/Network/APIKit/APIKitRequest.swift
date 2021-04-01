@@ -28,10 +28,10 @@ extension APIKitAdaptor {
         
         var path: String { baseRequest.path }
         
-        var queryParameters: [String : Any]? { baseRequest.queryParameter }
+        var queryParameters: [String : Any]? { baseRequest.queryParameters }
         
         var bodyParameters: BodyParameters? {
-            guard let bodyParameters = baseRequest.bodyParameter else { return nil }
+            guard let bodyParameters = baseRequest.bodyParameters else { return nil }
             return APIKitAdaptor.DataBodyParameters(bodyParameters)
         }
         
