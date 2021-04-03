@@ -54,7 +54,7 @@
 		64958FF22610723C00DFD840 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64958FF12610723C00DFD840 /* Images.xcassets */; };
 		64958FF52610741700DFD840 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64958FF42610741700DFD840 /* Colors.xcassets */; };
 		649590022610775300DFD840 /* XibInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FF92610775300DFD840 /* XibInstantiable.swift */; };
-		649590032610775300DFD840 /* TransparentNavigationBarBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FFB2610775300DFD840 /* TransparentNavigationBarBehaviour.swift */; };
+		649590032610775300DFD840 /* TransparentNavigationBarBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FFB2610775300DFD840 /* TransparentNavigationBarBehavior.swift */; };
 		649590042610775300DFD840 /* BackButtonEmptyTitleNavigationBarBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FFC2610775300DFD840 /* BackButtonEmptyTitleNavigationBarBehavior.swift */; };
 		649590052610775300DFD840 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FFD2610775300DFD840 /* StoryboardInstantiable.swift */; };
 		649590062610775300DFD840 /* MultiContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64958FFF2610775300DFD840 /* MultiContainerViewController.swift */; };
@@ -144,7 +144,7 @@
 		64958FF12610723C00DFD840 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		64958FF42610741700DFD840 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		64958FF92610775300DFD840 /* XibInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibInstantiable.swift; sourceTree = "<group>"; };
-		64958FFB2610775300DFD840 /* TransparentNavigationBarBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBarBehaviour.swift; sourceTree = "<group>"; };
+		64958FFB2610775300DFD840 /* TransparentNavigationBarBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBarBehavior.swift; sourceTree = "<group>"; };
 		64958FFC2610775300DFD840 /* BackButtonEmptyTitleNavigationBarBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonEmptyTitleNavigationBarBehavior.swift; sourceTree = "<group>"; };
 		64958FFD2610775300DFD840 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		64958FFF2610775300DFD840 /* MultiContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiContainerViewController.swift; sourceTree = "<group>"; };
@@ -456,7 +456,7 @@
 		64958FFA2610775300DFD840 /* Behaviour */ = {
 			isa = PBXGroup;
 			children = (
-				64958FFB2610775300DFD840 /* TransparentNavigationBarBehaviour.swift */,
+				64958FFB2610775300DFD840 /* TransparentNavigationBarBehavior.swift */,
 				64958FFC2610775300DFD840 /* BackButtonEmptyTitleNavigationBarBehavior.swift */,
 			);
 			path = Behaviour;
@@ -848,7 +848,7 @@
 				649590912616167D00DFD840 /* PokemonListUseCase.swift in Sources */,
 				6495907926138C5000DFD840 /* PokemonListCellViewModel.swift in Sources */,
 				649590AC2616252E00DFD840 /* Observable.swift in Sources */,
-				649590032610775300DFD840 /* TransparentNavigationBarBehaviour.swift in Sources */,
+				649590032610775300DFD840 /* TransparentNavigationBarBehavior.swift in Sources */,
 				64959049261363EF00DFD840 /* UIView+Extension.swift in Sources */,
 				6495909526161A4100DFD840 /* DefaultPokemonRepository.swift in Sources */,
 				6495900B2610777C00DFD840 /* NSObject+Extension.swift in Sources */,

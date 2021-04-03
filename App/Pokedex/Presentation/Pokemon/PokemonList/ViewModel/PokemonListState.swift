@@ -9,6 +9,7 @@ import Foundation
 
 struct PokemonListState {
     
+    private var currentPokemonList: [PokemonListItem] = []
     var pokemonList: LoadingState<[PokemonListItem], APIError> = .initial
     var searchText: String = ""
     
@@ -19,6 +20,16 @@ struct PokemonListState {
         case .initial, .loading, .completed(.failure):
             return .empty
         }
+    }
+    
+    mutating func initialPokemons(_ list: [PokemonListItem]) {
+        currentPokemonList = list
+        pokemonList = .completed(.success(currentPokemonList))
+    }
+    
+    mutating func appendPokemons(_ list: [PokemonListItem]) {
+        currentPokemonList.append(contentsOf: list)
+        pokemonList = .completed(.success(currentPokemonList))
     }
 }
 

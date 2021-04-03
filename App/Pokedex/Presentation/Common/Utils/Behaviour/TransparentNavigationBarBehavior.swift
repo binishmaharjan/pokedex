@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct TransparentNavigationBarBehaviour: ViewControllerLifecycleBehavior {
+public struct TransparentNavigationBarBehavior: ViewControllerLifecycleBehavior {
     
     func viewDidLoad(viewController: UIViewController) {
         viewController.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

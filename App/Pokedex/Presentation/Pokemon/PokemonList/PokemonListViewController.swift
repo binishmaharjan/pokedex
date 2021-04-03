@@ -29,7 +29,7 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addBehaviors([TransparentNavigationBarBehaviour()])
+        addBehaviors([TransparentNavigationBarBehavior()])
         title = "Pokemon"
         
         bind()
@@ -43,12 +43,16 @@ extension PokemonListViewController {
     func bind() {
         viewModel.loadingState.signal.observeValues { [weak self] (loadingState) in
             switch loadingState {
-            case .loading(_):
+            case .loading(nextPage: false):
                 self?.dismissLoading = WindowLoadingView.show()
+            case .loading(nextPage: true):
+                self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: true)
             case .success:
                 self?.dismissLoading?()
+                self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: false)
             case .failure:
                 self?.dismissLoading?()
+                self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: false)
             default:
                 break
             }

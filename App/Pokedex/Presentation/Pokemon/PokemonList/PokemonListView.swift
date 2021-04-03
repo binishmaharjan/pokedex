@@ -15,6 +15,7 @@ final class PokemonListView: UIView {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var searchField: SearchField!
     
+    private var nextPageLoadingSpinner: UIActivityIndicatorView?
     private let viewModel: PokemonListViewModel
     private var sections: PokemonListSections = .empty {
         didSet {
@@ -56,7 +57,22 @@ extension PokemonListView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerXib(of: PokemonListCell.self)
+        tableView.alwaysBounceVertical = false
         tableView.tableFooterView = UIView()
+    }
+    
+    func showNextPageLoadingIndicator(isLoadingNextPage: Bool) {
+        guard isLoadingNextPage else {
+            tableView.tableFooterView = nil
+            return
+        }
+        
+        nextPageLoadingSpinner?.removeFromSuperview()
+        nextPageLoadingSpinner = UIActivityIndicatorView(style: .medium)
+        nextPageLoadingSpinner?.startAnimating()
+        nextPageLoadingSpinner?.isHidden = false
+        nextPageLoadingSpinner?.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.frame.width, height: 44)
+        tableView.tableFooterView = nextPageLoadingSpinner
     }
 }
 
@@ -77,6 +93,12 @@ extension PokemonListView: UITableViewDataSource {
         cell.bind(viewModel: cellViewModel)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
+            viewModel.fetchNextPokemonList()
+        }
     }
 }
 
