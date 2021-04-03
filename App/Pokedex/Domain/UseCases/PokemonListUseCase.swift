@@ -25,10 +25,8 @@ final class PokemonListUseCase: AutoInjectable {
     }
     
     func execute(requestValue: RequestValue, _ handler: @escaping(Result<PokemonTypedList, APIError>) -> Void) -> Cancellable? {
-        //Reset
-        error = nil
-        pokemonTypedListItem.removeAll()
-//        pokemonRepository.fetchPokemonList(offset: requestValue.offset, limit: requestValue.limit, handler)
+        
+        resetSavedPokemons()
         
         pokemonRepository.fetchPokemonList(offset: requestValue.offset, limit: requestValue.limit) { [weak self] (result) in
             guard let self = self else { return
@@ -48,6 +46,11 @@ final class PokemonListUseCase: AutoInjectable {
 }
 
 private extension PokemonListUseCase {
+    
+    func resetSavedPokemons() {
+        error = nil
+        pokemonTypedListItem.removeAll()
+    }
     
     func idFromItem(url: String) -> Int {
         return Int(String(url.split(separator: "/")[5]))!
@@ -105,25 +108,5 @@ private extension PokemonListUseCase {
             print("TAG: DispatchQueue Leave \(pokemonItem.name)")
             self.dispatchGroup.leave()
         }
-    }
-}
-
-struct PokemonTypedList: Equatable {
-    let count: Int
-    let pokemons: [PokemonTypedListItem]
-}
-
-struct PokemonTypedListItem: Equatable, Comparable {
-    
-    let name: String
-    let id: Int
-    let types: [Types]
-    
-    static func from(pokemonInfo: PokemonInfo) -> PokemonTypedListItem {
-        PokemonTypedListItem(name: pokemonInfo.name, id: pokemonInfo.id, types: pokemonInfo.types)
-    }
-    
-    static func < (lhs: PokemonTypedListItem, rhs: PokemonTypedListItem) -> Bool {
-        lhs.id < rhs.id
     }
 }

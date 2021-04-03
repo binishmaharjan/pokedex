@@ -8,7 +8,7 @@
 import UIKit
 import ReactiveSwift
 
-class PokemonListCell: UITableViewCell {
+final class PokemonListCell: UITableViewCell {
     
     @IBOutlet private weak var pokemonImageView: UIImageView!
     @IBOutlet private weak var pokemonNameLabel: UILabel!
