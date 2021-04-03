@@ -28,7 +28,7 @@ struct DefaultAPILogger: APILogger {
         - RequestBody: \(JSONSerialization.prettyJSON(of: urlRequest.httpBody))
         ---------------------------------------------
         """
-        print(log)
+        Logger.debug(log)
     }
     
     func logResponse(object: Any, urlResponse: HTTPURLResponse) {
@@ -41,7 +41,7 @@ struct DefaultAPILogger: APILogger {
         - ResponseBody: \(JSONSerialization.prettyJSON(of: object as? Data))
         ---------------------------------------------
         """
-        print(log)
+        Logger.debug(log)
     }
     
     func logDecodingError<Request: HTTPRequest>(_ error: DecodingError, for request: Request){
@@ -52,7 +52,7 @@ struct DefaultAPILogger: APILogger {
         \(error)
         ---------------------------------------------
         """
-        print(log)
+        Logger.debug(log)
     }
 }
 

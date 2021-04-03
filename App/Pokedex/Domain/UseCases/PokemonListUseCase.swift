@@ -72,9 +72,9 @@ private extension PokemonListUseCase {
 
                 if let error = self.error {
                     handler(.failure(error))
-                    print("TAG: Notify Error")
+                    Logger.debug("TAG: Notify Error")
                 } else {
-                    print("TAG: Notify Completed")
+                    Logger.debug("TAG: Notify Completed")
                     let sortedPokemonList = self.pokemonTypedListItem.sorted()
                     let typedList = PokemonTypedList(count: pokemonList.count, pokemons: sortedPokemonList)
                     handler(.success(typedList))
@@ -85,11 +85,11 @@ private extension PokemonListUseCase {
     
     func fetchPokemonType(pokemonItem: PokemonListItem) {
         dispatchGroup.enter()
-        print("TAG: DispatchQueue Enter \(pokemonItem.name)")
+        Logger.debug("TAG: DispatchQueue Enter \(pokemonItem.name)")
         
         let id = idFromItem(url: pokemonItem.url)
         
-        print("TAG: Fetching \(pokemonItem.name)")
+        Logger.debug("TAG: Fetching \(pokemonItem.name)")
         pokemonRepository.fetchPokemonInfo(id: id) { [weak self] (result) in
             guard let self = self else { return }
             
@@ -98,14 +98,14 @@ private extension PokemonListUseCase {
                 let typeItem = PokemonTypedListItem.from(pokemonInfo: info)
                 self.pokemonTypedListItem.append(typeItem)
                 
-                print("TAG: Fetching \(pokemonItem.name) Completed")
+                Logger.debug("TAG: Fetching \(pokemonItem.name) Completed")
                 
             case .failure(let error):
                 self.error = error
-                print("TAG: Fetching \(pokemonItem.name) Error")
+                Logger.debug("TAG: Fetching \(pokemonItem.name) Error")
             }
             
-            print("TAG: DispatchQueue Leave \(pokemonItem.name)")
+            Logger.debug("TAG: DispatchQueue Leave \(pokemonItem.name)")
             self.dispatchGroup.leave()
         }
     }

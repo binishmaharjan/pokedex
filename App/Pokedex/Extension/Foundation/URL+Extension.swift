@@ -10,4 +10,7 @@ import Foundation
 extension URL {
     
     static let baseURL = ApplicationConfiguration.current.apiServerUrl
+    
+    static let documents = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("Documents")
+    static let log = documents.appendingPathComponent("pokedex.log")
 }

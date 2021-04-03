@@ -62,7 +62,7 @@ final class BoxedBorder: CALayer {
         frame.origin.y += frame.size.height
         frame.size.height = self.thickness
         self.frame = frame
-        print("myframe: \(frame)")
+        Logger.debug("myframe: \(frame)")
       }
     })
     layer.setNeedsLayout()

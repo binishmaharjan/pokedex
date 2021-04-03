@@ -15,7 +15,7 @@ final class PokemonListViewModel: AutoInjectable {
     private let pokemonListUseCase: PokemonListUseCase
     
     private let initialOffSet: Int = 0
-    private let fetchLimit: Int = 20
+    private let fetchLimit: Int = 50
     private var currentPage: Int = 0
     private var totalPageCount: Int = 1
     private var hasMorePage: Bool { return currentPage < totalPageCount }
