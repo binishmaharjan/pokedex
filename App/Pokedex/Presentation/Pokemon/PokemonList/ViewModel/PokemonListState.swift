@@ -9,8 +9,8 @@ import Foundation
 
 struct PokemonListState {
     
-    private var currentPokemonList: [PokemonListItem] = []
-    var pokemonList: LoadingState<[PokemonListItem], APIError> = .initial
+    private var currentPokemonList: [PokemonTypedListItem] = []
+    var pokemonList: LoadingState<[PokemonTypedListItem], APIError> = .initial
     var searchText: String = ""
     
     var sections: PokemonListSections {
@@ -24,12 +24,12 @@ struct PokemonListState {
         }
     }
     
-    mutating func initialPokemons(_ list: [PokemonListItem]) {
+    mutating func initialPokemons(_ list: [PokemonTypedListItem]) {
         currentPokemonList = list
         pokemonList = .completed(.success(currentPokemonList))
     }
     
-    mutating func appendPokemons(_ list: [PokemonListItem]) {
+    mutating func appendPokemons(_ list: [PokemonTypedListItem]) {
         currentPokemonList.append(contentsOf: list)
         pokemonList = .completed(.success(currentPokemonList))
     }
@@ -37,11 +37,11 @@ struct PokemonListState {
 
 
 // MARK: Sections
-typealias PokemonListSections = Sections<String, PokemonListItem>
+typealias PokemonListSections = Sections<String, PokemonTypedListItem>
 
 extension PokemonListSections {
     
-    static func from(_ pokemons: [PokemonListItem], filterWith: String) -> PokemonListSections {
+    static func from(_ pokemons: [PokemonTypedListItem], filterWith: String) -> PokemonListSections {
         let sections = PokemonListSections(
             sections: [
                 Section(

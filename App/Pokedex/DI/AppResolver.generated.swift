@@ -53,7 +53,7 @@ extension AppResolver {
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
     }
 
-    func resolvePokemonListCellViewModel(pokemon: PokemonListItem) -> PokemonListCellViewModel {
+    func resolvePokemonListCellViewModel(pokemon: PokemonTypedListItem) -> PokemonListCellViewModel {
         return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
     }
 

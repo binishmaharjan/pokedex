@@ -10,22 +10,28 @@ import ReactiveSwift
 
 struct PokemonListCellViewModel: AutoInjectable {
     
-    private let pokemon: PokemonListItem
+    private let pokemon: PokemonTypedListItem
     
     let name: Property<String>
     let id: Property<Int>
     let imageUrl: Property<URL>
+    let typeOne: Property<TypeName?>
+    let typeTwo: Property<TypeName?>
     
-    init(pokemon: PokemonListItem) {
-        
-        func idFromItem() -> Int {
-            return Int(String(pokemon.url.split(separator: "/")[5]))!
-        }
+    init(pokemon: PokemonTypedListItem) {
         
         self.pokemon = pokemon
         
         self.name = Property(value: pokemon.name.capitalized)
-        self.id = Property(value: idFromItem())
-        self.imageUrl = Property(value: ApplicationConfiguration.current.spriteUrl(appending: "/pokemon/other/official-artwork/\(id.value).png"))
+        self.id = Property(value: pokemon.id)
+        self.imageUrl = Property(value: ApplicationConfiguration.current.spriteUrl(appending: "/pokemon/other/official-artwork/\(pokemon.id).png"))
+        
+        let slot1 = pokemon.types.filter { $0.slot == 1 }
+        let typeOne = slot1.first?.type.name ?? nil
+        self.typeOne = Property(value: typeOne)
+
+        let slot2 = pokemon.types.filter { $0.slot == 2 }
+        let typeTwo = slot2.first?.type.name ?? nil
+        self.typeTwo = Property(value: typeTwo)
     }
 }

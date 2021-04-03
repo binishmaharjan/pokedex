@@ -23,5 +23,16 @@ class PokemonListCell: UITableViewCell {
         viewModel.imageUrl.producer.startWithValues { [weak self] (url) in
             self?.pokemonImageView.loadImage(at: url)
         }
+        
+        viewModel.typeOne.producer.observe(on: UIScheduler())
+            .startWithValues { [weak self] (type) in
+                
+            self?.typeOneImageView.image = .from(type)
+        }
+        
+        viewModel.typeTwo.producer.observe(on: UIScheduler())
+            .startWithValues { [weak self] (type) in
+            self?.typeTwoImageView.image = .from(type)
+        }
     }
 }

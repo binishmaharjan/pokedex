@@ -15,12 +15,115 @@ final class PokemonListUseCase: AutoInjectable {
     }
     
     private let pokemonRepository: PokemonRepository
+    private let dispatchGroup = DispatchGroup()
+    
+    private var pokemonTypedListItem: [PokemonTypedListItem] = []
+    private var error: APIError?
     
     init(pokemonRepository: PokemonRepository) {
         self.pokemonRepository = pokemonRepository
     }
     
-    func execute(requestValue: RequestValue, _ handler: @escaping(Result<PokemonList, APIError>) -> Void) -> Cancellable? {
-        return pokemonRepository.fetchPokemonList(offset: requestValue.offset, limit: requestValue.limit, handler)
+    func execute(requestValue: RequestValue, _ handler: @escaping(Result<PokemonTypedList, APIError>) -> Void) -> Cancellable? {
+        //Reset
+        error = nil
+        pokemonTypedListItem.removeAll()
+//        pokemonRepository.fetchPokemonList(offset: requestValue.offset, limit: requestValue.limit, handler)
+        
+        pokemonRepository.fetchPokemonList(offset: requestValue.offset, limit: requestValue.limit) { [weak self] (result) in
+            guard let self = self else { return
+                
+            }
+            switch result {
+            case .success(let list):
+                self.fetchPokemonTypes(pokemonList: list, handler)
+                
+            case .failure(let error):
+                handler(.failure(error))
+            }
+        }
+        
+        return nil
+    }
+}
+
+private extension PokemonListUseCase {
+    
+    func idFromItem(url: String) -> Int {
+        return Int(String(url.split(separator: "/")[5]))!
+    }
+    
+    func fetchPokemonTypes(pokemonList: PokemonList, _ handler: @escaping(Result<PokemonTypedList, APIError>) -> Void) {
+        
+        pokemonList.pokemons.forEach { (item) in
+            DispatchQueue.global().async { [weak self] in
+                guard let self = self else { return }
+                self.fetchPokemonType(pokemonItem: item)
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+            
+            self.dispatchGroup.notify(queue: .main) {
+
+                if let error = self.error {
+                    handler(.failure(error))
+                    print("TAG: Notify Error")
+                } else {
+                    print("TAG: Notify Completed")
+                    let sortedPokemonList = self.pokemonTypedListItem.sorted()
+                    let typedList = PokemonTypedList(count: pokemonList.count, pokemons: sortedPokemonList)
+                    handler(.success(typedList))
+                }
+            }
+        }
+    }
+    
+    func fetchPokemonType(pokemonItem: PokemonListItem) {
+        dispatchGroup.enter()
+        print("TAG: DispatchQueue Enter \(pokemonItem.name)")
+        
+        let id = idFromItem(url: pokemonItem.url)
+        
+        print("TAG: Fetching \(pokemonItem.name)")
+        pokemonRepository.fetchPokemonInfo(id: id) { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let info):
+                let typeItem = PokemonTypedListItem.from(pokemonInfo: info)
+                self.pokemonTypedListItem.append(typeItem)
+                
+                print("TAG: Fetching \(pokemonItem.name) Completed")
+                
+            case .failure(let error):
+                self.error = error
+                print("TAG: Fetching \(pokemonItem.name) Error")
+            }
+            
+            print("TAG: DispatchQueue Leave \(pokemonItem.name)")
+            self.dispatchGroup.leave()
+        }
+    }
+}
+
+struct PokemonTypedList: Equatable {
+    let count: Int
+    let pokemons: [PokemonTypedListItem]
+}
+
+struct PokemonTypedListItem: Equatable, Comparable {
+    
+    let name: String
+    let id: Int
+    let types: [Types]
+    
+    static func from(pokemonInfo: PokemonInfo) -> PokemonTypedListItem {
+        PokemonTypedListItem(name: pokemonInfo.name, id: pokemonInfo.id, types: pokemonInfo.types)
+    }
+    
+    static func < (lhs: PokemonTypedListItem, rhs: PokemonTypedListItem) -> Bool {
+        lhs.id < rhs.id
     }
 }
