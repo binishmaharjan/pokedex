@@ -2,24 +2,23 @@
 //  PokemonListView.swift
 //  Pokedex
 //
-//  Created by Maharjan Binish on 2021/03/31.
+//  Created by Maharjan Binish on 2021/01/06.
 //
 
 import UIKit
 import ReactiveSwift
-import ReactiveCocoa
 
 final class PokemonListView: UIView {
-    
+
     @IBOutlet private weak var overlayView: UIView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var searchField: SearchField!
     
-    private var nextPageLoadingSpinner: UIActivityIndicatorView?
     private let viewModel: PokemonListViewModel
+    private var nextPageLoadingSpinner: UIActivityIndicatorView?
+    
     private var sections: PokemonListSections = .empty {
-        didSet {
-            tableView.reloadData()
+        didSet { tableView.reloadData()
         }
     }
     
@@ -27,7 +26,13 @@ final class PokemonListView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        loadOwnedXib()
+        let _view = UINib(nibName: Self.className, bundle: nil)
+            .instantiate(withOwner: self, options: nil).first as! UIView
+        
+        _view.frame = bounds
+        addSubview(_view)
+        _view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         setup()
         bind()
     }
@@ -38,6 +43,10 @@ final class PokemonListView: UIView {
     
     func bind() {
         reactive[\.sections] <~ viewModel.sections
+        
+//        searchField.searchedText.signal.observeValues { [weak self] (searchedText) in
+//            self?.viewModel.filter(with: searchedText)
+//        }
     }
 }
 
@@ -57,7 +66,6 @@ extension PokemonListView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerXib(of: PokemonListCell.self)
-        tableView.alwaysBounceVertical = false
         tableView.tableFooterView = UIView()
     }
     
@@ -89,16 +97,15 @@ extension PokemonListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(of: PokemonListCell.self, for: indexPath)
         let cellViewModel = PokemonListCellViewModel(pokemon: sections[indexPath])
-        
         cell.bind(viewModel: cellViewModel)
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        
+        //Uncomment this for paging
         if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
             viewModel.fetchNextPokemonList()
         }
+        
+        return cell
     }
 }
 
@@ -113,3 +120,4 @@ extension PokemonListView: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+

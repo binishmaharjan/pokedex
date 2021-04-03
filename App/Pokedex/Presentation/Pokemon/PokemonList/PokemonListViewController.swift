@@ -16,6 +16,7 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
         self.pokemonListView = PokemonListView(viewModel: viewModel)
+        
         super.init(nibName: nil, bundle: nil)
     }
     

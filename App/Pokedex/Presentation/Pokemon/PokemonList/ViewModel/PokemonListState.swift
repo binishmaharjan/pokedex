@@ -17,7 +17,9 @@ struct PokemonListState {
         switch pokemonList {
         case .completed(.success(let list)):
             return .from(list, filterWith: searchText)
-        case .initial, .loading, .completed(.failure):
+        case .loading(nextPage: true):
+            return .from(currentPokemonList, filterWith: searchText)
+        case .initial, .loading(nextPage: false), .completed(.failure):
             return .empty
         }
     }
