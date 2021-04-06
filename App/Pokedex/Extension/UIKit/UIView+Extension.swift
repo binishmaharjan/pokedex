@@ -41,8 +41,8 @@ extension UIView {
 extension UIView {
     
     /// Load xib which self is file owner
-    func loadOwnedXib() {
-        let v = UINib(nibName: Self.className, bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+    func loadOwnedXib(xibName: String? = nil) {
+        let v = UINib(nibName: xibName ?? Self.className, bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
         v.frame = bounds
         addSubview(v)
         v.autoresizingMask = [.flexibleWidth, .flexibleHeight]

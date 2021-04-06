@@ -35,7 +35,7 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
         
         bind()
         
-        viewModel.fetchPokemonList()
+        viewModel.fetchPokemonFullList()
     }
 }
 

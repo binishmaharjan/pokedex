@@ -7,11 +7,10 @@
 
 import Foundation
 
-final class PokemonListUseCase: AutoInjectable {
+final class PokemonTypedListUseCase: AutoInjectable {
     
     struct RequestValue {
-        let offset: Int
-        let limit: Int
+        let range: ClosedRange<Int>
     }
     
     private let pokemonRepository: PokemonRepository
@@ -28,40 +27,25 @@ final class PokemonListUseCase: AutoInjectable {
         
         resetSavedPokemons()
         
-        pokemonRepository.fetchPokemonList(offset: requestValue.offset, limit: requestValue.limit) { [weak self] (result) in
-            guard let self = self else { return
-                
-            }
-            switch result {
-            case .success(let list):
-                self.fetchPokemonTypes(pokemonList: list, handler)
-                
-            case .failure(let error):
-                handler(.failure(error))
-            }
-        }
+        fetchPokemonTypes(requestValue: requestValue, handler)
         
         return nil
     }
 }
 
-private extension PokemonListUseCase {
+private extension PokemonTypedListUseCase {
     
     func resetSavedPokemons() {
         error = nil
         pokemonTypedListItem.removeAll()
     }
     
-    func idFromItem(url: String) -> Int {
-        return Int(String(url.split(separator: "/")[5]))!
-    }
-    
-    func fetchPokemonTypes(pokemonList: PokemonList, _ handler: @escaping(Result<PokemonTypedList, APIError>) -> Void) {
+    func fetchPokemonTypes(requestValue: RequestValue, _ handler: @escaping(Result<PokemonTypedList, APIError>) -> Void) {
         
-        pokemonList.pokemons.forEach { (item) in
+        requestValue.range.forEach { (id) in
             DispatchQueue.global().async { [weak self] in
                 guard let self = self else { return }
-                self.fetchPokemonType(pokemonItem: item)
+                self.fetchPokemonType(id: id)
             }
         }
         
@@ -76,20 +60,18 @@ private extension PokemonListUseCase {
                 } else {
                     Logger.debug("TAG: Notify Completed")
                     let sortedPokemonList = self.pokemonTypedListItem.sorted()
-                    let typedList = PokemonTypedList(count: pokemonList.count, pokemons: sortedPokemonList)
+                    let typedList = PokemonTypedList(pokemons: sortedPokemonList)
                     handler(.success(typedList))
                 }
             }
         }
     }
     
-    func fetchPokemonType(pokemonItem: PokemonListItem) {
+    func fetchPokemonType(id: Int) {
         dispatchGroup.enter()
-        Logger.debug("TAG: DispatchQueue Enter \(pokemonItem.name)")
+        Logger.debug("TAG: DispatchQueue Enter Pokemon ID \(id)")
         
-        let id = idFromItem(url: pokemonItem.url)
-        
-        Logger.debug("TAG: Fetching \(pokemonItem.name)")
+        Logger.debug("TAG: Fetching Pokemon ID \(id)")
         pokemonRepository.fetchPokemonInfo(id: id) { [weak self] (result) in
             guard let self = self else { return }
             
@@ -98,14 +80,14 @@ private extension PokemonListUseCase {
                 let typeItem = PokemonTypedListItem.from(pokemonInfo: info)
                 self.pokemonTypedListItem.append(typeItem)
                 
-                Logger.debug("TAG: Fetching \(pokemonItem.name) Completed")
+                Logger.debug("TAG: Fetching Pokemon ID  \(id) Completed")
                 
             case .failure(let error):
                 self.error = error
-                Logger.debug("TAG: Fetching \(pokemonItem.name) Error")
+                Logger.debug("TAG: Fetching Pokemon ID  \(id) Error")
             }
             
-            Logger.debug("TAG: DispatchQueue Leave \(pokemonItem.name)")
+            Logger.debug("TAG: DispatchQueue Leave Pokemon ID \(id)")
             self.dispatchGroup.leave()
         }
     }

@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// Flag to show log
+var SHOWLOG = false
+
 enum ApplicationConfiguration {
     
     case debug

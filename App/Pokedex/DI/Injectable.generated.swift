@@ -96,6 +96,24 @@ extension MainViewController: FactoryMethodInjectable {
     }
 }
 
+extension PokemonFullListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let pokemonRepository: PokemonRepository
+        
+
+        init(pokemonRepository: PokemonRepository) {
+            self.pokemonRepository = pokemonRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonFullListUseCase {
+        PokemonFullListUseCase(pokemonRepository: dependency.pokemonRepository)
+    }
+}
+
 extension PokemonListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
@@ -111,24 +129,6 @@ extension PokemonListCellViewModel: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> PokemonListCellViewModel {
         PokemonListCellViewModel(pokemon: dependency.pokemon)
-    }
-}
-
-extension PokemonListUseCase: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let pokemonRepository: PokemonRepository
-        
-
-        init(pokemonRepository: PokemonRepository) {
-            self.pokemonRepository = pokemonRepository
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> PokemonListUseCase {
-        PokemonListUseCase(pokemonRepository: dependency.pokemonRepository)
     }
 }
 
@@ -154,17 +154,37 @@ extension PokemonListViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let pokemonListUseCase: PokemonListUseCase
+        let pokemonListUseCase: PokemonTypedListUseCase
+        let pokemonFullListUseCase: PokemonFullListUseCase
         
 
-        init(pokemonListUseCase: PokemonListUseCase) {
+        init(pokemonListUseCase: PokemonTypedListUseCase, pokemonFullListUseCase: PokemonFullListUseCase) {
             self.pokemonListUseCase = pokemonListUseCase
+            self.pokemonFullListUseCase = pokemonFullListUseCase
             
         }
     }
     
     static func makeInstance(dependency: Dependency) -> PokemonListViewModel {
-        PokemonListViewModel(pokemonListUseCase: dependency.pokemonListUseCase)
+        PokemonListViewModel(pokemonListUseCase: dependency.pokemonListUseCase, pokemonFullListUseCase: dependency.pokemonFullListUseCase)
+    }
+}
+
+extension PokemonTypedListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let pokemonRepository: PokemonRepository
+        
+
+        init(pokemonRepository: PokemonRepository) {
+            self.pokemonRepository = pokemonRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonTypedListUseCase {
+        PokemonTypedListUseCase(pokemonRepository: dependency.pokemonRepository)
     }
 }
 

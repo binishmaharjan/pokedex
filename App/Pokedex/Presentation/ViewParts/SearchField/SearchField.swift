@@ -16,6 +16,11 @@ final class SearchField: UIView {
     
     private let  mutableSearchedText: MutableProperty<String> = MutableProperty("")
     var searchedText: Property<String> { Property(mutableSearchedText) }
+    
+    var delegate: UITextFieldDelegate? {
+        get { searchTextField.delegate }
+        set { searchTextField.delegate = newValue }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -41,6 +46,10 @@ final class SearchField: UIView {
         gradientView.applyGradient()
         
         mutableSearchedText <~ searchTextField.reactive.continuousTextValues
-
+    }
+    
+    @IBAction func closeButtonPressed(_ sender: Any) {
+        searchTextField.text = ""
+        searchTextField.resignFirstResponder()
     }
 }

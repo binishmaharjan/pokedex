@@ -53,13 +53,13 @@ extension AppResolver {
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
     }
 
-    func resolvePokemonListCellViewModel(pokemon: PokemonTypedListItem) -> PokemonListCellViewModel {
-        return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
+    func resolvePokemonFullListUseCase() -> PokemonFullListUseCase {
+        let pokemonRepository = resolvePokemonRepository()
+        return PokemonFullListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
     }
 
-    func resolvePokemonListUseCase() -> PokemonListUseCase {
-        let pokemonRepository = resolvePokemonRepository()
-        return PokemonListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
+    func resolvePokemonListCellViewModel(pokemon: PokemonTypedListItem) -> PokemonListCellViewModel {
+        return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
     }
 
     func resolvePokemonListViewController() -> PokemonListViewController {
@@ -68,12 +68,18 @@ extension AppResolver {
     }
 
     func resolvePokemonListViewModel() -> PokemonListViewModel {
-        let pokemonListUseCase = resolvePokemonListUseCase()
-        return PokemonListViewModel.makeInstance(dependency: .init(pokemonListUseCase: pokemonListUseCase))
+        let pokemonTypedListUseCase = resolvePokemonTypedListUseCase()
+        let pokemonFullListUseCase = resolvePokemonFullListUseCase()
+        return PokemonListViewModel.makeInstance(dependency: .init(pokemonListUseCase: pokemonTypedListUseCase, pokemonFullListUseCase: pokemonFullListUseCase))
     }
 
     func resolvePokemonRepository() -> PokemonRepository {
         return providePokemonRepository()
+    }
+
+    func resolvePokemonTypedListUseCase() -> PokemonTypedListUseCase {
+        let pokemonRepository = resolvePokemonRepository()
+        return PokemonTypedListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
     }
 
     func resolveSession() -> Session {

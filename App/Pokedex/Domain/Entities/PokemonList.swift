@@ -14,15 +14,15 @@ struct PokemonList {
     let pokemons: [PokemonListItem]
 }
 
-struct PokemonListItem: Equatable {
-    let name: String
+struct PokemonListItem: Equatable, SearchResult {
+    var name: String
     let url: String
 }
 
 
 /// For Displaying in Cell(Contains Type Information)
 struct PokemonTypedList: Equatable {
-    let count: Int
+//    let count: Int
     let pokemons: [PokemonTypedListItem]
 }
 

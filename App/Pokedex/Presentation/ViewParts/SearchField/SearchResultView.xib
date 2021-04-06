@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultView" customModule="Pokedex" customModuleProvider="target">
             <connections>
+                <outlet property="bottomConstraints" destination="kVw-9Z-21i" id="dDT-qU-c5n"/>
                 <outlet property="tableView" destination="B7q-UR-WSv" id="3W7-ZG-EKu"/>
             </connections>
         </placeholder>
@@ -19,17 +20,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B7q-UR-WSv">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="B7q-UR-WSv" secondAttribute="trailing" id="63P-h3-4F4"/>
-                <constraint firstItem="B7q-UR-WSv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="OKO-Qr-pQe"/>
-                <constraint firstItem="B7q-UR-WSv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="jrV-Wy-Lly"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="B7q-UR-WSv" secondAttribute="bottom" id="kVw-9Z-21i"/>
+                <constraint firstItem="B7q-UR-WSv" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="63P-h3-4F4"/>
+                <constraint firstItem="B7q-UR-WSv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OKO-Qr-pQe"/>
+                <constraint firstItem="B7q-UR-WSv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jrV-Wy-Lly"/>
+                <constraint firstItem="B7q-UR-WSv" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="kVw-9Z-21i"/>
             </constraints>
             <point key="canvasLocation" x="109" y="76"/>
         </view>

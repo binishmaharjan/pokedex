@@ -16,6 +16,8 @@ final class PokemonListView: UIView {
     
     private let viewModel: PokemonListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
+    private var searchResultView: SearchResultView<PokemonListItem>
+    private var searchResultHeightConstraints: NSLayoutConstraint?
     
     private var sections: PokemonListSections = .empty {
         didSet { tableView.reloadData()
@@ -24,14 +26,10 @@ final class PokemonListView: UIView {
     
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
+        self.searchResultView = SearchResultView(elements: viewModel.searchedPokemonList, onSelect: { _ in })
         super.init(frame: .zero)
         
-        let _view = UINib(nibName: Self.className, bundle: nil)
-            .instantiate(withOwner: self, options: nil).first as! UIView
-        
-        _view.frame = bounds
-        addSubview(_view)
-        _view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        loadOwnedXib()
         
         setup()
         bind()
@@ -44,9 +42,10 @@ final class PokemonListView: UIView {
     func bind() {
         reactive[\.sections] <~ viewModel.sections
         
-//        searchField.searchedText.signal.observeValues { [weak self] (searchedText) in
-//            self?.viewModel.filter(with: searchedText)
-//        }
+        searchField.searchedText.signal.observeValues { [weak self] (searchedText) in
+            guard let self = self else { return }
+            self.viewModel.filter(with: searchedText)
+        }
     }
 }
 
@@ -56,6 +55,7 @@ extension PokemonListView {
     private func setup() {
         setupBackground()
         setupTableView()
+        setupSearchResultView()
     }
     
     private func setupBackground() {
@@ -67,6 +67,21 @@ extension PokemonListView {
         tableView.dataSource = self
         tableView.registerXib(of: PokemonListCell.self)
         tableView.tableFooterView = UIView()
+    }
+    
+    private func setupSearchResultView() {
+        searchField.delegate = self
+        
+        addSubview(searchResultView)
+        searchResultView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            searchResultView.topAnchor.constraint(equalTo: tableView.topAnchor),
+            searchResultView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
+            searchResultView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
+        ])
+        
+        searchResultHeightConstraints = searchResultView.heightAnchor.constraint(equalTo: tableView.heightAnchor)
     }
     
     func showNextPageLoadingIndicator(isLoadingNextPage: Bool) {
@@ -118,6 +133,29 @@ extension PokemonListView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension PokemonListView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        searchResultHeightConstraints?.isActive = true
+        
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            guard let self = self else { return }
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+        searchResultHeightConstraints?.isActive = false
+        
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            guard let self = self else { return }
+            
+            self.layoutIfNeeded()
+        }
     }
 }
 

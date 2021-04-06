@@ -13,19 +13,33 @@ import Foundation
 // but the logs still keeps priniting
 struct PokemonListState {
     
+    /// List of all Pokemon
+    private var pokemonFullList: [PokemonListItem] = []
+    /// Current loaded pokemon with typed
     private var currentPokemonList: [PokemonTypedListItem] = []
+    
+    /// API State
     var pokemonList: LoadingState<[PokemonTypedListItem], APIError> = .initial
+    /// Search Query
     var searchText: String = ""
     
     var sections: PokemonListSections {
         switch pokemonList {
         case .completed(.success(let list)):
-            return .from(list, filterWith: searchText)
+            return .from(list)
         case .loading(nextPage: true):
-            return .from(currentPokemonList, filterWith: searchText)
+            return .from(currentPokemonList)
         case .initial, .loading(nextPage: false), .completed(.failure):
             return .empty
         }
+    }
+    
+    var searchedPokemonList: [PokemonListItem] {
+        pokemonFullList.filter { $0.name.contains(searchText) }
+    }
+    
+    mutating func addPokemonFullList(_ list: [PokemonListItem]) {
+        pokemonFullList = list
     }
     
     mutating func initialPokemons(_ list: [PokemonTypedListItem]) {
@@ -45,7 +59,7 @@ typealias PokemonListSections = Sections<String, PokemonTypedListItem>
 
 extension PokemonListSections {
     
-    static func from(_ pokemons: [PokemonTypedListItem], filterWith: String) -> PokemonListSections {
+    static func from(_ pokemons: [PokemonTypedListItem]) -> PokemonListSections {
         let sections = PokemonListSections(
             sections: [
                 Section(
@@ -55,11 +69,6 @@ extension PokemonListSections {
             ]
         )
         
-        if filterWith.isEmpty {
-            return sections
-        } else {
-            return sections
-                .filter { $0.name.contains(filterWith) }
-        }
+        return sections
     }
 }

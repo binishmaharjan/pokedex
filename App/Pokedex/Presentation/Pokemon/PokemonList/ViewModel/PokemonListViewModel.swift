@@ -12,7 +12,8 @@ final class PokemonListViewModel: AutoInjectable {
     
     @Observable
     private var state = PokemonListState()
-    private let pokemonListUseCase: PokemonListUseCase
+    private let pokemonFullListUseCase: PokemonFullListUseCase
+    private let pokemonTypedListUseCase: PokemonTypedListUseCase
     
     private let initialOffSet: Int = 0
     private let fetchLimit: Int = 50
@@ -34,30 +35,59 @@ final class PokemonListViewModel: AutoInjectable {
             .skipRepeats()
     }
     
-    init(pokemonListUseCase: PokemonListUseCase) {
-        self.pokemonListUseCase = pokemonListUseCase
+    var searchedPokemonList: Property<[PokemonListItem]> {
+        $state
+            .map(\.searchedPokemonList)
+            .skipRepeats()
+    }
+    
+    init(pokemonListUseCase: PokemonTypedListUseCase, pokemonFullListUseCase: PokemonFullListUseCase) {
+        self.pokemonFullListUseCase = pokemonFullListUseCase
+        self.pokemonTypedListUseCase = pokemonListUseCase
     }
 }
 
 // MARK: API
 extension PokemonListViewModel {
     
-    func fetchPokemonList() {
+    func fetchPokemonFullList() {
         state.pokemonList = .loading(nextPage: false)
         currentPage = 0
         totalPageCount = 1
         
-        let requestValue = PokemonListUseCase.RequestValue(offset: 0, limit: fetchLimit)
-        pokemonListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
+        pokemonFullListUseCase.execute { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let list):
+                // Calculate total number of page
+                self.totalPageCount = list.count % self.fetchLimit == 0 ?
+                    (list.count / self.fetchLimit) :
+                    (list.count / self.fetchLimit) + 1
+                
+                // Save full list of pokemon in the state
+                self.state.addPokemonFullList(list.pokemons)
+                
+                // Get Type info for pokemon in paged manner
+                self.fetchPokemonList()
+                
+            case .failure(let error):
+                self.state.pokemonList = .completed(.failure(error))
+            }
+        }
+    }
+    
+    func fetchPokemonList() {
+        let startIndex = (currentPage * fetchLimit) + 1
+        let endIndex = (currentPage + 1) * fetchLimit
+        let requestValue = PokemonTypedListUseCase.RequestValue(range: startIndex...endIndex)
+        
+        pokemonTypedListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let pokemonList):
                 // increase page count
                 self.currentPage += 1
-                // calculate total number of page
-                self.totalPageCount = pokemonList.count % self.fetchLimit == 0 ?
-                    (pokemonList.count / self.fetchLimit) :
-                    (pokemonList.count / self.fetchLimit) + 1
+
                 // update state
                 self.state.initialPokemons(pokemonList.pokemons)
                 
@@ -68,22 +98,34 @@ extension PokemonListViewModel {
     }
     
     func fetchNextPokemonList() {
+        guard hasMorePage else { return}
+        
         state.pokemonList = .loading(nextPage: true)
-        let requestValue = PokemonListUseCase.RequestValue(offset: currentPage * fetchLimit, limit: fetchLimit)
-        pokemonListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
+        
+        let startIndex = (currentPage * fetchLimit) + 1
+        let endIndex = (currentPage + 1) * fetchLimit
+        let requestValue = PokemonTypedListUseCase.RequestValue(range: startIndex...endIndex)
+        
+        pokemonTypedListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
             case .success(let pokemonList):
                 self.currentPage += 1
-                self.totalPageCount = pokemonList.count % self.fetchLimit == 0 ?
-                    (pokemonList.count / self.fetchLimit) :
-                    (pokemonList.count / self.fetchLimit) + 1
                 
                 self.state.appendPokemons(pokemonList.pokemons)
+                
             case .failure(let error):
                 self.state.pokemonList = .completed(.failure(error))
             }
         }
+    }
+}
+
+// MARK: Filter
+extension PokemonListViewModel {
+    
+    func filter(with text: String) {
+        state.searchText = text
     }
 }

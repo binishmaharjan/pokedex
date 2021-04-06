@@ -46,21 +46,36 @@
                                             <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="default" renderingMode="original"/>
                                         </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r55-Nw-gT4">
-                                            <rect key="frame" x="44" y="5" width="338" height="30"/>
+                                            <rect key="frame" x="44" y="5" width="310" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="cCB-4z-dej"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlu-m8-Ecb">
+                                            <rect key="frame" x="362" y="10" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="Vfn-cE-zGf"/>
+                                                <constraint firstAttribute="height" constant="20" id="aSG-8l-FI5"/>
+                                            </constraints>
+                                            <state key="normal">
+                                                <imageReference key="image" image="xmark.circle" catalog="system" renderingMode="original"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="VQJ-PW-0zy"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="W4v-WZ-3N2" firstAttribute="centerY" secondItem="zra-PX-Abh" secondAttribute="centerY" id="9JG-8g-ACg"/>
-                                        <constraint firstAttribute="trailing" secondItem="r55-Nw-gT4" secondAttribute="trailing" constant="16" id="Gvr-6Z-RRe"/>
+                                        <constraint firstAttribute="trailing" secondItem="nlu-m8-Ecb" secondAttribute="trailing" constant="16" id="APw-0J-JWE"/>
                                         <constraint firstItem="r55-Nw-gT4" firstAttribute="leading" secondItem="W4v-WZ-3N2" secondAttribute="trailing" constant="8" id="KIJ-ra-6Di"/>
+                                        <constraint firstItem="nlu-m8-Ecb" firstAttribute="leading" secondItem="r55-Nw-gT4" secondAttribute="trailing" constant="8" id="RNd-U9-rfn"/>
                                         <constraint firstItem="r55-Nw-gT4" firstAttribute="centerY" secondItem="zra-PX-Abh" secondAttribute="centerY" id="SZL-5w-p5F"/>
                                         <constraint firstItem="W4v-WZ-3N2" firstAttribute="leading" secondItem="zra-PX-Abh" secondAttribute="leading" constant="16" id="SsH-nm-oyG"/>
+                                        <constraint firstItem="nlu-m8-Ecb" firstAttribute="centerY" secondItem="zra-PX-Abh" secondAttribute="centerY" id="qi0-tM-YuN"/>
                                         <constraint firstAttribute="height" constant="40" id="rVZ-DK-cAh"/>
                                     </constraints>
                                 </view>
@@ -101,6 +116,7 @@
     </objects>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

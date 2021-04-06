@@ -11,6 +11,11 @@ import SwiftyBeaver
 enum Logger {
     
     static func setup() {
+        guard SHOWLOG else {
+            print("[Logger] Log is disabled, since the PokeApi logs are extremely large and takes long time to display blocking the thread.")
+            return
+        }
+        
         #if API_DEVELOPMENT
         SwiftyBeaver.addDestination(makeDevelopConsoleDestination())
 //        SwiftyBeaver.addDestination(FileDestination(logFileURL: .log))
