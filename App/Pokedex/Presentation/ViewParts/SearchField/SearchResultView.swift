@@ -63,7 +63,7 @@ final class SearchResultView<Elements: SearchResult>: UIView, UITableViewDataSou
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = elements.value[indexPath.row].name
+        cell.textLabel?.text = elements.value[indexPath.row].name.capitalized
         return cell
     }
     

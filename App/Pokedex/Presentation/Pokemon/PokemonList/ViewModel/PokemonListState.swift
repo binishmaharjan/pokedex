@@ -35,7 +35,11 @@ struct PokemonListState {
     }
     
     var searchedPokemonList: [PokemonListItem] {
-        pokemonFullList.filter { $0.name.contains(searchText) }
+        guard !(searchText.isEmpty) else {
+            return pokemonFullList
+        }
+        
+        return pokemonFullList.filter { $0.name.contains(searchText) }
     }
     
     mutating func addPokemonFullList(_ list: [PokemonListItem]) {
