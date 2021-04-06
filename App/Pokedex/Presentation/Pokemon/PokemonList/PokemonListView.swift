@@ -70,11 +70,21 @@ extension PokemonListView {
     }
     
     private func setupSearchResultView() {
-        searchField.delegate = self
+        searchField.onEditingStatusChanged = { [weak self] status in
+            
+            guard let self = self else { return }
+            
+            self.searchResultHeightConstraints?.isActive = status == .beginEditing
+            
+            UIView.animate(withDuration: 0.1) { [weak self] in
+                guard let self = self else { return }
+                self.layoutIfNeeded()
+            }
+        }
         
         addSubview(searchResultView)
         searchResultView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             searchResultView.topAnchor.constraint(equalTo: tableView.topAnchor),
             searchResultView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
@@ -135,27 +145,3 @@ extension PokemonListView: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-extension PokemonListView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        searchResultHeightConstraints?.isActive = true
-        
-        UIView.animate(withDuration: 0.1) { [weak self] in
-            guard let self = self else { return }
-            self.layoutIfNeeded()
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-    
-        searchResultHeightConstraints?.isActive = false
-        
-        UIView.animate(withDuration: 0.1) { [weak self] in
-            guard let self = self else { return }
-            
-            self.layoutIfNeeded()
-        }
-    }
-}
-

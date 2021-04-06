@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchField" customModule="Pokedex" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="nlu-m8-Ecb" id="dZI-n7-MpC"/>
                 <outlet property="gradientView" destination="BDx-FA-fNY" id="Pfm-v4-8ea"/>
                 <outlet property="searchArea" destination="zra-PX-Abh" id="hld-uI-bqm"/>
                 <outlet property="searchTextField" destination="r55-Nw-gT4" id="zdF-pD-H9z"/>
@@ -59,8 +60,9 @@
                                                 <constraint firstAttribute="width" constant="20" id="Vfn-cE-zGf"/>
                                                 <constraint firstAttribute="height" constant="20" id="aSG-8l-FI5"/>
                                             </constraints>
+                                            <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal">
-                                                <imageReference key="image" image="xmark.circle" catalog="system" renderingMode="original"/>
+                                                <imageReference key="image" image="xmark.circle" catalog="system" symbolScale="default" renderingMode="template"/>
                                             </state>
                                             <connections>
                                                 <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="VQJ-PW-0zy"/>
