@@ -8,11 +8,17 @@
 import UIKit
 
 final class PokemonListViewController: UIViewController, AutoInjectable {
+    // MARK: Enums
+    enum Action {
+        case pokemonDetail
+    }
     
+    // MARK: Private Properties
     private let pokemonListView: PokemonListView
     private let viewModel: PokemonListViewModel
     private var dismissLoading: WindowLoadingView.DismissTrigger?
     
+    // MARK: Lifecycle
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
         self.pokemonListView = PokemonListView(viewModel: viewModel)
@@ -30,8 +36,8 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addBehaviors([TransparentNavigationBarBehavior()])
-        title = "Pokemon"
+        
+        setup()
         
         bind()
         
@@ -39,24 +45,62 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
     }
 }
 
-extension PokemonListViewController {
+// MARK: Setup
+private extension PokemonListViewController {
+    
+    func setup() {
+        addBehaviors([TransparentNavigationBarBehavior()])
+        title = "Pokemon"
+        
+        setupPokemonListView()
+    }
+    
+    func setupPokemonListView() {
+        pokemonListView.onPerform = { [weak self] action in
+            
+            guard let self = self else { return }
+            
+            self.perform(action: action)
+        }
+    }
+}
+
+// MARK: Binding
+private extension PokemonListViewController {
     
     func bind() {
         viewModel.loadingState.signal.observeValues { [weak self] (loadingState) in
             switch loadingState {
             case .loading(nextPage: false):
                 self?.dismissLoading = WindowLoadingView.show()
+                
             case .loading(nextPage: true):
                 self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: true)
+                
             case .success:
                 self?.dismissLoading?()
                 self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: false)
+                
             case .failure:
                 self?.dismissLoading?()
                 self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: false)
+                
             default:
                 break
             }
+        }
+    }
+}
+
+// MARK: Actions
+private extension PokemonListViewController {
+    
+    func perform(action: Action)  {
+        switch action {
+        case .pokemonDetail:
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = .red
+            self.present(viewController, animated: true)
         }
     }
 }

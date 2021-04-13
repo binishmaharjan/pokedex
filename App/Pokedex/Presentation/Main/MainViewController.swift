@@ -67,18 +67,14 @@ private extension MainViewController {
     
     func makeChildren() -> [UIViewController] {
         [
-            UINavigationController(rootViewController: resolver.resolvePokemonListViewController()).withTabBarItem(.iconPokemon, "Pokemon"),
+            UINavigationController(rootViewController: resolver.resolvePokemonListViewController())
+                .withTabBarItem(.iconPokemon, "Pokemon"),
+            
             UINavigationController(rootViewController: UIViewController())
                 .withTabBarItem(.iconItems, "Items"),
+            
             UINavigationController(rootViewController: UIViewController())
                     .withTabBarItem(.iconMoves, "Moves"),
-            
-//            UINavigationController(rootViewController: resolver.resolvePokemonListViewController())
-//                .withTabBarItem(UIImage(named: "icn_pokemon")!, "Pokemon"),
-//            UINavigationController(rootViewController: resolver.resolveItemListViewController())
-//                .withTabBarItem(UIImage(named: "icn_items")!, "Items"),
-//            UINavigationController(rootViewController: UIViewController())
-//                .withTabBarItem(UIImage(named: "icn_moves")!, "Moves"),
         ]
     }
 }

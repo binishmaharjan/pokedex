@@ -10,34 +10,44 @@ import ReactiveSwift
 
 final class PokemonListView: UIView {
 
+    // MARK: IBOutlets
     @IBOutlet private weak var overlayView: UIView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var searchField: SearchField!
     
+    // MARK: Private Properties
     private let viewModel: PokemonListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
-    private var searchResultView: SearchResultView<PokemonListItem>
+    private var searchResultView: SearchResultView<PokemonListItem>!
     private var searchResultHeightConstraints: NSLayoutConstraint?
     
     private var sections: PokemonListSections = .empty {
-        didSet { tableView.reloadData()
-        }
+        didSet { tableView.reloadData() }
     }
     
+    // MARK: Public Properties
+    var onPerform: ((PokemonListViewController.Action) -> Void)?
+    
+    // MARK: Lifecycle
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
-        self.searchResultView = SearchResultView(elements: viewModel.searchedPokemonList, onSelect: { _ in })
+//        self.searchResultView = SearchResultView(elements: viewModel.searchedPokemonList, onSelect: { _ in })
         super.init(frame: .zero)
         
         loadOwnedXib()
         
         setup()
+        
         bind()
     }
     
     required init?(coder: NSCoder) {
         nil
     }
+}
+
+// MARK: Bind
+extension PokemonListView {
     
     func bind() {
         reactive[\.sections] <~ viewModel.sections
@@ -70,6 +80,15 @@ extension PokemonListView {
     }
     
     private func setupSearchResultView() {
+        // Initialize
+        searchResultView = SearchResultView(elements: viewModel.searchedPokemonList) { [weak self] element in
+            
+            guard let self = self else { return }
+            
+            self.onPerform?(.pokemonDetail)
+        }
+        
+        // Text Field Status
         searchField.onEditingStatusChanged = { [weak self] status in
             
             guard let self = self else { return }
@@ -82,6 +101,7 @@ extension PokemonListView {
             }
         }
         
+        // Constraints
         addSubview(searchResultView)
         searchResultView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -94,6 +114,7 @@ extension PokemonListView {
         searchResultHeightConstraints = searchResultView.heightAnchor.constraint(equalTo: tableView.heightAnchor)
     }
     
+    /// Show Indicator for Paging
     func showNextPageLoadingIndicator(isLoadingNextPage: Bool) {
         guard isLoadingNextPage else {
             tableView.tableFooterView = nil
@@ -115,6 +136,7 @@ extension PokemonListView: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.numberOfSections()
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         sections.numberOfRow(in: section)
     }
@@ -143,5 +165,7 @@ extension PokemonListView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        onPerform?(.pokemonDetail)
     }
 }

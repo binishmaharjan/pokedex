@@ -14,13 +14,17 @@ protocol SearchResult {
 
 final class SearchResultView<Elements: SearchResult>: UIView, UITableViewDataSource, UITableViewDelegate  {
     
+    // MARK: IBOutlets
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var bottomConstraints: NSLayoutConstraint!
     
+    // MARK: Private Properties
     private var elements: Property<[Elements]>
     
+    // MARK: Public Properties
     var onSelect: (Elements) -> Void
     
+    // MARK: LifeCycle
     init(elements: Property<[Elements]>, onSelect: @escaping (Elements) -> Void) {
         self.elements = elements
         self.onSelect = onSelect
@@ -48,6 +52,7 @@ final class SearchResultView<Elements: SearchResult>: UIView, UITableViewDataSou
         tableView.dataSource = self
     }
     
+    // MARK: Bind
     private func bind() {
         elements.producer.startWithValues { [weak self] (_) in
             guard let self = self else { return }
@@ -70,6 +75,8 @@ final class SearchResultView<Elements: SearchResult>: UIView, UITableViewDataSou
     // MARK: TableView Delegate
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        onSelect(elements.value[indexPath.row])
     }
     
     // MARK: On Keyboard Frame Changed
