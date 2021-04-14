@@ -14,12 +14,14 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
     }
     
     // MARK: Private Properties
+    private let resolver: AppResolver
     private let pokemonListView: PokemonListView
     private let viewModel: PokemonListViewModel
     private var dismissLoading: WindowLoadingView.DismissTrigger?
     
     // MARK: Lifecycle
-    init(viewModel: PokemonListViewModel) {
+    init(resolver: AppResolver, viewModel: PokemonListViewModel) {
+        self.resolver = resolver
         self.viewModel = viewModel
         self.pokemonListView = PokemonListView(viewModel: viewModel)
         
@@ -98,8 +100,9 @@ private extension PokemonListViewController {
     func perform(action: Action)  {
         switch action {
         case .pokemonDetail:
-            let viewController = UIViewController()
-            viewController.view.backgroundColor = .red
+            let viewController = resolver.resolvePokemonDetailViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            
             self.present(viewController, animated: true)
         }
     }

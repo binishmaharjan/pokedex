@@ -31,7 +31,7 @@ final class PokemonListView: UIView {
     // MARK: Lifecycle
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
-//        self.searchResultView = SearchResultView(elements: viewModel.searchedPokemonList, onSelect: { _ in })
+
         super.init(frame: .zero)
         
         loadOwnedXib()
