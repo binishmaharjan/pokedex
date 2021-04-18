@@ -4,6 +4,7 @@ extension UIImage {
 
  	 static let background = UIImage(named: "background")!
  	 static let iconBug = UIImage(named: "icon_bug")!
+ 	 static let iconClose = UIImage(named: "icon_close")!
  	 static let iconDark = UIImage(named: "icon_dark")!
  	 static let iconDragon = UIImage(named: "icon_dragon")!
  	 static let iconElectric = UIImage(named: "icon_electric")!

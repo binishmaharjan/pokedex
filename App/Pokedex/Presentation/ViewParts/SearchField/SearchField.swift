@@ -50,7 +50,7 @@ final class SearchField: UIView {
         
         closeButton.isHidden = true
         
-        gradientView.applyGradient()
+        gradientView.applyGradient(for: .border)
         
         mutableSearchedText <~ searchTextField.reactive.continuousTextValues
     }

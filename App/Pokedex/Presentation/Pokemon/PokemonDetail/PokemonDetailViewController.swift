@@ -47,6 +47,16 @@ private extension PokemonDetailViewController {
     
     func setup() {
         
+        setupPokemonDetailView()
+    }
+    
+    func setupPokemonDetailView() {
+        pokemonDetailView.perform = { [weak self] action in
+            
+            guard let self = self else { return }
+            
+            self.perform(action: action)
+        }
     }
 }
 
@@ -55,5 +65,17 @@ private extension PokemonDetailViewController {
     
     func bind() {
         
+    }
+}
+
+// MARK: Actions
+private extension PokemonDetailViewController {
+    
+    func perform(action: Action) {
+        
+        switch action {
+        case .close:
+            self.dismiss(animated: true)
+        }
     }
 }

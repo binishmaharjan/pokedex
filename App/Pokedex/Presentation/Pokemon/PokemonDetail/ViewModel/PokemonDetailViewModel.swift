@@ -9,6 +9,10 @@ import Foundation
 
 final class PokemonDetailViewModel: AutoInjectable {
     
+    // MARK: Private Properties
+    @Observable
+    private var state = PokemonDetailViewState()
+    
     init() {
         
     }

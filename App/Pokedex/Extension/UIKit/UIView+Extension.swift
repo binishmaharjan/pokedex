@@ -16,24 +16,19 @@ extension UIView {
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = bounds
         
-        addSubview(blurView)
+        insertSubview(blurView, at: 0)
     }
     
     /// Add default gradient
-    func applyGradient() {
+    func applyGradient(colors: [UIColor], type: CAGradientLayerType) {
         let gradient = CAGradientLayer()
-        gradient.type = .axial
-        gradient.colors = [
-            UIColor.c6E95FD.cgColor,
-            UIColor.c6FDEFA.cgColor,
-            UIColor.c8DE061.cgColor,
-            UIColor.c51E85E.cgColor
-        ]
+        gradient.type = type
+        gradient.colors = colors.map(\.cgColor)
         gradient.startPoint = CGPoint(x: 0, y: 1)
         gradient.endPoint = CGPoint(x: 1, y: 1)
         
         gradient.frame = bounds
-        layer.addSublayer(gradient)
+        layer.insertSublayer(gradient, at: 0)
     }
 }
 
