@@ -53,13 +53,13 @@ extension AppResolver {
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
     }
 
-    func resolvePokemonDetailViewController() -> PokemonDetailViewController {
-        let pokemonDetailViewModel = resolvePokemonDetailViewModel()
+    func resolvePokemonDetailViewController(pokemonId: Int) -> PokemonDetailViewController {
+        let pokemonDetailViewModel = resolvePokemonDetailViewModel(pokemonId: pokemonId)
         return PokemonDetailViewController.makeInstance(dependency: .init(viewModel: pokemonDetailViewModel))
     }
 
-    func resolvePokemonDetailViewModel() -> PokemonDetailViewModel {
-        return PokemonDetailViewModel.makeInstance(dependency: .init())
+    func resolvePokemonDetailViewModel(pokemonId: Int) -> PokemonDetailViewModel {
+        return PokemonDetailViewModel.makeInstance(dependency: .init(pokemonId: pokemonId))
     }
 
     func resolvePokemonFullListUseCase() -> PokemonFullListUseCase {

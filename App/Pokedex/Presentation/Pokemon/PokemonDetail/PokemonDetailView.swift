@@ -12,7 +12,7 @@ final class PokemonDetailView: UIView {
     // MARK: IBOutlet
     @IBOutlet private weak var backgroundView: UIView!
     @IBOutlet private weak var titleView: UIView!
-    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var titleNameLabelView: UILabel!

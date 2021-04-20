@@ -13,7 +13,10 @@ final class PokemonDetailViewModel: AutoInjectable {
     @Observable
     private var state = PokemonDetailViewState()
     
-    init() {
-        
+    // MARK: Public Properties
+    var currentIndex: Int
+    
+    init(pokemonId: Int) {
+        self.currentIndex = pokemonId
     }
 }

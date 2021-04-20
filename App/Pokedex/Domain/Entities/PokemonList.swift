@@ -15,6 +15,15 @@ struct PokemonList {
 }
 
 struct PokemonListItem: Equatable, SearchResult {
+    
+    var id: Int {
+        guard let lastString = url.split(separator: "/").last, let id = Int(lastString) else {
+            return 0
+        }
+        
+        return id
+    }
+
     var name: String
     let url: String
 }

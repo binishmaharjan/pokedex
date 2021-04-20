@@ -85,7 +85,8 @@ extension PokemonListView {
             
             guard let self = self else { return }
             
-            self.onPerform?(.pokemonDetail)
+            
+            self.onPerform?(.pokemonDetail(element.id))
         }
         
         // Text Field Status
@@ -166,6 +167,8 @@ extension PokemonListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        onPerform?(.pokemonDetail)
+        let pokemon = sections[indexPath]
+        
+        onPerform?(.pokemonDetail(pokemon.id))
     }
 }

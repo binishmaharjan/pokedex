@@ -20,7 +20,7 @@ final class PokemonDetailViewController: UIViewController, AutoInjectable {
     
     // MARK: LifeCycle
     init(viewModel: PokemonDetailViewModel) {
-        self.viewModel = PokemonDetailViewModel()
+        self.viewModel = viewModel
         self.pokemonDetailView = PokemonDetailView(viewModel: viewModel)
         
         super.init(nibName: nil, bundle: nil)
@@ -48,6 +48,8 @@ private extension PokemonDetailViewController {
     func setup() {
         
         setupPokemonDetailView()
+        
+        setupPageViewController()
     }
     
     func setupPokemonDetailView() {
@@ -57,6 +59,30 @@ private extension PokemonDetailViewController {
             
             self.perform(action: action)
         }
+    }
+    
+    func setupPageViewController() {
+        
+        let pageViewController = PageViewController()
+        
+        addChild(pageViewController)
+        
+        pageViewController.dataSource = self
+        
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        pokemonDetailView.contentView.addSubview(pageViewController.view)
+        
+        NSLayoutConstraint.activate([
+            pageViewController.view.topAnchor.constraint(equalTo: pokemonDetailView.contentView.topAnchor),
+            pageViewController.view.bottomAnchor.constraint(equalTo: pokemonDetailView.contentView.bottomAnchor),
+            pageViewController.view.leadingAnchor.constraint(equalTo: pokemonDetailView.contentView.leadingAnchor),
+            pageViewController.view.trailingAnchor.constraint(equalTo: pokemonDetailView.contentView.trailingAnchor),
+        ])
+        
+        let viewController = TestViewController(index: viewModel.currentIndex)
+        
+        pageViewController.setViewControllers([viewController], direction: .forward, animated: true)
     }
 }
 
@@ -77,5 +103,34 @@ private extension PokemonDetailViewController {
         case .close:
             self.dismiss(animated: true)
         }
+    }
+}
+
+// MARK: PageView DataSource
+extension PokemonDetailViewController: UIPageViewControllerDataSource {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let currentViewController = viewController as? TestViewController else {
+            return nil
+        }
+        
+        let nextIndex = currentViewController.passedIndex - 1
+        let nextViewController = TestViewController(index: nextIndex)
+        viewModel.currentIndex = nextIndex
+        
+        return nextViewController
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
+        guard let currentViewController = viewController as? TestViewController else {
+            return nil
+        }
+        
+        let nextIndex = currentViewController.passedIndex + 1
+        let nextViewController = TestViewController(index: nextIndex)
+        viewModel.currentIndex = nextIndex
+        
+        return nextViewController
     }
 }
