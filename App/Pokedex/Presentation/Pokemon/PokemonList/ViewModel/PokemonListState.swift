@@ -15,7 +15,7 @@ struct PokemonListState {
     
     /// List of all Pokemon
     private var pokemonFullList: [PokemonListItem] = []
-    /// Current loaded pokemon with typed
+    /// Current loaded pokemon with type
     private var currentPokemonList: [PokemonTypedListItem] = []
     
     /// API State

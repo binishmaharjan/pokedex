@@ -21,13 +21,14 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
         self.apiClient = apiClient
     }
     
-    func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping (Result<PokemonList, APIError>) -> Void) -> Cancellable? {
+    func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
         let request = PokemonListRequest(offset: offset, limit: limit)
         
         let task = apiClient.send(request) { (result) in
             switch result {
             case .success(let responseDTO):
-                handler(.success(responseDTO.toDomain()))
+                let pokemonList = responseDTO.toDomain()
+                handler(.success(pokemonList.pokemons))
             case .failure(let error):
                 handler(.failure(error))
             }
@@ -51,7 +52,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
         return task
     }
     
-    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<PokemonTypedList, APIError>) -> Void) -> Cancellable? {
+    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonTypedListItem], APIError>) -> Void) -> Cancellable? {
         // Reset Saved values
         error = nil
         pokemonList.removeAll()
@@ -88,7 +89,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
                     handler(.failure(error))
                 } else {
                     let sortedList = self.pokemonList.sorted()
-                    handler(.success(PokemonTypedList(pokemons: sortedList)))
+                    handler(.success(sortedList))
                 }
             }
         }

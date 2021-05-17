@@ -65,7 +65,7 @@ extension PokemonListViewModel {
                     (list.count / self.fetchLimit) + 1
                 
                 // Save full list of pokemon in the state
-                self.state.addPokemonFullList(list.pokemons)
+                self.state.addPokemonFullList(list)
                 
                 // Get Type info for pokemon in paged manner
                 self.fetchPokemonList()
@@ -89,7 +89,7 @@ extension PokemonListViewModel {
                 self.currentPage += 1
 
                 // update state
-                self.state.initialPokemons(pokemonList.pokemons)
+                self.state.initialPokemons(pokemonList)
                 
             case .failure(let error):
                 self.state.pokemonList = .completed(.failure(error))
@@ -113,7 +113,7 @@ extension PokemonListViewModel {
             case .success(let pokemonList):
                 self.currentPage += 1
                 
-                self.state.appendPokemons(pokemonList.pokemons)
+                self.state.appendPokemons(pokemonList)
                 
             case .failure(let error):
                 self.state.pokemonList = .completed(.failure(error))
