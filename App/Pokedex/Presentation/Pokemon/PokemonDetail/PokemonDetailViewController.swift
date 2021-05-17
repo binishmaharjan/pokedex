@@ -14,14 +14,16 @@ final class PokemonDetailViewController: UIViewController, AutoInjectable {
     }
     
     // MARK: Private Properties
+    private let resolver: AppResolver
     private let viewModel: PokemonDetailViewModel
     private let pokemonDetailView: PokemonDetailView
     private var dismissLoading: WindowLoadingView.DismissTrigger?
     
     // MARK: LifeCycle
-    init(viewModel: PokemonDetailViewModel) {
+    init(viewModel: PokemonDetailViewModel, resolver: AppResolver) {
         self.viewModel = viewModel
         self.pokemonDetailView = PokemonDetailView(viewModel: viewModel)
+        self.resolver = resolver
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -80,7 +82,7 @@ private extension PokemonDetailViewController {
             pageViewController.view.trailingAnchor.constraint(equalTo: pokemonDetailView.contentView.trailingAnchor),
         ])
         
-        let viewController = TestViewController(index: viewModel.currentIndex)
+        let viewController = resolver.resolvePokemonDetailContentViewController(pokemonId: viewModel.currentIndex)
         
         pageViewController.setViewControllers([viewController], direction: .forward, animated: true)
     }
@@ -110,12 +112,12 @@ private extension PokemonDetailViewController {
 extension PokemonDetailViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentViewController = viewController as? TestViewController else {
+        guard let currentViewController = viewController as? PokemonDetailContentViewController else {
             return nil
         }
         
-        let nextIndex = currentViewController.passedIndex - 1
-        let nextViewController = TestViewController(index: nextIndex)
+        let nextIndex = currentViewController.currentIndex - 1
+        let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
         viewModel.currentIndex = nextIndex
         
         return nextViewController
@@ -123,12 +125,12 @@ extension PokemonDetailViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        guard let currentViewController = viewController as? TestViewController else {
+        guard let currentViewController = viewController as? PokemonDetailContentViewController else {
             return nil
         }
         
-        let nextIndex = currentViewController.passedIndex + 1
-        let nextViewController = TestViewController(index: nextIndex)
+        let nextIndex = currentViewController.currentIndex + 1
+        let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
         viewModel.currentIndex = nextIndex
         
         return nextViewController

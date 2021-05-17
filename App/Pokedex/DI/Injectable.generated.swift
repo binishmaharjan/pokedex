@@ -96,21 +96,59 @@ extension MainViewController: FactoryMethodInjectable {
     }
 }
 
-extension PokemonDetailViewController: FactoryMethodInjectable {
+extension PokemonDetailContentViewController: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let viewModel: PokemonDetailViewModel
+        let viewModel: PokemonDetailContentViewModel
         
 
-        init(viewModel: PokemonDetailViewModel) {
+        init(viewModel: PokemonDetailContentViewModel) {
             self.viewModel = viewModel
             
         }
     }
     
+    static func makeInstance(dependency: Dependency) -> PokemonDetailContentViewController {
+        PokemonDetailContentViewController(viewModel: dependency.viewModel)
+    }
+}
+
+extension PokemonDetailContentViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let pokemonId: Int
+        
+
+        init(pokemonId: Int) {
+            self.pokemonId = pokemonId
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonDetailContentViewModel {
+        PokemonDetailContentViewModel(pokemonId: dependency.pokemonId)
+    }
+}
+
+extension PokemonDetailViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let viewModel: PokemonDetailViewModel
+        let resolver: AppResolver
+        
+
+        init(viewModel: PokemonDetailViewModel, resolver: AppResolver) {
+            self.viewModel = viewModel
+            self.resolver = resolver
+            
+        }
+    }
+    
     static func makeInstance(dependency: Dependency) -> PokemonDetailViewController {
-        PokemonDetailViewController(viewModel: dependency.viewModel)
+        PokemonDetailViewController(viewModel: dependency.viewModel, resolver: dependency.resolver)
     }
 }
 

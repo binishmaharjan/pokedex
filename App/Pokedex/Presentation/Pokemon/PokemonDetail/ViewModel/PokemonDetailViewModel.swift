@@ -10,7 +10,7 @@ import Foundation
 final class PokemonDetailViewModel: AutoInjectable {
     
     // MARK: Private Properties
-    @Observable
+    @Observable // TODO: State may not be needed delete it.
     private var state = PokemonDetailViewState()
     
     // MARK: Public Properties
