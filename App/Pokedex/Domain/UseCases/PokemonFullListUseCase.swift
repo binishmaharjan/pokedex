@@ -20,6 +20,7 @@ final class PokemonFullListUseCase: AutoInjectable {
         self.pokemonRepository = pokemonRepository
     }
     
+    @discardableResult
     func execute(_ handler: @escaping (Result<PokemonList, APIError>) -> Void) -> Cancellable? {
         let requestValue = RequestValue()
         return pokemonRepository.fetchPokemonList(offset: requestValue.offset, limit: requestValue.limit, handler)

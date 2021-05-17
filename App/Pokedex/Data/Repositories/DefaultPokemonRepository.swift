@@ -9,7 +9,13 @@ import Foundation
 
 final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     
+    // MARK: Properties
     private let apiClient: APIClient
+    
+    // MARK: Pokemon Typed List Properties
+    private let dispatchGroup = DispatchGroup()
+    private var pokemonList: [PokemonTypedListItem] = []
+    private var error: APIError?
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
@@ -43,5 +49,50 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
         }
         
         return task
+    }
+    
+    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<PokemonTypedList, APIError>) -> Void) -> Cancellable? {
+        // Reset Saved values
+        error = nil
+        pokemonList.removeAll()
+        
+        // Send request for all Pokemon in the request value
+        requestValue.forEach { id in
+            dispatchGroup.enter()
+            
+            let request = PokemonInfoRequest(id: id)
+            
+            let task = apiClient.send(request) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let info):
+                    let typeItem = PokemonTypedListItem.from(pokemonInfo: info.toDomain())
+                    self.pokemonList.append(typeItem)
+                    
+                case .failure(let error):
+                    self.error = error
+                }
+                
+                self.dispatchGroup.leave()
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            
+            guard let self = self else { return }
+            
+            self.dispatchGroup.notify(queue: .main) {
+                if let error = self.error {
+                    handler(.failure(error))
+                } else {
+                    let sortedList = self.pokemonList.sorted()
+                    handler(.success(PokemonTypedList(pokemons: sortedList)))
+                }
+            }
+        }
+        
+        return nil
     }
 }
