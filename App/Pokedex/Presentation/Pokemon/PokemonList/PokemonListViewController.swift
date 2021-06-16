@@ -10,7 +10,7 @@ import UIKit
 final class PokemonListViewController: UIViewController, AutoInjectable {
     // MARK: Enums
     enum Action {
-        case pokemonDetail(Int)
+        case pokemonDetail(Int, TypeName?)
     }
     
     // MARK: Private Properties
@@ -99,8 +99,11 @@ private extension PokemonListViewController {
     
     func perform(action: Action)  {
         switch action {
-        case .pokemonDetail(let pokemonId):
-            let viewController = resolver.resolvePokemonDetailViewController(pokemonId: pokemonId)
+        case let .pokemonDetail(pokemonId, backgroundType):
+            let viewController = resolver.resolvePokemonDetailViewController(
+                pokemonId: pokemonId,
+                backgroundType: backgroundType
+            )
             viewController.modalPresentationStyle = .fullScreen
             
             self.present(viewController, animated: true)

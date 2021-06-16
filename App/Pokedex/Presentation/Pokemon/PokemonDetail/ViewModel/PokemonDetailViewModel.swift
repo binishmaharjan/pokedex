@@ -6,17 +6,25 @@
 //
 
 import Foundation
+import ReactiveSwift
 
 final class PokemonDetailViewModel: AutoInjectable {
     
     // MARK: Private Properties
-    @Observable // TODO: State may not be needed delete it.
+    @Observable 
     private var state = PokemonDetailViewState()
     
     // MARK: Public Properties
     var currentIndex: Int
     
-    init(pokemonId: Int) {
+    var displayType: Property<TypeName?> {
+        $state
+            .map(\.backgroundType)
+            .skipRepeats()
+    }
+    
+    init(pokemonId: Int, backgroundType: TypeName?) {
         self.currentIndex = pokemonId
+        self.state.backgroundType = backgroundType
     }
 }

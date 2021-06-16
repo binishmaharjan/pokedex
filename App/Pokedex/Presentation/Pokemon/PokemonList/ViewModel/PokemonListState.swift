@@ -13,14 +13,20 @@ import Foundation
 // but the logs still keeps priniting
 struct PokemonListState {
     
-    /// List of all Pokemon
+    // MARK: Private Properties
     private var pokemonFullList: [PokemonListItem] = []
-    /// Current loaded pokemon with type
-    private var currentPokemonList: [PokemonTypedListItem] = []
+    private var currentPokemonList: [PokemonTypedListItem] = [] // Current loaded pokemon with type
     
-    /// API State
+    // MARK: Paging Related
+    private let initialOffSet: Int = 0
+    private let fetchLimit: Int = 50
+    private var currentPage: Int = 0
+    private var totalPageCount: Int = 1
+    private var hasMorePage: Bool { return currentPage < totalPageCount }
+    private var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
+    
+    // MARK: Public Properties
     var pokemonList: LoadingState<[PokemonTypedListItem], APIError> = .initial
-    /// Search Query
     var searchText: String = ""
     
     var sections: PokemonListSections {

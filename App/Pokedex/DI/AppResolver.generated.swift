@@ -62,14 +62,19 @@ extension AppResolver {
         return PokemonDetailContentViewModel.makeInstance(dependency: .init(pokemonId: pokemonId))
     }
 
-    func resolvePokemonDetailViewController(pokemonId: Int) -> PokemonDetailViewController {
-        let pokemonDetailViewModel = resolvePokemonDetailViewModel(pokemonId: pokemonId)
+    func resolvePokemonDetailUseCase() -> PokemonDetailUseCase {
+        let pokemonRepository = resolvePokemonRepository()
+        return PokemonDetailUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
+    }
+
+    func resolvePokemonDetailViewController(pokemonId: Int, backgroundType: TypeName?) -> PokemonDetailViewController {
+        let pokemonDetailViewModel = resolvePokemonDetailViewModel(pokemonId: pokemonId, backgroundType: backgroundType)
         let appResolver = resolveAppResolver()
         return PokemonDetailViewController.makeInstance(dependency: .init(viewModel: pokemonDetailViewModel, resolver: appResolver))
     }
 
-    func resolvePokemonDetailViewModel(pokemonId: Int) -> PokemonDetailViewModel {
-        return PokemonDetailViewModel.makeInstance(dependency: .init(pokemonId: pokemonId))
+    func resolvePokemonDetailViewModel(pokemonId: Int, backgroundType: TypeName?) -> PokemonDetailViewModel {
+        return PokemonDetailViewModel.makeInstance(dependency: .init(pokemonId: pokemonId, backgroundType: backgroundType))
     }
 
     func resolvePokemonFullListUseCase() -> PokemonFullListUseCase {

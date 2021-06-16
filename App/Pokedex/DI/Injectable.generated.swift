@@ -132,6 +132,24 @@ extension PokemonDetailContentViewModel: FactoryMethodInjectable {
     }
 }
 
+extension PokemonDetailUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let pokemonRepository: PokemonRepository
+        
+
+        init(pokemonRepository: PokemonRepository) {
+            self.pokemonRepository = pokemonRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonDetailUseCase {
+        PokemonDetailUseCase(pokemonRepository: dependency.pokemonRepository)
+    }
+}
+
 extension PokemonDetailViewController: FactoryMethodInjectable {
 
     struct Dependency {
@@ -157,16 +175,18 @@ extension PokemonDetailViewModel: FactoryMethodInjectable {
     struct Dependency {
         
         let pokemonId: Int
+        let backgroundType: TypeName?
         
 
-        init(pokemonId: Int) {
+        init(pokemonId: Int, backgroundType: TypeName?) {
             self.pokemonId = pokemonId
+            self.backgroundType = backgroundType
             
         }
     }
     
     static func makeInstance(dependency: Dependency) -> PokemonDetailViewModel {
-        PokemonDetailViewModel(pokemonId: dependency.pokemonId)
+        PokemonDetailViewModel(pokemonId: dependency.pokemonId, backgroundType: dependency.backgroundType)
     }
 }
 

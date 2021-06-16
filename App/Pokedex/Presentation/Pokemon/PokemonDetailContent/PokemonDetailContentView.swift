@@ -9,8 +9,16 @@ import UIKit
 
 final class PokemonDetailContentView: UIView {
     
+    // MARK: IBOutlets
+    @IBOutlet weak var informationViewArea: UIView!
+    @IBOutlet weak var pokemonImageIcon: UIImageView!
+    @IBOutlet weak var pokemonNameLabel: UILabel!
+    @IBOutlet weak var pokemonTypeOneImageView: UIImageView!
+    @IBOutlet weak var pokemonTypeTwoImageView: UIImageView!
+    @IBOutlet weak var pokemonDescriptionLabel: UILabel!
+    
     // MARK: Public Properties
-    @IBOutlet private weak var idLabel: UILabel!
+    
     
     // MARK: Private Properties
     private let viewModel: PokemonDetailContentViewModel
@@ -35,7 +43,12 @@ final class PokemonDetailContentView: UIView {
 private extension PokemonDetailContentView {
     
     func setup() {
-        idLabel.text = viewModel.currentIndex.description
+        setupBackground()
+    }
+    
+    func setupBackground() {
+        informationViewArea.layer.cornerRadius = 36
+//        informationViewArea.roundCorners(corners: [.topLeft,.topRight], radius: 48)
     }
 }
 

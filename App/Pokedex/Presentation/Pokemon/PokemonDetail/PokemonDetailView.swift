@@ -32,6 +32,7 @@ final class PokemonDetailView: UIView {
         loadOwnedXib()
         
         setup()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -48,15 +49,18 @@ final class PokemonDetailView: UIView {
 private extension PokemonDetailView {
     
     func setup() {
-        setupBackground()
-    }
-    
-    func setupBackground() {
-        backgroundView.applyGradient(for: .app)
+        // Do Something
     }
 }
 
 // MARK: Bind
 private extension PokemonDetailView {
     
+    func bind() {
+        viewModel.displayType.producer.skipNil().startWithValues { [weak self] typeName in
+            guard let self = self else { return }
+            
+            self.backgroundView.applyGradient(with: typeName)
+        }
+    }
 }

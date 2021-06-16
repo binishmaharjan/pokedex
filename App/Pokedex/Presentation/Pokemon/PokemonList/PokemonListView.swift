@@ -86,7 +86,7 @@ extension PokemonListView {
             guard let self = self else { return }
             
             
-            self.onPerform?(.pokemonDetail(element.id))
+            self.onPerform?(.pokemonDetail(element.id, nil))
         }
         
         // Text Field Status
@@ -169,6 +169,6 @@ extension PokemonListView: UITableViewDelegate {
         
         let pokemon = sections[indexPath]
         
-        onPerform?(.pokemonDetail(pokemon.id))
+        onPerform?(.pokemonDetail(pokemon.id, pokemon.types[0].type.name))
     }
 }
