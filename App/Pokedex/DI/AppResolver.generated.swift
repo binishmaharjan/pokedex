@@ -84,7 +84,7 @@ extension AppResolver {
         return PokemonFullListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
     }
 
-    func resolvePokemonListCellViewModel(pokemon: PokemonTypedListItem) -> PokemonListCellViewModel {
+    func resolvePokemonListCellViewModel(pokemon: TypePokemonListItem) -> PokemonListCellViewModel {
         return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
     }
 

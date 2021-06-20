@@ -10,7 +10,7 @@ import ReactiveSwift
 
 struct PokemonListCellViewModel: AutoInjectable {
     
-    private let pokemon: PokemonTypedListItem
+    private let pokemon: TypePokemonListItem
     
     let name: Property<String>
     let id: Property<Int>
@@ -18,7 +18,7 @@ struct PokemonListCellViewModel: AutoInjectable {
     let typeOne: Property<Type?>
     let typeTwo: Property<Type?>
     
-    init(pokemon: PokemonTypedListItem) {
+    init(pokemon: TypePokemonListItem) {
         
         self.pokemon = pokemon
         
