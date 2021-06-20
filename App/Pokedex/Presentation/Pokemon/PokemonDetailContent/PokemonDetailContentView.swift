@@ -6,16 +6,18 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
 
 final class PokemonDetailContentView: UIView {
     
     // MARK: IBOutlets
-    @IBOutlet weak var informationViewArea: UIView!
-    @IBOutlet weak var pokemonImageIcon: UIImageView!
-    @IBOutlet weak var pokemonNameLabel: UILabel!
-    @IBOutlet weak var pokemonTypeOneImageView: UIImageView!
-    @IBOutlet weak var pokemonTypeTwoImageView: UIImageView!
-    @IBOutlet weak var pokemonDescriptionLabel: UILabel!
+    @IBOutlet private weak var informationViewArea: UIView!
+    @IBOutlet private weak var pokemonImageIcon: UIImageView!
+    @IBOutlet private weak var pokemonNameLabel: UILabel!
+    @IBOutlet private weak var pokemonTypeOneImageView: UIImageView!
+    @IBOutlet private weak var pokemonTypeTwoImageView: UIImageView!
+    @IBOutlet private weak var pokemonDescriptionLabel: UILabel!
     
     // MARK: Public Properties
     
@@ -32,6 +34,10 @@ final class PokemonDetailContentView: UIView {
         loadOwnedXib()
         
         setup()
+        
+        bind()
+        
+        viewModel.fetchPokemonDetail()
     }
     
     required init?(coder: NSCoder) {
@@ -43,16 +49,37 @@ final class PokemonDetailContentView: UIView {
 private extension PokemonDetailContentView {
     
     func setup() {
-        setupBackground()
-    }
-    
-    func setupBackground() {
         informationViewArea.layer.cornerRadius = 36
-//        informationViewArea.roundCorners(corners: [.topLeft,.topRight], radius: 48)
+        
+        // Hide type two image at the start
+        pokemonTypeTwoImageView.isHidden = true
     }
 }
 
 // MARK: Bind
 private extension PokemonDetailContentView {
     
+    func bind() {
+        pokemonNameLabel.reactive.text <~ viewModel.pokemonInfo.skipNil().map { $0.name.capitalized }
+        
+        viewModel.imageUrl.skipNil().startWithValues { [weak self] url in
+            guard let self = self else { return }
+            
+            self.pokemonImageIcon.loadImage(at: url)
+        }
+        
+        viewModel.typeOne.startWithValues { [weak self] type in
+            guard let self = self else { return }
+                
+            self.pokemonTypeOneImageView.image = .from(type, imageType: .tag)
+        }
+        
+        viewModel.typeTwo.startWithValues { [weak self] type in
+            guard let self = self else { return }
+                
+            // Unhide the type two since its exists
+            self.pokemonTypeTwoImageView.isHidden = false
+            self.pokemonTypeTwoImageView.image = .from(type, imageType: .tag)
+        }
+    }
 }

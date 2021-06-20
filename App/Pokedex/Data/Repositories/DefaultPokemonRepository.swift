@@ -37,7 +37,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
         return task
     }
     
-    func fetchPokemonInfo(id: Int, _ handler: @escaping (Result<PokemonInfo, APIError>) ->Void) -> Cancellable? {
+    func fetchPokemon(id: Int, _ handler: @escaping (Result<PokemonInfo, APIError>) ->Void) -> Cancellable? {
         let request = PokemonInfoRequest(id: id)
         
         let task = apiClient.send(request) { (result) in

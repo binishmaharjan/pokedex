@@ -6,6 +6,7 @@
 import APIKit
 import DIKit
 import Foundation
+import ReactiveCocoa
 import ReactiveSwift
 import UIKit
 
@@ -59,7 +60,8 @@ extension AppResolver {
     }
 
     func resolvePokemonDetailContentViewModel(pokemonId: Int) -> PokemonDetailContentViewModel {
-        return PokemonDetailContentViewModel.makeInstance(dependency: .init(pokemonId: pokemonId))
+        let pokemonDetailUseCase = resolvePokemonDetailUseCase()
+        return PokemonDetailContentViewModel.makeInstance(dependency: .init(pokemonId: pokemonId, pokemonDetailUseCase: pokemonDetailUseCase))
     }
 
     func resolvePokemonDetailUseCase() -> PokemonDetailUseCase {

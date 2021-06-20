@@ -119,6 +119,7 @@
 		649590C4261636F500DFD840 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 649590C2261636F400DFD840 /* LoadingView.xib */; };
 		649590C5261636F500DFD840 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649590C3261636F500DFD840 /* LoadingView.swift */; };
 		64A11293266D213B0019FC1D /* PokemonDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A11292266D213B0019FC1D /* PokemonDetailUseCase.swift */; };
+		64A11299267A5FBE0019FC1D /* PokemonDetailContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A11298267A5FBE0019FC1D /* PokemonDetailContentState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -231,6 +232,7 @@
 		649590C2261636F400DFD840 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		649590C3261636F500DFD840 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		64A11292266D213B0019FC1D /* PokemonDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailUseCase.swift; sourceTree = "<group>"; };
+		64A11298267A5FBE0019FC1D /* PokemonDetailContentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailContentState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				64923187262F42A300B4FC9E /* PokemonDetailContentViewModel.swift */,
+				64A11298267A5FBE0019FC1D /* PokemonDetailContentState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1010,6 +1013,7 @@
 				64958F8D260F6D8600DFD840 /* Cancellabe.swift in Sources */,
 				649590042610775300DFD840 /* BackButtonEmptyTitleNavigationBarBehavior.swift in Sources */,
 				64958F7A260B8AF600DFD840 /* HTTPBodyParamters.swift in Sources */,
+				64A11299267A5FBE0019FC1D /* PokemonDetailContentState.swift in Sources */,
 				64958F0C2602456000DFD840 /* Injectable.generated.swift in Sources */,
 				6495908326138EBC00DFD840 /* UITableView+Extension.swift in Sources */,
 				64958F95260F714200DFD840 /* APIRequest.swift in Sources */,

@@ -1,6 +1,7 @@
 import APIKit
 import DIKit
 import Foundation
+import ReactiveCocoa
 import ReactiveSwift
 import UIKit
 
@@ -119,16 +120,18 @@ extension PokemonDetailContentViewModel: FactoryMethodInjectable {
     struct Dependency {
         
         let pokemonId: Int
+        let pokemonDetailUseCase: PokemonDetailUseCase
         
 
-        init(pokemonId: Int) {
+        init(pokemonId: Int, pokemonDetailUseCase: PokemonDetailUseCase) {
             self.pokemonId = pokemonId
+            self.pokemonDetailUseCase = pokemonDetailUseCase
             
         }
     }
     
     static func makeInstance(dependency: Dependency) -> PokemonDetailContentViewModel {
-        PokemonDetailContentViewModel(pokemonId: dependency.pokemonId)
+        PokemonDetailContentViewModel(pokemonId: dependency.pokemonId, pokemonDetailUseCase: dependency.pokemonDetailUseCase)
     }
 }
 

@@ -9,48 +9,52 @@ import UIKit
 
 extension UIImage {
     
-    static func from(_ type: TypeName?) -> UIImage? {
+    enum ImageType {
+        case icon
+        case tag
+    }
+    static func from(_ type: TypeName?, imageType: ImageType = .icon) -> UIImage? {
         guard let type = type else {
             return nil
         }
         
         switch type {
         case .normal:
-            return .iconNormal
+            return imageType == .icon ? .iconNormal : .tagNormal
         case .fighting:
-            return .iconFighting
+            return imageType == .icon ? .iconFighting : .tagFight
         case .flying:
-            return .iconFlying
+            return imageType == .icon ? .iconFlying : .tagFlying
         case .poison:
-            return .iconPoison
+            return imageType == .icon ? .iconPoison : .tagPoison
         case .ground:
-            return .iconGround
+            return imageType == .icon ? .iconGround : .tagGround
         case .rock:
-            return .iconRock
+            return imageType == .icon ? .iconRock : .tagRock
         case .bug:
-            return .iconBug
+            return imageType == .icon ? .iconBug : .tagBug
         case .ghost:
-            return .iconGhost
+            return imageType == .icon ? .iconGhost : .tagGhost
         case .steel:
-            return .iconSteel
+            return imageType == .icon ? .iconSteel : .tagSteel
         case .fire:
-            return .iconFire
+            return imageType == .icon ? .iconFire : .tagFire
         case .water:
-            return .iconWater
+            return imageType == .icon ? .iconWater : .tagWater
         case .grass:
-            return .iconGrass
+            return imageType == .icon ? .iconGrass : .tagGrass
         case .electric:
-            return .iconElectric
+            return imageType == .icon ? .iconElectric : .tagElectric
         case .psychic:
-            return .iconPsychic
+            return imageType == .icon ? .iconPsychic : .tagPsychic
         case .ice:
-            return .iconIce
+            return imageType == .icon ? .iconIce : .tagIce
         case .dragon:
-            return .iconDragon
+            return imageType == .icon ? .iconDragon : .tagDragon
         case .dark:
-            return .iconDark
+            return imageType == .icon ? .iconDark : .tagDark
         case .fairy:
-            return .iconFairy
+            return imageType == .icon ? .iconFairy : .tagFairy
         case .unknown:
            return nil
         case .shadow:

@@ -10,7 +10,7 @@ import Foundation
 // Current Problem load finishes but log keeps on printing
 // So Dispatch Group Notify is delayed
 // Due to current bug?? or something indicator is hidden fast
-// but the logs still keeps priniting
+// but the logs still keeps printing
 struct PokemonListState {
     
     // MARK: Private Properties
