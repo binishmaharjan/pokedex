@@ -45,25 +45,25 @@ extension PokemonDetailContentViewModel {
             .map(\.imageUrl)
     }
     
-    var typeOne: SignalProducer<TypeName, Never> {
+    var typeOne: SignalProducer<Type, Never> {
         return  $state
             .map(\.pokemonInfo?.types)
             .skipNil()
-            .flatMap(.latest) { typesList -> SignalProducer<TypeName?, Never> in
+            .flatMap(.latest) { pokemonType -> SignalProducer<Type?, Never> in
                 // TODO: move this to extension
-                let type = typesList.filter { $0.slot == 1 }.first?.type.name
-                return SignalProducer<TypeName?, Never>(value: type)
+                let type = pokemonType.filter { $0.slot == 1 }.first?.type.name
+                return SignalProducer<Type?, Never>(value: type)
             }
             .skipNil()
     }
     
-    var typeTwo: SignalProducer<TypeName, Never> {
+    var typeTwo: SignalProducer<Type, Never> {
         return  $state
             .map(\.pokemonInfo?.types)
             .skipNil()
-            .flatMap(.latest) { typesList -> SignalProducer<TypeName?, Never> in
-                let type = typesList.filter { $0.slot == 2 }.first?.type.name
-                return SignalProducer<TypeName?, Never>(value: type)
+            .flatMap(.latest) { pokemonType -> SignalProducer<Type?, Never> in
+                let type = pokemonType.filter { $0.slot == 2 }.first?.type.name
+                return SignalProducer<Type?, Never>(value: type)
             }
             .skipNil()
     }

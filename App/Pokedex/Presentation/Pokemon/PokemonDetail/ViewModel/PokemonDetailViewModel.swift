@@ -17,13 +17,13 @@ final class PokemonDetailViewModel: AutoInjectable {
     // MARK: Public Properties
     var currentIndex: Int
     
-    var displayType: Property<TypeName?> {
+    var type: Property<Type?> {
         $state
             .map(\.backgroundType)
             .skipRepeats()
     }
     
-    init(pokemonId: Int, backgroundType: TypeName?) {
+    init(pokemonId: Int, backgroundType: Type?) {
         self.currentIndex = pokemonId
         self.state.backgroundType = backgroundType
     }

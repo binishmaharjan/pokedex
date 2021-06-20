@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct Types: Equatable {
+struct PokemonType: Equatable {
     let slot: Int
-    let type: Type
+    let type: TypeInfo
 }
 
-struct Type: Equatable  {
-    let name: TypeName
+struct TypeInfo: Equatable  {
+    let name: Type
     let url: String
 }
 
-enum TypeName: String, Codable {
+enum Type: String, Codable {
     case normal
     case fighting
     case flying

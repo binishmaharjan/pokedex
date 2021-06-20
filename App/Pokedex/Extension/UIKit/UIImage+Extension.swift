@@ -13,7 +13,7 @@ extension UIImage {
         case icon
         case tag
     }
-    static func from(_ type: TypeName?, imageType: ImageType = .icon) -> UIImage? {
+    static func from(_ type: Type?, imageType: ImageType = .icon) -> UIImage? {
         guard let type = type else {
             return nil
         }

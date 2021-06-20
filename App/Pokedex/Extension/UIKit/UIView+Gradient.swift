@@ -66,8 +66,8 @@ extension UIView {
         applyGradient(colors: gradient.colors, type: type)
     }
     
-    func applyGradient(with typeName: TypeName) {
-        switch typeName {
+    func applyGradient(with type: Type) {
+        switch type {
         case .normal: applyGradient(for: .normal)
         case .fighting: applyGradient(for: .fighting)
         case .flying: applyGradient(for: .flying)

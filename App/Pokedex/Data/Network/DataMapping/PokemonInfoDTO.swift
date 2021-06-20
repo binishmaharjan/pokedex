@@ -10,28 +10,28 @@ import Foundation
 struct PokemonInfoDTO: Codable {
     let name: String
     let id: Int
-    let types: [TypesDTO]
+    let types: [PokemonTypeDTO]
     
     func toDomain() -> PokemonInfo {
         PokemonInfo(name: name, id: id, types: types.map { $0.toDomain()} )
     }
 }
 
-struct TypesDTO: Codable {
+struct PokemonTypeDTO: Codable {
     let slot: Int
-    let type: TypeDTO
+    let type: TypeInfoDTO
     
-    func toDomain() -> Types {
-        Types(slot: slot, type: type.toDomain())
+    func toDomain() -> PokemonType {
+        PokemonType(slot: slot, type: type.toDomain())
     }
 }
 
-struct TypeDTO: Codable {
-    let name: TypeName
+struct TypeInfoDTO: Codable {
+    let name: Type
     let url: String
     
-    func toDomain() -> Type {
-        Type(name: name, url: url)
+    func toDomain() -> TypeInfo {
+        TypeInfo(name: name, url: url)
     }
 }
 

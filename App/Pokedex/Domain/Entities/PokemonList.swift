@@ -39,7 +39,7 @@ struct PokemonTypedListItem: Equatable, Comparable {
     
     let name: String
     let id: Int
-    let types: [Types]
+    let types: [PokemonType]
     
     static func from(pokemonInfo: PokemonInfo) -> PokemonTypedListItem {
         PokemonTypedListItem(name: pokemonInfo.name, id: pokemonInfo.id, types: pokemonInfo.types)

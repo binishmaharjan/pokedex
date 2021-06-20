@@ -10,7 +10,7 @@ import UIKit
 final class PokemonListViewController: UIViewController, AutoInjectable {
     // MARK: Enums
     enum Action {
-        case pokemonDetail(Int, TypeName?)
+        case pokemonDetail(Int, Type?)
     }
     
     // MARK: Private Properties

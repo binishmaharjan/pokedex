@@ -10,5 +10,5 @@ import Foundation
 struct PokemonInfo {
     let name: String
     let id: Int
-    let types: [Types]
+    let types: [PokemonType]
 }

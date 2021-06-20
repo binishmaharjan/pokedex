@@ -57,10 +57,10 @@ private extension PokemonDetailView {
 private extension PokemonDetailView {
     
     func bind() {
-        viewModel.displayType.producer.skipNil().startWithValues { [weak self] typeName in
+        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
             guard let self = self else { return }
             
-            self.backgroundView.applyGradient(with: typeName)
+            self.backgroundView.applyGradient(with: type)
         }
     }
 }

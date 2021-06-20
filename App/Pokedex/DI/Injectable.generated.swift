@@ -178,10 +178,10 @@ extension PokemonDetailViewModel: FactoryMethodInjectable {
     struct Dependency {
         
         let pokemonId: Int
-        let backgroundType: TypeName?
+        let backgroundType: Type?
         
 
-        init(pokemonId: Int, backgroundType: TypeName?) {
+        init(pokemonId: Int, backgroundType: Type?) {
             self.pokemonId = pokemonId
             self.backgroundType = backgroundType
             
