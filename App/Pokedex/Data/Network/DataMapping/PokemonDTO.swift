@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct PokemonInfoDTO: Codable {
+struct PokemonDTO: Codable {
     let name: String
     let id: Int
     let types: [PokemonTypeDTO]
     
-    func toDomain() -> PokemonInfo {
-        PokemonInfo(name: name, id: id, types: types.map { $0.toDomain()} )
+    func toDomain() -> Pokemon {
+        Pokemon(name: name, id: id, types: types.map { $0.toDomain()} )
     }
 }
 
