@@ -12,7 +12,7 @@ protocol PokemonRepository {
     func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping(Result<[PokemonListItem], APIError>) -> Void) -> Cancellable?
     
     @discardableResult
-    func fetchPokemon(id: Int, _ handler: @escaping (Result<PokemonInfo, APIError>) ->Void) -> Cancellable?
+    func fetchPokemon(id: Int, _ handler: @escaping (Result<Pokemon, APIError>) ->Void) -> Cancellable?
     
     @discardableResult
     func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[TypePokemonListItem], APIError>) -> Void) -> Cancellable?

@@ -9,7 +9,7 @@ import Foundation
 
 struct PokemonInfoRequest: APIRequest {
     
-    typealias SuccessResponse = PokemonInfoDTO
+    typealias SuccessResponse = PokemonDTO
     
     private let id: Int
     

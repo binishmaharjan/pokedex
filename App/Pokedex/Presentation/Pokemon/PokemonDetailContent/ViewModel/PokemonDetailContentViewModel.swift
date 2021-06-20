@@ -30,12 +30,12 @@ extension PokemonDetailContentViewModel {
     
     var loadingState: Property<AnyLoadingState> {
         $state
-            .map(\.pokemonInfoState)
+            .map(\.masterPokemonState)
             .map(AnyLoadingState.init)
             .skipRepeats()
     }
     
-    var pokemonInfo: Property<PokemonInfo?> {
+    var pokemonInfo: Property<Pokemon?> {
         $state
             .map(\.pokemonInfo)
     }
@@ -74,13 +74,13 @@ extension PokemonDetailContentViewModel {
     
     func fetchPokemonDetail() {
         
-        state.pokemonInfoState = .loading(nextPage: false)
+        state.masterPokemonState = .loading(nextPage: false)
         
         pokemonDetailUseCase.execute(id: currentIndex) { [weak self] result in
             
             guard let self = self else { return }
             
-            self.state.pokemonInfoState = .completed(result)
+            self.state.masterPokemonState = .completed(result)
         }
     }
 }

@@ -12,10 +12,10 @@ struct PokemonDetailContentState {
     // MARK: Private Properties
     
     // MARK: Public Properties
-    var pokemonInfoState: LoadingState<PokemonInfo, APIError> = .initial
+    var masterPokemonState: LoadingState<Pokemon, APIError> = .initial
     
-    var pokemonInfo: PokemonInfo? {
-        switch pokemonInfoState {
+    var pokemonInfo: Pokemon? {
+        switch masterPokemonState {
         case .completed(.success(let pokemonInfo)):
             return pokemonInfo
         default:
@@ -24,7 +24,7 @@ struct PokemonDetailContentState {
     }
     
     var imageUrl: URL? {
-        switch pokemonInfoState {
+        switch masterPokemonState {
         case .completed(.success(let pokemonInfo)):
             let id = pokemonInfo.id
             return ApplicationConfiguration.current.spriteUrl(appending: "/pokemon/other/official-artwork/\(id).png")

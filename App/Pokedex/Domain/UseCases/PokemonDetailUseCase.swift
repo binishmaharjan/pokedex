@@ -16,7 +16,7 @@ final class PokemonDetailUseCase: AutoInjectable {
     }
     
     @discardableResult
-    func execute(id:Int, _ handler: @escaping(Result<PokemonInfo, APIError>) -> Void) -> Cancellable? {
+    func execute(id:Int, _ handler: @escaping(Result<Pokemon, APIError>) -> Void) -> Cancellable? {
         
         return pokemonRepository.fetchPokemon(id: id, handler)
     }
