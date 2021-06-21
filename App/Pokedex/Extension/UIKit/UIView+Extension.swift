@@ -28,7 +28,10 @@ extension UIView {
         gradient.endPoint = CGPoint(x: 1, y: 1)
         
         gradient.frame = bounds
+
+        layer.sublayers?.first { $0 is CAGradientLayer }?.removeFromSuperlayer()
         layer.insertSublayer(gradient, at: 0)
+        setNeedsDisplay()
     }
 }
 

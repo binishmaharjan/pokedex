@@ -118,6 +118,11 @@ extension PokemonDetailViewController: UIPageViewControllerDataSource {
         
         let nextIndex = currentViewController.currentIndex - 1
         let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
+        nextViewController.changeBackground = { [weak self] type in
+            guard let self = self else { return }
+            
+            self.viewModel.changeBackground(to: type)
+        }
         viewModel.currentIndex = nextIndex
         
         return nextViewController
@@ -131,6 +136,11 @@ extension PokemonDetailViewController: UIPageViewControllerDataSource {
         
         let nextIndex = currentViewController.currentIndex + 1
         let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
+        nextViewController.changeBackground = { [weak self] type in
+            guard let self = self else { return }
+            
+            self.viewModel.changeBackground(to: type)
+        }
         viewModel.currentIndex = nextIndex
         
         return nextViewController

@@ -36,8 +36,6 @@ final class PokemonDetailContentView: UIView {
         setup()
         
         bind()
-        
-        viewModel.fetchPokemonDetail()
     }
     
     required init?(coder: NSCoder) {
@@ -60,7 +58,8 @@ private extension PokemonDetailContentView {
 private extension PokemonDetailContentView {
     
     func bind() {
-        pokemonNameLabel.reactive.text <~ viewModel.pokemonInfo.skipNil().map { $0.name.capitalized }
+        pokemonNameLabel.reactive.text <~ viewModel.masterPokemonData.skipNil().map { $0.name.capitalized }
+        pokemonDescriptionLabel.reactive.text <~ viewModel.flavoredTextEntry
         
         viewModel.imageUrl.skipNil().startWithValues { [weak self] url in
             guard let self = self else { return }

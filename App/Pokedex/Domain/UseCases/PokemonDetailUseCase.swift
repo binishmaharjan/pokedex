@@ -6,6 +6,17 @@
 //
 
 import Foundation
+import ReactiveSwift
+import ReactiveCocoa
+
+struct MasterPokemonData {
+    var id: Int
+    var name: String
+    
+    var types: [PokemonType]
+    
+    var flavorTextEntries: [FlavorTextEntry]
+}
 
 final class PokemonDetailUseCase: AutoInjectable {
     
@@ -16,8 +27,8 @@ final class PokemonDetailUseCase: AutoInjectable {
     }
     
     @discardableResult
-    func execute(id:Int, _ handler: @escaping(Result<Pokemon, APIError>) -> Void) -> Cancellable? {
+    func execute(id:Int, _ handler: @escaping(Result<MasterPokemonData, APIError>) -> Void) -> Cancellable? {
         
-        return pokemonRepository.fetchPokemon(id: id, handler)
+        return pokemonRepository.fetchMasterPokemonData(id: id, handler)
     }
 }

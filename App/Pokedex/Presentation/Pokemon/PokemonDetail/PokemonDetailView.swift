@@ -61,6 +61,7 @@ private extension PokemonDetailView {
             guard let self = self else { return }
             
             self.backgroundView.applyGradient(with: type)
+            debugPrint("TAG: Applying \(type)")
         }
     }
 }

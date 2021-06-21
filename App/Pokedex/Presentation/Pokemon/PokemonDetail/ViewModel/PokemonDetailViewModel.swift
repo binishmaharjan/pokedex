@@ -7,6 +7,7 @@
 
 import Foundation
 import ReactiveSwift
+import ReactiveCocoa
 
 final class PokemonDetailViewModel: AutoInjectable {
     
@@ -26,5 +27,9 @@ final class PokemonDetailViewModel: AutoInjectable {
     init(pokemonId: Int, backgroundType: Type?) {
         self.currentIndex = pokemonId
         self.state.backgroundType = backgroundType
+    }
+    
+    func changeBackground(to type: Type) {
+        state.backgroundType = type
     }
 }

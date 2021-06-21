@@ -35,9 +35,9 @@ extension PokemonDetailContentViewModel {
             .skipRepeats()
     }
     
-    var pokemonInfo: Property<Pokemon?> {
+    var masterPokemonData: Property<MasterPokemonData?> {
         $state
-            .map(\.pokemonInfo)
+            .map(\.masterPokemonData)
     }
     
     var imageUrl: Property<URL?> {
@@ -47,7 +47,7 @@ extension PokemonDetailContentViewModel {
     
     var typeOne: SignalProducer<Type, Never> {
         return  $state
-            .map(\.pokemonInfo?.types)
+            .map(\.masterPokemonData?.types)
             .skipNil()
             .flatMap(.latest) { pokemonType -> SignalProducer<Type?, Never> in
                 // TODO: move this to extension
@@ -59,11 +59,22 @@ extension PokemonDetailContentViewModel {
     
     var typeTwo: SignalProducer<Type, Never> {
         return  $state
-            .map(\.pokemonInfo?.types)
+            .map(\.masterPokemonData?.types)
             .skipNil()
             .flatMap(.latest) { pokemonType -> SignalProducer<Type?, Never> in
                 let type = pokemonType.filter { $0.slot == 2 }.first?.type.name
                 return SignalProducer<Type?, Never>(value: type)
+            }
+            .skipNil()
+    }
+    
+    var flavoredTextEntry: SignalProducer<String, Never> {
+        return $state
+            .map(\.masterPokemonData?.flavorTextEntries)
+            .skipNil()
+            .flatMap(.latest) { entry -> SignalProducer<String?, Never> in
+                let description = entry.first?.flavorText.trimNewLine
+                return SignalProducer<String?, Never>(value: description)
             }
             .skipNil()
     }

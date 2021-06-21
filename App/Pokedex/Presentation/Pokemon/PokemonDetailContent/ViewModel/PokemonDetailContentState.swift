@@ -12,9 +12,9 @@ struct PokemonDetailContentState {
     // MARK: Private Properties
     
     // MARK: Public Properties
-    var masterPokemonState: LoadingState<Pokemon, APIError> = .initial
+    var masterPokemonState: LoadingState<MasterPokemonData, APIError> = .initial
     
-    var pokemonInfo: Pokemon? {
+    var masterPokemonData: MasterPokemonData? {
         switch masterPokemonState {
         case .completed(.success(let pokemonInfo)):
             return pokemonInfo
