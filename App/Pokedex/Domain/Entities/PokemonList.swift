@@ -30,22 +30,22 @@ struct PokemonListItem: Equatable, SearchResult {
 
 
 /// For Displaying in Cell(Contains Type Information)
-struct PokemonTypedList: Equatable {
+struct TypePokemonList: Equatable {
 //    let count: Int
-    let pokemons: [PokemonTypedListItem]
+    let pokemons: [TypePokemonListItem]
 }
 
-struct PokemonTypedListItem: Equatable, Comparable {
+struct TypePokemonListItem: Equatable, Comparable {
     
     let name: String
     let id: Int
-    let types: [Types]
+    let types: [PokemonType]
     
-    static func from(pokemonInfo: PokemonInfo) -> PokemonTypedListItem {
-        PokemonTypedListItem(name: pokemonInfo.name, id: pokemonInfo.id, types: pokemonInfo.types)
+    static func from(pokemonInfo: Pokemon) -> TypePokemonListItem {
+        TypePokemonListItem(name: pokemonInfo.name, id: pokemonInfo.id, types: pokemonInfo.types)
     }
     
-    static func < (lhs: PokemonTypedListItem, rhs: PokemonTypedListItem) -> Bool {
+    static func < (lhs: TypePokemonListItem, rhs: TypePokemonListItem) -> Bool {
         lhs.id < rhs.id
     }
 }

@@ -6,11 +6,21 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
 
 final class PokemonDetailContentView: UIView {
     
+    // MARK: IBOutlets
+    @IBOutlet private weak var informationViewArea: UIView!
+    @IBOutlet private weak var pokemonImageIcon: UIImageView!
+    @IBOutlet private weak var pokemonNameLabel: UILabel!
+    @IBOutlet private weak var pokemonTypeOneImageView: UIImageView!
+    @IBOutlet private weak var pokemonTypeTwoImageView: UIImageView!
+    @IBOutlet private weak var pokemonDescriptionLabel: UILabel!
+    
     // MARK: Public Properties
-    @IBOutlet private weak var idLabel: UILabel!
+    
     
     // MARK: Private Properties
     private let viewModel: PokemonDetailContentViewModel
@@ -24,6 +34,8 @@ final class PokemonDetailContentView: UIView {
         loadOwnedXib()
         
         setup()
+        
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -35,11 +47,38 @@ final class PokemonDetailContentView: UIView {
 private extension PokemonDetailContentView {
     
     func setup() {
-        idLabel.text = viewModel.currentIndex.description
+        informationViewArea.layer.cornerRadius = 36
+        
+        // Hide type two image at the start
+        pokemonTypeTwoImageView.isHidden = true
     }
 }
 
 // MARK: Bind
 private extension PokemonDetailContentView {
     
+    func bind() {
+        pokemonNameLabel.reactive.text <~ viewModel.masterPokemonData.skipNil().map { $0.name.capitalized }
+        pokemonDescriptionLabel.reactive.text <~ viewModel.flavoredTextEntry
+        
+        viewModel.imageUrl.skipNil().startWithValues { [weak self] url in
+            guard let self = self else { return }
+            
+            self.pokemonImageIcon.loadImage(at: url)
+        }
+        
+        viewModel.typeOne.startWithValues { [weak self] type in
+            guard let self = self else { return }
+                
+            self.pokemonTypeOneImageView.image = .from(type, imageType: .tag)
+        }
+        
+        viewModel.typeTwo.startWithValues { [weak self] type in
+            guard let self = self else { return }
+                
+            // Unhide the type two since its exists
+            self.pokemonTypeTwoImageView.isHidden = false
+            self.pokemonTypeTwoImageView.image = .from(type, imageType: .tag)
+        }
+    }
 }

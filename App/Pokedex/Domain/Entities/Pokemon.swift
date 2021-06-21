@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct PokemonInfo {
+struct Pokemon {
     let name: String
     let id: Int
-    let types: [Types]
+    let types: [PokemonType]
 }

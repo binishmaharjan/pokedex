@@ -1,6 +1,7 @@
 import APIKit
 import DIKit
 import Foundation
+import ReactiveCocoa
 import ReactiveSwift
 import UIKit
 
@@ -119,16 +120,36 @@ extension PokemonDetailContentViewModel: FactoryMethodInjectable {
     struct Dependency {
         
         let pokemonId: Int
+        let pokemonDetailUseCase: PokemonDetailUseCase
         
 
-        init(pokemonId: Int) {
+        init(pokemonId: Int, pokemonDetailUseCase: PokemonDetailUseCase) {
             self.pokemonId = pokemonId
+            self.pokemonDetailUseCase = pokemonDetailUseCase
             
         }
     }
     
     static func makeInstance(dependency: Dependency) -> PokemonDetailContentViewModel {
-        PokemonDetailContentViewModel(pokemonId: dependency.pokemonId)
+        PokemonDetailContentViewModel(pokemonId: dependency.pokemonId, pokemonDetailUseCase: dependency.pokemonDetailUseCase)
+    }
+}
+
+extension PokemonDetailUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let pokemonRepository: PokemonRepository
+        
+
+        init(pokemonRepository: PokemonRepository) {
+            self.pokemonRepository = pokemonRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonDetailUseCase {
+        PokemonDetailUseCase(pokemonRepository: dependency.pokemonRepository)
     }
 }
 
@@ -157,16 +178,18 @@ extension PokemonDetailViewModel: FactoryMethodInjectable {
     struct Dependency {
         
         let pokemonId: Int
+        let backgroundType: Type?
         
 
-        init(pokemonId: Int) {
+        init(pokemonId: Int, backgroundType: Type?) {
             self.pokemonId = pokemonId
+            self.backgroundType = backgroundType
             
         }
     }
     
     static func makeInstance(dependency: Dependency) -> PokemonDetailViewModel {
-        PokemonDetailViewModel(pokemonId: dependency.pokemonId)
+        PokemonDetailViewModel(pokemonId: dependency.pokemonId, backgroundType: dependency.backgroundType)
     }
 }
 
@@ -192,10 +215,10 @@ extension PokemonListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let pokemon: PokemonTypedListItem
+        let pokemon: TypePokemonListItem
         
 
-        init(pokemon: PokemonTypedListItem) {
+        init(pokemon: TypePokemonListItem) {
             self.pokemon = pokemon
             
         }

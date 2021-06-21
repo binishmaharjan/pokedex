@@ -28,7 +28,10 @@ extension UIView {
         gradient.endPoint = CGPoint(x: 1, y: 1)
         
         gradient.frame = bounds
+
+        layer.sublayers?.first { $0 is CAGradientLayer }?.removeFromSuperlayer()
         layer.insertSublayer(gradient, at: 0)
+        setNeedsDisplay()
     }
 }
 
@@ -41,5 +44,15 @@ extension UIView {
         v.frame = bounds
         addSubview(v)
         v.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    }
+}
+
+// MARK: Layer
+extension UIView {
+   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
     }
 }

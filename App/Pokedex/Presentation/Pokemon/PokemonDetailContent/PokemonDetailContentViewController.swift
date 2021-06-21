@@ -15,6 +15,7 @@ final class PokemonDetailContentViewController: UIViewController, AutoInjectable
     
     // MARK: Public Properties
     var currentIndex: Int { viewModel.currentIndex }
+    var changeBackground: ((Type) -> Void)?
     
     // MARK: LifeCycle
     init(viewModel: PokemonDetailContentViewModel) {
@@ -30,5 +31,25 @@ final class PokemonDetailContentViewController: UIViewController, AutoInjectable
     
     override func loadView() {
         view = pokemonDetailContentView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.fetchPokemonDetail()
+    }
+    
+    func bind() {
+        viewModel.typeOne.producer.startWithValues { [weak self] (type) in
+            guard let self = self else { return }
+            
+            self.changeBackground?(type)
+        }
     }
 }

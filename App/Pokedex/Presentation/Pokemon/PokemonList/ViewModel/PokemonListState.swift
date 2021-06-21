@@ -10,17 +10,23 @@ import Foundation
 // Current Problem load finishes but log keeps on printing
 // So Dispatch Group Notify is delayed
 // Due to current bug?? or something indicator is hidden fast
-// but the logs still keeps priniting
+// but the logs still keeps printing
 struct PokemonListState {
     
-    /// List of all Pokemon
+    // MARK: Private Properties
     private var pokemonFullList: [PokemonListItem] = []
-    /// Current loaded pokemon with type
-    private var currentPokemonList: [PokemonTypedListItem] = []
+    private var currentPokemonList: [TypePokemonListItem] = [] // Current loaded pokemon with type
     
-    /// API State
-    var pokemonList: LoadingState<[PokemonTypedListItem], APIError> = .initial
-    /// Search Query
+    // MARK: Paging Related
+    private let initialOffSet: Int = 0
+    private let fetchLimit: Int = 50
+    private var currentPage: Int = 0
+    private var totalPageCount: Int = 1
+    private var hasMorePage: Bool { return currentPage < totalPageCount }
+    private var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
+    
+    // MARK: Public Properties
+    var pokemonList: LoadingState<[TypePokemonListItem], APIError> = .initial
     var searchText: String = ""
     
     var sections: PokemonListSections {
@@ -46,12 +52,12 @@ struct PokemonListState {
         pokemonFullList = list
     }
     
-    mutating func initialPokemons(_ list: [PokemonTypedListItem]) {
+    mutating func initialPokemons(_ list: [TypePokemonListItem]) {
         currentPokemonList = list
         pokemonList = .completed(.success(currentPokemonList))
     }
     
-    mutating func appendPokemons(_ list: [PokemonTypedListItem]) {
+    mutating func appendPokemons(_ list: [TypePokemonListItem]) {
         currentPokemonList.append(contentsOf: list)
         pokemonList = .completed(.success(currentPokemonList))
     }
@@ -59,11 +65,11 @@ struct PokemonListState {
 
 
 // MARK: Sections
-typealias PokemonListSections = Sections<String, PokemonTypedListItem>
+typealias PokemonListSections = Sections<String, TypePokemonListItem>
 
 extension PokemonListSections {
     
-    static func from(_ pokemons: [PokemonTypedListItem]) -> PokemonListSections {
+    static func from(_ pokemons: [TypePokemonListItem]) -> PokemonListSections {
         let sections = PokemonListSections(
             sections: [
                 Section(

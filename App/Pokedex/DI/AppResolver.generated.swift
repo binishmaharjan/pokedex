@@ -6,6 +6,7 @@
 import APIKit
 import DIKit
 import Foundation
+import ReactiveCocoa
 import ReactiveSwift
 import UIKit
 
@@ -59,17 +60,23 @@ extension AppResolver {
     }
 
     func resolvePokemonDetailContentViewModel(pokemonId: Int) -> PokemonDetailContentViewModel {
-        return PokemonDetailContentViewModel.makeInstance(dependency: .init(pokemonId: pokemonId))
+        let pokemonDetailUseCase = resolvePokemonDetailUseCase()
+        return PokemonDetailContentViewModel.makeInstance(dependency: .init(pokemonId: pokemonId, pokemonDetailUseCase: pokemonDetailUseCase))
     }
 
-    func resolvePokemonDetailViewController(pokemonId: Int) -> PokemonDetailViewController {
-        let pokemonDetailViewModel = resolvePokemonDetailViewModel(pokemonId: pokemonId)
+    func resolvePokemonDetailUseCase() -> PokemonDetailUseCase {
+        let pokemonRepository = resolvePokemonRepository()
+        return PokemonDetailUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
+    }
+
+    func resolvePokemonDetailViewController(pokemonId: Int, backgroundType: Type?) -> PokemonDetailViewController {
+        let pokemonDetailViewModel = resolvePokemonDetailViewModel(pokemonId: pokemonId, backgroundType: backgroundType)
         let appResolver = resolveAppResolver()
         return PokemonDetailViewController.makeInstance(dependency: .init(viewModel: pokemonDetailViewModel, resolver: appResolver))
     }
 
-    func resolvePokemonDetailViewModel(pokemonId: Int) -> PokemonDetailViewModel {
-        return PokemonDetailViewModel.makeInstance(dependency: .init(pokemonId: pokemonId))
+    func resolvePokemonDetailViewModel(pokemonId: Int, backgroundType: Type?) -> PokemonDetailViewModel {
+        return PokemonDetailViewModel.makeInstance(dependency: .init(pokemonId: pokemonId, backgroundType: backgroundType))
     }
 
     func resolvePokemonFullListUseCase() -> PokemonFullListUseCase {
@@ -77,7 +84,7 @@ extension AppResolver {
         return PokemonFullListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
     }
 
-    func resolvePokemonListCellViewModel(pokemon: PokemonTypedListItem) -> PokemonListCellViewModel {
+    func resolvePokemonListCellViewModel(pokemon: TypePokemonListItem) -> PokemonListCellViewModel {
         return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
     }
 

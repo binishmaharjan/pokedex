@@ -8,5 +8,5 @@
 import Foundation
 
 struct PokemonDetailViewState {
-    
+    var backgroundType: Type?
 }

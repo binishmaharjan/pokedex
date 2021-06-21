@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import ReactiveSwift
+import ReactiveCocoa
 
 final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     
@@ -14,13 +16,14 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     
     // MARK: Pokemon Typed List Properties
     private let dispatchGroup = DispatchGroup()
-    private var pokemonList: [PokemonTypedListItem] = []
+    private var pokemonList: [TypePokemonListItem] = []
     private var error: APIError?
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
     
+    /// Fetch pokemon list not including pokemon type
     func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
         let request = PokemonListRequest(offset: offset, limit: limit)
         
@@ -37,22 +40,29 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
         return task
     }
     
-    func fetchPokemonInfo(id: Int, _ handler: @escaping (Result<PokemonInfo, APIError>) ->Void) -> Cancellable? {
-        let request = PokemonInfoRequest(id: id)
+    /// Fetch master data, which contains full pokemon info
+    func fetchMasterPokemonData(id: Int, _ handler: @escaping (Result<MasterPokemonData, APIError>) -> Void) -> Cancellable? {
         
-        let task = apiClient.send(request) { (result) in
-            switch result {
-            case .success(let response):
-                handler(.success(response.toDomain()))
-            case .failure(let error):
-                handler(.failure(error))
-            }
-        }
+        let pokemonRequest = PokemonRequest(id: id)
+        let pokemonSpeciesRequest = PokemonSpeciesRequest(id: id)
         
-        return task
+        let disposable = SignalProducer
+            .zip(apiClient.send(pokemonRequest),
+                 apiClient.send(pokemonSpeciesRequest))
+            .map { pokemon, pokemonSpecies in
+                MasterPokemonData(
+                    id: pokemon.id,
+                    name: pokemon.name,
+                    types: pokemon.types.map{ $0.toDomain() },
+                    flavorTextEntries:  pokemonSpecies.flavorTextEntries.map { $0.toDomain() }
+                )
+            }.startWithResult(handler)
+        
+        return AnyCancellable(disposable.dispose)
     }
     
-    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonTypedListItem], APIError>) -> Void) -> Cancellable? {
+    /// Fetch pokemon list including pokemon type
+    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[TypePokemonListItem], APIError>) -> Void) -> Cancellable? {
         // Reset Saved values
         error = nil
         pokemonList.removeAll()
@@ -61,15 +71,15 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
         requestValue.forEach { id in
             dispatchGroup.enter()
             
-            let request = PokemonInfoRequest(id: id)
+            let request = PokemonRequest(id: id)
             
-            let task = apiClient.send(request) { [weak self] result in
+            let _ = apiClient.send(request) { [weak self] result in
                 
                 guard let self = self else { return }
                 
                 switch result {
                 case .success(let info):
-                    let typeItem = PokemonTypedListItem.from(pokemonInfo: info.toDomain())
+                    let typeItem = TypePokemonListItem.from(pokemonInfo: info.toDomain())
                     self.pokemonList.append(typeItem)
                     
                 case .failure(let error):
