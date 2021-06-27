@@ -16,6 +16,25 @@ struct MasterPokemonData {
     var types: [PokemonType]
     
     var flavorTextEntries: [FlavorTextEntry]
+    
+    // MARK: Computed Properties
+    var primaryType: Type? {
+        types.filter { $0.slot == 1 }.first?.type.name
+    }
+    
+    var secondaryType: Type? {
+        types.filter { $0.slot == 2 }.first?.type.name
+    }
+    
+    var hasOnlyPrimaryType: Bool {
+        secondaryType == nil
+    }
+    
+    var description: String? {
+        flavorTextEntries.first?.flavorText
+            .trimNewLine
+            .removeFormFeedCharacters
+    }
 }
 
 final class PokemonDetailUseCase: AutoInjectable {

@@ -81,24 +81,14 @@ private extension PokemonDetailView {
         pokemonDescriptionLabel.reactive.text <~ viewModel.flavoredTextEntry
         titleNameLabelView.reactive.text <~ viewModel.masterPokemonData.skipNil().map(\.name.capitalized)
         
+        pokemonTypeOneImageView.reactive.image <~ viewModel.typeOne.skipNil()
+        pokemonTypeTwoImageView.reactive.image <~ viewModel.typeTwo.skipNil()
+        pokemonTypeTwoImageView.reactive.isHidden <~ viewModel.hideSecondaryType.skipNil()
+        
         viewModel.imageUrl.skipNil().startWithValues { [weak self] url in
             guard let self = self else { return }
             
             self.pokemonImageIcon.loadImage(at: url)
-        }
-        
-        viewModel.typeOne.startWithValues { [weak self] type in
-            guard let self = self else { return }
-                
-            self.pokemonTypeOneImageView.image = .from(type, imageType: .tag)
-        }
-        
-        viewModel.typeTwo.startWithValues { [weak self] type in
-            guard let self = self else { return }
-                
-            // Unhide the type two since its exists
-            self.pokemonTypeTwoImageView.isHidden = false
-            self.pokemonTypeTwoImageView.image = .from(type, imageType: .tag)
         }
     }
 }

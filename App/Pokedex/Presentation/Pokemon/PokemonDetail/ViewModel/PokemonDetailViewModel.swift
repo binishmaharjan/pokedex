@@ -8,6 +8,7 @@
 import Foundation
 import ReactiveSwift
 import ReactiveCocoa
+import UIKit
 
 final class PokemonDetailViewModel: AutoInjectable {
     
@@ -23,10 +24,6 @@ final class PokemonDetailViewModel: AutoInjectable {
         self.currentIndex = pokemonId
         self.pokemonDetailUseCase = pokemonDetailUseCase
         self.state.backgroundType = backgroundType
-    }
-    
-    func changeBackground(to type: Type) {
-        state.backgroundType = type
     }
 }
 
@@ -56,40 +53,26 @@ extension PokemonDetailViewModel {
             .map(\.imageUrl)
     }
     
-    var typeOne: SignalProducer<Type, Never> {
-        return  $state
-            .map(\.masterPokemonData?.types)
-            .skipNil()
-            .flatMap(.latest) { pokemonType -> SignalProducer<Type?, Never> in
-                // TODO: move this to extension
-                let type = pokemonType.filter { $0.slot == 1 }.first?.type.name
-                return SignalProducer<Type?, Never>(value: type)
-            }
-            .skipNil()
+    var typeOne: Property<UIImage?> {
+        $state
+            .map(\.masterPokemonData?.primaryType)
+            .map { UIImage.from($0, imageType: .tag) }
     }
     
-    var typeTwo: SignalProducer<Type, Never> {
-        return  $state
-            .map(\.masterPokemonData?.types)
-            .skipNil()
-            .flatMap(.latest) { pokemonType -> SignalProducer<Type?, Never> in
-                let type = pokemonType.filter { $0.slot == 2 }.first?.type.name
-                return SignalProducer<Type?, Never>(value: type)
-            }
-            .skipNil()
+    var typeTwo: Property<UIImage?> {
+        $state
+            .map(\.masterPokemonData?.secondaryType)
+            .map { UIImage.from($0, imageType: .tag) }
+    }
+    
+    var hideSecondaryType: Property<Bool?> {
+        $state
+            .map(\.masterPokemonData?.hasOnlyPrimaryType)
     }
     
     var flavoredTextEntry: SignalProducer<String, Never> {
-        return $state
-            .map(\.masterPokemonData?.flavorTextEntries)
-            .skipNil()
-            .flatMap(.latest) { entry -> SignalProducer<String?, Never> in
-                let description = entry.first?.flavorText
-                    .trimNewLine
-                    .removeFormFeedCharacters
-                
-                return SignalProducer<String?, Never>(value: description)
-            }
+        $state
+            .map(\.masterPokemonData?.description)
             .skipNil()
     }
 }
