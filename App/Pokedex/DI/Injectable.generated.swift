@@ -179,17 +179,19 @@ extension PokemonDetailViewModel: FactoryMethodInjectable {
         
         let pokemonId: Int
         let backgroundType: Type?
+        let pokemonDetailUseCase: PokemonDetailUseCase
         
 
-        init(pokemonId: Int, backgroundType: Type?) {
+        init(pokemonId: Int, backgroundType: Type?, pokemonDetailUseCase: PokemonDetailUseCase) {
             self.pokemonId = pokemonId
             self.backgroundType = backgroundType
+            self.pokemonDetailUseCase = pokemonDetailUseCase
             
         }
     }
     
     static func makeInstance(dependency: Dependency) -> PokemonDetailViewModel {
-        PokemonDetailViewModel(pokemonId: dependency.pokemonId, backgroundType: dependency.backgroundType)
+        PokemonDetailViewModel(pokemonId: dependency.pokemonId, backgroundType: dependency.backgroundType, pokemonDetailUseCase: dependency.pokemonDetailUseCase)
     }
 }
 

@@ -12,4 +12,8 @@ extension String {
     var trimNewLine: String {
         return replacingOccurrences(of: "\n", with: "")
     }
+    
+    var removeFormFeedCharacters: String {
+        return replacingOccurrences(of: "\u{0C}", with: " ")
+    }
 }

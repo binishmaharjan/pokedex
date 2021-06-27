@@ -35,12 +35,11 @@ final class PokemonDetailViewController: UIViewController, AutoInjectable {
     override func loadView() {
         view = pokemonDetailView
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
-        
-        bind()
     }
 }
 
@@ -50,8 +49,6 @@ private extension PokemonDetailViewController {
     func setup() {
         
         setupPokemonDetailView()
-        
-        setupPageViewController()
     }
     
     func setupPokemonDetailView() {
@@ -61,38 +58,6 @@ private extension PokemonDetailViewController {
             
             self.perform(action: action)
         }
-    }
-    
-    func setupPageViewController() {
-        
-        let pageViewController = PageViewController()
-        
-        addChild(pageViewController)
-        
-        pageViewController.dataSource = self
-        
-        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        pokemonDetailView.contentView.addSubview(pageViewController.view)
-        
-        NSLayoutConstraint.activate([
-            pageViewController.view.topAnchor.constraint(equalTo: pokemonDetailView.contentView.topAnchor),
-            pageViewController.view.bottomAnchor.constraint(equalTo: pokemonDetailView.contentView.bottomAnchor),
-            pageViewController.view.leadingAnchor.constraint(equalTo: pokemonDetailView.contentView.leadingAnchor),
-            pageViewController.view.trailingAnchor.constraint(equalTo: pokemonDetailView.contentView.trailingAnchor),
-        ])
-        
-        let viewController = resolver.resolvePokemonDetailContentViewController(pokemonId: viewModel.currentIndex)
-        
-        pageViewController.setViewControllers([viewController], direction: .forward, animated: true)
-    }
-}
-
-// MARK: Bind
-private extension PokemonDetailViewController {
-    
-    func bind() {
-        
     }
 }
 
@@ -109,40 +74,63 @@ private extension PokemonDetailViewController {
 }
 
 // MARK: PageView DataSource
-extension PokemonDetailViewController: UIPageViewControllerDataSource {
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentViewController = viewController as? PokemonDetailContentViewController else {
-            return nil
-        }
-        
-        let nextIndex = currentViewController.currentIndex - 1
-        let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
-        nextViewController.changeBackground = { [weak self] type in
-            guard let self = self else { return }
-            
-            self.viewModel.changeBackground(to: type)
-        }
-        viewModel.currentIndex = nextIndex
-        
-        return nextViewController
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
-        guard let currentViewController = viewController as? PokemonDetailContentViewController else {
-            return nil
-        }
-        
-        let nextIndex = currentViewController.currentIndex + 1
-        let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
-        nextViewController.changeBackground = { [weak self] type in
-            guard let self = self else { return }
-            
-            self.viewModel.changeBackground(to: type)
-        }
-        viewModel.currentIndex = nextIndex
-        
-        return nextViewController
-    }
-}
+//extension PokemonDetailViewController: UIPageViewControllerDataSource {
+//    func setupPageViewController() {
+//
+//        let pageViewController = PageViewController()
+//
+//        addChild(pageViewController)
+//
+//        pageViewController.dataSource = self
+//
+//        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+//
+//        pokemonDetailView.contentView.addSubview(pageViewController.view)
+//
+//        NSLayoutConstraint.activate([
+//            pageViewController.view.topAnchor.constraint(equalTo: pokemonDetailView.contentView.topAnchor),
+//            pageViewController.view.bottomAnchor.constraint(equalTo: pokemonDetailView.contentView.bottomAnchor),
+//            pageViewController.view.leadingAnchor.constraint(equalTo: pokemonDetailView.contentView.leadingAnchor),
+//            pageViewController.view.trailingAnchor.constraint(equalTo: pokemonDetailView.contentView.trailingAnchor),
+//        ])
+//
+//        let viewController = resolver.resolvePokemonDetailContentViewController(pokemonId: viewModel.currentIndex)
+//
+//        pageViewController.setViewControllers([viewController], direction: .forward, animated: true)
+//    }
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+//        guard let currentViewController = viewController as? PokemonDetailContentViewController else {
+//            return nil
+//        }
+//
+//        let nextIndex = currentViewController.currentIndex - 1
+//        let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
+//        nextViewController.changeBackground = { [weak self] type in
+//            guard let self = self else { return }
+//
+//            self.viewModel.changeBackground(to: type)
+//        }
+//        viewModel.currentIndex = nextIndex
+//
+//        return nextViewController
+//    }
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+//
+//        guard let currentViewController = viewController as? PokemonDetailContentViewController else {
+//            return nil
+//        }
+//
+//        let nextIndex = currentViewController.currentIndex + 1
+//        let nextViewController = resolver.resolvePokemonDetailContentViewController(pokemonId: nextIndex)
+//        nextViewController.changeBackground = { [weak self] type in
+//            guard let self = self else { return }
+//
+//            self.viewModel.changeBackground(to: type)
+//        }
+//        viewModel.currentIndex = nextIndex
+//
+//        return nextViewController
+//    }
+//}
