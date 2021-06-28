@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="StatsViewCell" customModule="Pokedex" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ltA-Eq-Lt8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7L-2j-ojg">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="sX2-KR-Qaw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy0-FN-xow">
+                                <rect key="frame" x="39" y="0.0" width="30" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="k3M-rp-fPI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLl-ip-rEq">
+                                <rect key="frame" x="73" y="0.0" width="247" height="44"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdK-zn-W3I" userLabel="Stats Base Graph View">
+                                        <rect key="frame" x="0.0" y="18" width="247" height="8"/>
+                                        <color key="backgroundColor" name="cF0F0F0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="8" id="CGg-gd-aoF"/>
+                                        </constraints>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLQ-Wh-q8V">
+                                        <rect key="frame" x="0.0" y="18" width="247" height="8"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fLQ-Wh-q8V" firstAttribute="leading" secondItem="xdK-zn-W3I" secondAttribute="leading" id="54S-9f-WRA"/>
+                                    <constraint firstItem="xdK-zn-W3I" firstAttribute="leading" secondItem="ZLl-ip-rEq" secondAttribute="leading" id="OMu-15-kQf"/>
+                                    <constraint firstItem="fLQ-Wh-q8V" firstAttribute="centerY" secondItem="xdK-zn-W3I" secondAttribute="centerY" id="QHg-yX-Epq"/>
+                                    <constraint firstAttribute="trailing" secondItem="xdK-zn-W3I" secondAttribute="trailing" id="TFS-hB-R9r"/>
+                                    <constraint firstItem="fLQ-Wh-q8V" firstAttribute="width" secondItem="xdK-zn-W3I" secondAttribute="width" id="VEG-bc-8lG"/>
+                                    <constraint firstItem="xdK-zn-W3I" firstAttribute="centerY" secondItem="ZLl-ip-rEq" secondAttribute="centerY" id="W7n-j8-89L"/>
+                                    <constraint firstItem="fLQ-Wh-q8V" firstAttribute="height" secondItem="xdK-zn-W3I" secondAttribute="height" id="yWE-VX-hgi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ltA-Eq-Lt8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="887-9Y-1jk"/>
+                    <constraint firstAttribute="trailing" secondItem="ltA-Eq-Lt8" secondAttribute="trailing" id="CE4-EL-Mlc"/>
+                    <constraint firstItem="ltA-Eq-Lt8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Drd-Sx-HrL"/>
+                    <constraint firstAttribute="bottom" secondItem="ltA-Eq-Lt8" secondAttribute="bottom" id="JQb-cn-Ic4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="statsAmountLabel" destination="Fy0-FN-xow" id="rP3-wi-ZWq"/>
+                <outlet property="statsGraphBaseView" destination="xdK-zn-W3I" id="4Dc-iB-gjh"/>
+                <outlet property="statsGraphView" destination="fLQ-Wh-q8V" id="mc8-Oh-1ZS"/>
+                <outlet property="statsGraphViewWidthConstraints" destination="VEG-bc-8lG" id="Hy0-JY-2gB"/>
+                <outlet property="statsTitleLabel" destination="O7L-2j-ojg" id="5Dy-m5-Azu"/>
+            </connections>
+            <point key="canvasLocation" x="114" y="52"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="cF0F0F0">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

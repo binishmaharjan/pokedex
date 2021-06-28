@@ -11,9 +11,10 @@ struct PokemonDTO: Codable {
     let name: String
     let id: Int
     let types: [PokemonTypeDTO]
+    let stats: [StatsDTO]
     
     func toDomain() -> Pokemon {
-        Pokemon(name: name, id: id, types: types.map { $0.toDomain()} )
+        Pokemon(name: name, id: id, types: types.map { $0.toDomain() }, stats: stats.map { $0.toDomain() })
     }
 }
 

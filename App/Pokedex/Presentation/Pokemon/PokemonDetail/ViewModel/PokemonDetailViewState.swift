@@ -13,8 +13,8 @@ struct PokemonDetailViewState {
     
     var masterPokemonData: MasterPokemonData? {
         switch masterPokemonState {
-        case .completed(.success(let pokemonInfo)):
-            return pokemonInfo
+        case .completed(.success(let masterData)):
+            return masterData
         default:
             return nil
         }
@@ -22,11 +22,45 @@ struct PokemonDetailViewState {
     
     var imageUrl: URL? {
         switch masterPokemonState {
-        case .completed(.success(let pokemonInfo)):
-            let id = pokemonInfo.id
+        case .completed(.success(let masterData)):
+            let id = masterData.id
             return ApplicationConfiguration.current.spriteUrl(appending: "/pokemon/other/official-artwork/\(id).png")
         default:
             return nil
         }
+    }
+    
+    var statsSections: StatsViewSections {
+        switch masterPokemonState {
+        case .completed(.success(let masterData)):
+            return .from(masterData)
+        default:
+            return .empty
+        }
+    }
+}
+
+// MARK: Sections
+
+struct StatsViewData: Equatable {
+    let stats: Stats
+    let type: Type
+}
+
+typealias StatsViewSections = Sections<String, StatsViewData>
+
+extension StatsViewSections {
+    
+    static func from(_ masterData: MasterPokemonData) -> StatsViewSections {
+        let sections = StatsViewSections(
+            sections: [
+                Section(
+                    model: "Stats",
+                    elements: masterData.stats.map { StatsViewData(stats: $0, type: masterData.primaryType!) }
+                )
+            ]
+        )
+        
+        return sections
     }
 }

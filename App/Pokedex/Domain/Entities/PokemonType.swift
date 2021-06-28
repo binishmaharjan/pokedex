@@ -17,7 +17,7 @@ struct TypeInfo: Equatable  {
     let url: String
 }
 
-enum Type: String, Codable {
+enum Type: String, Codable, Equatable {
     case normal
     case fighting
     case flying

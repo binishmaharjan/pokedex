@@ -53,7 +53,8 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
                 MasterPokemonData(
                     id: pokemon.id,
                     name: pokemon.name,
-                    types: pokemon.types.map{ $0.toDomain() },
+                    types: pokemon.types.map { $0.toDomain() },
+                    stats: pokemon.stats.map { $0.toDomain() },
                     flavorTextEntries:  pokemonSpecies.flavorTextEntries.map { $0.toDomain() }
                 )
             }.startWithResult(handler)

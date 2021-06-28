@@ -24,6 +24,7 @@ final class PokemonDetailView: UIView {
     @IBOutlet private weak var pokemonTypeOneImageView: UIImageView!
     @IBOutlet private weak var pokemonTypeTwoImageView: UIImageView!
     @IBOutlet private weak var pokemonDescriptionLabel: UILabel!
+    @IBOutlet private weak var pokemonStatsView: StatsView!
     
     // MARK: Private Properties
     private let viewModel: PokemonDetailViewModel
@@ -60,10 +61,16 @@ final class PokemonDetailView: UIView {
 private extension PokemonDetailView {
     
     func setup() {
-        informationViewArea.layer.cornerRadius = 36
+        informationViewArea.layer.cornerRadius = 24
         
         // Hide type two image at the start
         pokemonTypeTwoImageView.isHidden = true
+        
+        setupStatsView()
+    }
+    
+    func setupStatsView() {
+        pokemonStatsView.viewModel = viewModel
     }
 }
 

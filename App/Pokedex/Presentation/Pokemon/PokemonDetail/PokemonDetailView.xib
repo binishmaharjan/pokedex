@@ -19,6 +19,7 @@
                 <outlet property="pokemonDescriptionLabel" destination="XUo-Cg-Y24" id="cW8-zz-kGV"/>
                 <outlet property="pokemonImageIcon" destination="IW6-do-6oA" id="5dk-LO-6yc"/>
                 <outlet property="pokemonNameLabel" destination="CEH-S5-xLG" id="7KV-fm-mhd"/>
+                <outlet property="pokemonStatsView" destination="Gsm-KB-W5R" id="b3Y-7T-eKG"/>
                 <outlet property="pokemonTypeOneImageView" destination="wCZ-2G-Y4W" id="LsC-MP-Hvd"/>
                 <outlet property="pokemonTypeTwoImageView" destination="1u6-yx-rnU" id="GJQ-zz-SG0"/>
                 <outlet property="titleNameLabelView" destination="LVJ-c5-B3y" id="eM1-DZ-svy"/>
@@ -159,10 +160,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1g-h6-z2O" userLabel="Description View">
-                                                                    <rect key="frame" x="0.0" y="162" width="414" height="107"/>
+                                                                    <rect key="frame" x="0.0" y="162" width="414" height="35"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-Cg-Y24">
-                                                                            <rect key="frame" x="20" y="18" width="374" height="72"/>
+                                                                            <rect key="frame" x="20" y="18" width="374" height="0.0"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" name="c4F4F4F"/>
                                                                             <nil key="highlightedColor"/>
@@ -176,8 +177,15 @@
                                                                         <constraint firstAttribute="bottom" secondItem="XUo-Cg-Y24" secondAttribute="bottom" constant="17" id="q13-MP-BVs"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gsm-KB-W5R" customClass="StatsView" customModule="Pokedex" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="197" width="414" height="240"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="240" id="sza-9X-CV5"/>
+                                                                    </constraints>
+                                                                </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeS-x1-LHB" userLabel="Stats View">
-                                                                    <rect key="frame" x="0.0" y="269" width="414" height="1146"/>
+                                                                    <rect key="frame" x="0.0" y="437" width="414" height="978"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                             </subviews>

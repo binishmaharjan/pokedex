@@ -11,4 +11,5 @@ struct Pokemon {
     let name: String
     let id: Int
     let types: [PokemonType]
+    let stats: [Stats]
 }

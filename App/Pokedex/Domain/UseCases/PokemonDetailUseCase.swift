@@ -15,6 +15,8 @@ struct MasterPokemonData {
     
     var types: [PokemonType]
     
+    var stats: [Stats]
+    
     var flavorTextEntries: [FlavorTextEntry]
     
     // MARK: Computed Properties

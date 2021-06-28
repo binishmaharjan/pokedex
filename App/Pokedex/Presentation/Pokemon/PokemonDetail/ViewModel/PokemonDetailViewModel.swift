@@ -75,6 +75,12 @@ extension PokemonDetailViewModel {
             .map(\.masterPokemonData?.description)
             .skipNil()
     }
+    
+    var statsSections: Property<StatsViewSections> {
+        $state
+            .map(\.statsSections)
+            .skipRepeats()
+    }
 }
 
 // MARK: API
