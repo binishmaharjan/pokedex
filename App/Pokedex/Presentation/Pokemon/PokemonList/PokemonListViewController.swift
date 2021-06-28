@@ -8,6 +8,7 @@
 import UIKit
 
 final class PokemonListViewController: UIViewController, AutoInjectable {
+    
     // MARK: Enums
     enum Action {
         case pokemonDetail(Int, Type?)
