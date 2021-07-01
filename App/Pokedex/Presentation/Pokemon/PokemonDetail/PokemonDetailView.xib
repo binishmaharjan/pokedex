@@ -22,6 +22,7 @@
                 <outlet property="pokemonStatsView" destination="Gsm-KB-W5R" id="b3Y-7T-eKG"/>
                 <outlet property="pokemonTypeOneImageView" destination="wCZ-2G-Y4W" id="LsC-MP-Hvd"/>
                 <outlet property="pokemonTypeTwoImageView" destination="1u6-yx-rnU" id="GJQ-zz-SG0"/>
+                <outlet property="pokemonWeaknessView" destination="Cv4-dj-HVV" id="3uv-h0-2n2"/>
                 <outlet property="titleNameLabelView" destination="LVJ-c5-B3y" id="eM1-DZ-svy"/>
                 <outlet property="titleView" destination="B6M-a8-uzX" id="nMg-JR-KqP"/>
             </connections>
@@ -184,8 +185,22 @@
                                                                         <constraint firstAttribute="height" constant="240" id="sza-9X-CV5"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EbW-Pq-JBD" userLabel="Spacer">
+                                                                    <rect key="frame" x="0.0" y="437" width="414" height="16"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="16" id="QxK-fb-tj2"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-dj-HVV" userLabel="Weakness View" customClass="WeaknessView" customModule="Pokedex" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="453" width="414" height="364"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="364" id="3uX-K0-3Ms"/>
+                                                                    </constraints>
+                                                                </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeS-x1-LHB" userLabel="Stats View">
-                                                                    <rect key="frame" x="0.0" y="437" width="414" height="978"/>
+                                                                    <rect key="frame" x="0.0" y="817" width="414" height="598"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                             </subviews>

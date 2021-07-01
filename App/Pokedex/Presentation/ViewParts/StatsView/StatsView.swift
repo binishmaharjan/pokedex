@@ -59,6 +59,7 @@ extension StatsView {
         statsTableView.dataSource = self
     }
 }
+
 // MARK: Bind
 extension StatsView {
     
@@ -86,8 +87,11 @@ extension StatsView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(of: StatsViewCell.self, for: indexPath)
+        cell.selectionStyle = .none
+        
         let statsData = statsSection[indexPath]
         cell.bind(viewModel: StatsCellViewModel(type: statsData.type, stats: statsData.stats))
+        
         return cell
     }
 }
