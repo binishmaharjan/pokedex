@@ -55,10 +55,6 @@ extension UIImage {
             return imageType == .icon ? .iconDark : .tagDark
         case .fairy:
             return imageType == .icon ? .iconFairy : .tagFairy
-        case .unknown:
-           return nil
-        case .shadow:
-           return nil
         }
     }
 }

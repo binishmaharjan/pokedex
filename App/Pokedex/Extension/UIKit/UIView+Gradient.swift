@@ -31,8 +31,6 @@ extension UIView {
         case dragon
         case dark
         case fairy
-        case shadow
-        case unknown
         
         var colors: [UIColor] {
             switch self {
@@ -56,8 +54,6 @@ extension UIView {
             case .dragon: return [.c0C69C8, .c0180C7]
             case .dark: return [.c595761, .c6E7587]
             case .fairy: return [.cEC8CE5, .cF3A7E7]
-            case .unknown: return [] //
-            case .shadow: return [] //
             }
         }
     }
@@ -86,8 +82,6 @@ extension UIView {
         case .dragon: applyGradient(for: .dragon)
         case .dark: applyGradient(for: .dark)
         case .fairy: applyGradient(for: .fairy)
-        case .unknown: applyGradient(for: .unknown)
-        case .shadow: applyGradient(for: .shadow)
         }
     }
 }
