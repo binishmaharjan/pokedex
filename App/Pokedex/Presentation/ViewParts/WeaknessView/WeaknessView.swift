@@ -15,6 +15,7 @@ final class WeaknessView: UIView {
     @IBOutlet private weak var titleViewAreaView: UIView!
     @IBOutlet private weak var weaknessDetailBackground: UIView!
     @IBOutlet private weak var weaknessDetailView: UIView!
+    @IBOutlet private weak var weaknessCollectionView: UICollectionView!
     
     //  MARK: Public Properties
     var viewModel: PokemonDetailViewModel! {

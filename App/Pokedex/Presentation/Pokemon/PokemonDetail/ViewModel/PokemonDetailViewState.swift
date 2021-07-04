@@ -38,6 +38,15 @@ struct PokemonDetailViewState {
             return .empty
         }
     }
+    
+    var weaknessSection: WeaknessViewSections {
+        switch masterPokemonState {
+        case .completed:
+            return .from()
+        default:
+            return .empty
+        }
+    }
 }
 
 // MARK: Sections
@@ -57,6 +66,31 @@ extension StatsViewSections {
                 Section(
                     model: "Stats",
                     elements: masterData.stats.map { StatsViewData(stats: $0, type: masterData.primaryType!) }
+                )
+            ]
+        )
+        
+        return sections
+    }
+}
+
+typealias WeaknessViewSections = Sections<String, Type>
+
+extension WeaknessViewSections {
+    
+    static func from() -> WeaknessViewSections {
+        let sections = WeaknessViewSections(
+            sections: [
+                Section(
+                    model: "Weakness",
+                    elements: [
+                        .normal,   .fighting,  .flying,
+                        .poison,   .ground,    .rock,
+                        .bug,      .ghost,     .steel,
+                        .fire,     .water,     .grass,
+                        .electric, .psychic,   .ice,
+                        .dragon,   .dark,      .fairy
+                    ]
                 )
             ]
         )

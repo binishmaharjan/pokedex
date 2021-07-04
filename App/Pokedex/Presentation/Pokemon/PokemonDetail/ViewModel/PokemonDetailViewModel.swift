@@ -93,6 +93,12 @@ extension PokemonDetailViewModel {
             .map(\.statsSections)
             .skipRepeats()
     }
+    
+    var weaknessSection: Property<WeaknessViewSections> {
+        $state
+            .map(\.weaknessSection)
+            .skipRepeats()
+    }
 }
 
 // MARK: API

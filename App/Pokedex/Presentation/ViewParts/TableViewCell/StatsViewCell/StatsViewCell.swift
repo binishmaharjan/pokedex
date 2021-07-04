@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StatsViewCell: UITableViewCell {
+final class StatsViewCell: UITableViewCell {
     
     // MARK: IBOutlet
     @IBOutlet private weak var statsTitleLabel: UILabel!
