@@ -161,10 +161,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1g-h6-z2O" userLabel="Description View">
-                                                                    <rect key="frame" x="0.0" y="162" width="414" height="35"/>
+                                                                    <rect key="frame" x="0.0" y="162" width="414" height="50"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-Cg-Y24">
-                                                                            <rect key="frame" x="20" y="18" width="374" height="0.0"/>
+                                                                            <rect key="frame" x="20" y="18" width="374" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" name="c4F4F4F"/>
                                                                             <nil key="highlightedColor"/>
@@ -179,28 +179,21 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gsm-KB-W5R" customClass="StatsView" customModule="Pokedex" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="197" width="414" height="240"/>
+                                                                    <rect key="frame" x="0.0" y="212" width="414" height="210"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="240" id="sza-9X-CV5"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EbW-Pq-JBD" userLabel="Spacer">
-                                                                    <rect key="frame" x="0.0" y="437" width="414" height="16"/>
-                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="16" id="QxK-fb-tj2"/>
+                                                                        <constraint firstAttribute="height" constant="210" id="sza-9X-CV5"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-dj-HVV" userLabel="Weakness View" customClass="WeaknessView" customModule="Pokedex" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="453" width="414" height="364"/>
+                                                                    <rect key="frame" x="0.0" y="422" width="414" height="342"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="364" id="3uX-K0-3Ms"/>
+                                                                        <constraint firstAttribute="height" constant="342" id="3uX-K0-3Ms"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeS-x1-LHB" userLabel="Stats View">
-                                                                    <rect key="frame" x="0.0" y="817" width="414" height="598"/>
+                                                                    <rect key="frame" x="0.0" y="764" width="414" height="651"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                             </subviews>

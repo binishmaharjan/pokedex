@@ -11,6 +11,7 @@ import ReactiveSwift
 final class WeaknessView: UIView {
     
     // MARK: IBOutlets
+    @IBOutlet private weak var weaknessTitleLabel: UILabel!
     @IBOutlet private weak var titleViewAreaView: UIView!
     @IBOutlet private weak var weaknessDetailBackground: UIView!
     @IBOutlet private weak var weaknessDetailView: UIView!
@@ -54,11 +55,6 @@ extension WeaknessView {
 extension WeaknessView {
     
     func bind() {
-//        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
-//            guard let self = self else { return }
-//
-//            self.titleViewAreaView.applyGradient(with: type)
-//            self.weaknessDetailBackground.applyGradient(with: type)
-//        }
+        weaknessTitleLabel.reactive.textColor <~ viewModel.primaryColor.skipNil()
     }
 }

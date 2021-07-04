@@ -9,7 +9,12 @@ import UIKit
 
 extension UIColor {
     
-    static func primaryColor(for type: Type) -> UIColor {
+    static func primaryColor(for type: Type?) -> UIColor? {
+        
+        guard let type = type else {
+            return nil
+        }
+        
         switch type {
         case .normal: return .c9298A4
         case .fighting: return .cCE4265
@@ -32,7 +37,12 @@ extension UIColor {
         }
     }
     
-    static func secondaryColor(for type: Type) -> UIColor {
+    static func secondaryColor(for type: Type?) -> UIColor? {
+        
+        guard let type = type else {
+            return nil
+        }
+        
         switch type {
         case .normal: return .cA3A49E
         case .fighting: return .cE74347
@@ -56,6 +66,12 @@ extension UIColor {
     }
     
     static func gradientColor(for type: Type) -> [UIColor] {
-        [UIColor.primaryColor(for: type), UIColor.secondaryColor(for: type)]
+        
+        guard let primaryColor: UIColor = .primaryColor(for: type),
+              let secondaryColor: UIColor = .secondaryColor(for: type) else {
+            return []
+        }
+        
+        return [primaryColor, secondaryColor]
     }
 }

@@ -65,6 +65,18 @@ extension PokemonDetailViewModel {
             .map { UIImage.from($0, imageType: .tag) }
     }
     
+    var primaryColor: Property<UIColor?> {
+        $state
+            .map(\.masterPokemonData?.primaryType)
+            .map { UIColor.primaryColor(for: $0) }
+    }
+    
+    var secondaryColor: Property<UIColor?> {
+        $state
+            .map(\.masterPokemonData?.primaryType)
+            .map { UIColor.secondaryColor(for: $0) }
+    }
+    
     var hideSecondaryType: Property<Bool?> {
         $state
             .map(\.masterPokemonData?.hasOnlyPrimaryType)

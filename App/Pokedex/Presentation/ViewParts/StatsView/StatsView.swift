@@ -11,6 +11,7 @@ import ReactiveSwift
 final class StatsView: UIView {
     
     // MARK: IBOutlets
+    @IBOutlet private weak var statsTitleLabel: UILabel!
     @IBOutlet private weak var titleViewAreaView: UIView!
     @IBOutlet private weak var statsDetailBackground: UIView!
     @IBOutlet private weak var statsDetailView: UIView!
@@ -64,12 +65,7 @@ extension StatsView {
 extension StatsView {
     
     func bind() {
-//        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
-//            guard let self = self else { return }
-//            
-//            self.titleViewAreaView.applyGradient(with: type)
-//            self.statsDetailBackground.applyGradient(with: type)
-//        }
+        statsTitleLabel.reactive.textColor <~ viewModel.primaryColor.skipNil()
         
         reactive[\.statsSection] <~ viewModel.statsSections
     }

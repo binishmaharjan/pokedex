@@ -46,8 +46,8 @@ extension StatsViewCell {
         let statsRatio = CGFloat(viewModel.stats.baseStat) / 100
         statsGraphViewWidthConstraints = statsGraphViewWidthConstraints.setMultiplier(multiplier: min(statsRatio, 1.0))
         
-//        statsGraphView.backgroundColor = .orange
-        statsGraphView.applyGradient(with: viewModel.type)
+        statsGraphView.backgroundColor = .primaryColor(for: viewModel.type)
+        statsTitleLabel.textColor = .primaryColor(for: viewModel.type)
     }
 }
 
