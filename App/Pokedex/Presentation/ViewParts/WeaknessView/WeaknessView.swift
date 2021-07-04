@@ -54,11 +54,11 @@ extension WeaknessView {
 extension WeaknessView {
     
     func bind() {
-        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
-            guard let self = self else { return }
-            
-            self.titleViewAreaView.applyGradient(with: type)
-            self.weaknessDetailBackground.applyGradient(with: type)
-        }
+//        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
+//            guard let self = self else { return }
+//
+//            self.titleViewAreaView.applyGradient(with: type)
+//            self.weaknessDetailBackground.applyGradient(with: type)
+//        }
     }
 }

@@ -26,6 +26,7 @@ enum Type: String, Codable, Equatable {
     case electric, psychic,  ice
     case dragon,   dark,     fairy
     
+    
     var weakness: [Type: Double] {
         switch self {
         case .normal:

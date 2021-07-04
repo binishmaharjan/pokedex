@@ -64,12 +64,12 @@ extension StatsView {
 extension StatsView {
     
     func bind() {
-        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
-            guard let self = self else { return }
-            
-            self.titleViewAreaView.applyGradient(with: type)
-            self.statsDetailBackground.applyGradient(with: type)
-        }
+//        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
+//            guard let self = self else { return }
+//            
+//            self.titleViewAreaView.applyGradient(with: type)
+//            self.statsDetailBackground.applyGradient(with: type)
+//        }
         
         reactive[\.statsSection] <~ viewModel.statsSections
     }
