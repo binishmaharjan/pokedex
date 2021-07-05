@@ -50,11 +50,7 @@ final class StatsView: UIView {
 // MARK: Setup
 extension StatsView {
     
-    func setup() {
-        titleViewAreaView.roundCorners(corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 12)
-        statsDetailBackground.roundCorners(corners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 12)
-        statsDetailView.roundCorners(corners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 6)
-        
+    func setup() {        
         statsTableView.registerXib(of: StatsViewCell.self)
         statsTableView.delegate = self
         statsTableView.dataSource = self

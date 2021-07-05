@@ -161,10 +161,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1g-h6-z2O" userLabel="Description View">
-                                                                    <rect key="frame" x="0.0" y="162" width="414" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="162" width="414" height="35"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-Cg-Y24">
-                                                                            <rect key="frame" x="20" y="18" width="374" height="15"/>
+                                                                            <rect key="frame" x="20" y="18" width="374" height="0.0"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" name="c4F4F4F"/>
                                                                             <nil key="highlightedColor"/>
@@ -179,21 +179,21 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gsm-KB-W5R" customClass="StatsView" customModule="Pokedex" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="212" width="414" height="210"/>
+                                                                    <rect key="frame" x="0.0" y="197" width="414" height="210"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="210" id="sza-9X-CV5"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-dj-HVV" userLabel="Weakness View" customClass="WeaknessView" customModule="Pokedex" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="422" width="414" height="342"/>
+                                                                    <rect key="frame" x="0.0" y="407" width="414" height="337"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="342" id="3uX-K0-3Ms"/>
+                                                                        <constraint firstAttribute="height" constant="337" id="3uX-K0-3Ms"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeS-x1-LHB" userLabel="Stats View">
-                                                                    <rect key="frame" x="0.0" y="764" width="414" height="651"/>
+                                                                    <rect key="frame" x="0.0" y="744" width="414" height="671"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                             </subviews>
