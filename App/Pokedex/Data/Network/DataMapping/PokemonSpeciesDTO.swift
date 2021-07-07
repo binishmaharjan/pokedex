@@ -12,12 +12,19 @@ struct PokemonSpeciesDTO: Codable {
     let id: Int
     let name: String
     
+    let captureRate: Int
+    let habitat: HabitatDTO
+    let generation: GenerationDTO
+    
     let flavorTextEntries: [FlavorTextEntryDTO]
     let formDescriptions: [FormDescriptionDTO]
     
     enum CodingKeys: String, CodingKey {
         case flavorTextEntries = "flavor_text_entries"
         case formDescriptions = "form_descriptions"
+        case captureRate = "capture_rate"
+        case habitat
+        case generation
         case id
         case name
     }
@@ -25,9 +32,11 @@ struct PokemonSpeciesDTO: Codable {
     func toDomain() -> PokemonSpecies {
         PokemonSpecies(id: id,
                        name: name,
-                       flavorTextEntries:  flavorTextEntries.map { $0.toDomain() },
-                       formDescriptions: formDescriptions.map { $0.toDomain() }
-        )
+                       captureRate: captureRate,
+                       habitat: habitat.toDomain(),
+                       generation: generation.toDomain(),
+                       flavorTextEntries: flavorTextEntries.map { $0.toDomain() },
+                       formDescriptions: formDescriptions.map { $0.toDomain() })
     }
 }
 
@@ -48,5 +57,21 @@ struct FormDescriptionDTO: Codable {
     
     func toDomain() -> FormDescription {
         FormDescription(description: description)
+    }
+}
+
+struct HabitatDTO: Codable {
+    let name: String
+    
+    func toDomain() -> Habitat {
+        Habitat(name: name)
+    }
+}
+
+struct GenerationDTO: Codable {
+    let name: String
+    
+    func toDomain() -> Generation {
+        Generation(name: name)
     }
 }

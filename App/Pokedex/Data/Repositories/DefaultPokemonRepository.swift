@@ -55,7 +55,10 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
                     name: pokemon.name,
                     types: pokemon.types.map { $0.toDomain() },
                     stats: pokemon.stats.map { $0.toDomain() },
-                    flavorTextEntries:  pokemonSpecies.flavorTextEntries.map { $0.toDomain() }
+                    flavorTextEntries:  pokemonSpecies.flavorTextEntries.map { $0.toDomain() },
+                    captureRate: pokemonSpecies.captureRate,
+                    habitat: pokemonSpecies.habitat.toDomain(),
+                    generation: pokemonSpecies.generation.toDomain()
                 )
             }.startWithResult(handler)
         

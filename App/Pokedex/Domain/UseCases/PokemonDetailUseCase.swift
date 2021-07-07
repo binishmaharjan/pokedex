@@ -19,6 +19,10 @@ struct MasterPokemonData {
     
     var flavorTextEntries: [FlavorTextEntry]
     
+    let captureRate: Int
+    let habitat: Habitat
+    let generation: Generation
+    
     // MARK: Computed Properties
     var primaryType: Type? {
         types.filter { $0.slot == 1 }.first?.type.name

@@ -12,6 +12,10 @@ struct PokemonSpecies {
     let id: Int
     let name: String
     
+    let captureRate: Int
+    let habitat: Habitat
+    let generation: Generation
+    
     let flavorTextEntries: [FlavorTextEntry]
     let formDescriptions: [FormDescription]
 }
@@ -26,4 +30,13 @@ struct FlavorTextEntry {
 
 struct FormDescription {
     let description: String
+}
+
+struct Habitat {
+    let name: String
+    
+}
+
+struct Generation {
+    let name: String
 }
