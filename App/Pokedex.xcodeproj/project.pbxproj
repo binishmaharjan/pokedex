@@ -137,6 +137,8 @@
 		64EEA86C2691EDA400759F1C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EEA86B2691EDA400759F1C /* UIColor+Extension.swift */; };
 		64EEA8712691FDAF00759F1C /* WeaknessViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EEA86F2691FDAF00759F1C /* WeaknessViewCell.swift */; };
 		64EEA8722691FDAF00759F1C /* WeaknessViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EEA8702691FDAF00759F1C /* WeaknessViewCell.xib */; };
+		64EEA87626960B9B00759F1C /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EEA87526960B9A00759F1C /* CaptureView.swift */; };
+		64EEA87926960BD000759F1C /* CaptureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EEA87826960BD000759F1C /* CaptureView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,6 +269,8 @@
 		64EEA86B2691EDA400759F1C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		64EEA86F2691FDAF00759F1C /* WeaknessViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaknessViewCell.swift; sourceTree = "<group>"; };
 		64EEA8702691FDAF00759F1C /* WeaknessViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeaknessViewCell.xib; sourceTree = "<group>"; };
+		64EEA87526960B9A00759F1C /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		64EEA87826960BD000759F1C /* CaptureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptureView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -671,6 +675,7 @@
 		6495904F261373D400DFD840 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				64EEA8742696031400759F1C /* CaptureView */,
 				64EEA864268E207400759F1C /* WeaknessView */,
 				648A0CC52688872C008B1CE9 /* StatsView */,
 				649590B92616366900DFD840 /* LoadingView */,
@@ -884,6 +889,15 @@
 			path = WeaknessViewCell;
 			sourceTree = "<group>";
 		};
+		64EEA8742696031400759F1C /* CaptureView */ = {
+			isa = PBXGroup;
+			children = (
+				64EEA87526960B9A00759F1C /* CaptureView.swift */,
+				64EEA87826960BD000759F1C /* CaptureView.xib */,
+			);
+			path = CaptureView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -968,6 +982,7 @@
 				6495907626138C2B00DFD840 /* PokemonListCell.xib in Resources */,
 				649231702627370400B4FC9E /* PokemonDetailView.xib in Resources */,
 				648A0CCB268887A7008B1CE9 /* StatsView.xib in Resources */,
+				64EEA87926960BD000759F1C /* CaptureView.xib in Resources */,
 				64958FF22610723C00DFD840 /* Images.xcassets in Resources */,
 				64EEA8722691FDAF00759F1C /* WeaknessViewCell.xib in Resources */,
 				64958EF026023F1B00DFD840 /* Assets.xcassets in Resources */,
@@ -1040,6 +1055,7 @@
 				64958FD4260FA1FF00DFD840 /* JSONSerialization+Extension.swift in Sources */,
 				649590562613745B00DFD840 /* BoxedBorder.swift in Sources */,
 				64958F492602609800DFD840 /* ApplicationConfiguration.swift in Sources */,
+				64EEA87626960B9B00759F1C /* CaptureView.swift in Sources */,
 				649231732627373600B4FC9E /* PokemonDetailViewModel.swift in Sources */,
 				646AB96926180A4800FE44C2 /* PokemonRequest.swift in Sources */,
 				64958FC9260F9A9B00DFD840 /* HTTPRequestAdaptor.swift in Sources */,

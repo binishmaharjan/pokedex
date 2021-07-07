@@ -26,6 +26,8 @@ final class PokemonDetailView: UIView {
     @IBOutlet private weak var pokemonDescriptionLabel: UILabel!
     @IBOutlet private weak var pokemonStatsView: StatsView!
     @IBOutlet private weak var pokemonWeaknessView: WeaknessView!
+    @IBOutlet private weak var pokemonCaptureView: CaptureView!
+    
     
     // MARK: Private Properties
     private let viewModel: PokemonDetailViewModel
@@ -69,6 +71,7 @@ private extension PokemonDetailView {
         
         setupStatsView()
         setupWeaknessView()
+        setupCaptureView()
     }
     
     func setupStatsView() {
@@ -77,6 +80,10 @@ private extension PokemonDetailView {
     
     func setupWeaknessView() {
         pokemonWeaknessView.viewModel = viewModel
+    }
+    
+    func setupCaptureView() {
+        pokemonCaptureView.viewModel = viewModel
     }
 }
 
