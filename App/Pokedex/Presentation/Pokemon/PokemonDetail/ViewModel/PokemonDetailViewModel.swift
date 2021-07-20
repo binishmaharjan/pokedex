@@ -30,10 +30,11 @@ final class PokemonDetailViewModel: AutoInjectable {
 // MARK: Computed Properties
 extension PokemonDetailViewModel {
     
-    var type: Property<Type?> {
-        $state
-            .map(\.backgroundType)
-            .skipRepeats()
+    var type: SignalProducer<Type, Never> {
+        SignalProducer.merge(
+            $state.map(\.backgroundType).skipNil().take(first: 1),
+            $state.map(\.masterPokemonData?.primaryType).skipNil()
+        )
     }
     
     var loadingState: Property<AnyLoadingState> {

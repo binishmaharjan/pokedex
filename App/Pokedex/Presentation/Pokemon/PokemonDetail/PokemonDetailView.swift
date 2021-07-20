@@ -72,6 +72,7 @@ private extension PokemonDetailView {
         setupStatsView()
         setupWeaknessView()
         setupCaptureView()
+        setupSwipeGesture()
     }
     
     func setupStatsView() {
@@ -85,17 +86,39 @@ private extension PokemonDetailView {
     func setupCaptureView() {
         pokemonCaptureView.viewModel = viewModel
     }
+    
+    func setupSwipeGesture() {
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipeLeftGesture.direction = .left
+        addGestureRecognizer(swipeLeftGesture)
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeRightGesture.direction = .right
+        addGestureRecognizer(swipeRightGesture)
+    }
+    
+    @objc private func swipeLeft() {
+        viewModel.currentIndex = viewModel.currentIndex + 1
+        viewModel.fetchPokemonDetail()
+    }
+    
+    @objc private func swipeRight() {
+        viewModel.currentIndex = viewModel.currentIndex - 1
+        viewModel.fetchPokemonDetail()
+    }
 }
 
 // MARK: Bind
 private extension PokemonDetailView {
     
     func bind() {
-        viewModel.type.producer.skipNil().startWithValues { [weak self] type in
-            guard let self = self else { return }
-            
-            self.backgroundView.applyGradient(with: type)
-        }
+        viewModel.type
+            .producer
+            .startWithValues { [weak self] type in
+                guard let self = self else { return }
+                
+                self.backgroundView.applyGradient(with: type)
+            }
         
         pokemonNameLabel.reactive.text <~ viewModel.masterPokemonData.skipNil().map(\.name.capitalized)
         pokemonDescriptionLabel.reactive.text <~ viewModel.flavoredTextEntry
