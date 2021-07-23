@@ -15,6 +15,8 @@
                 <outlet property="backgroundView" destination="D9z-1e-AG9" id="wYs-AP-VCy"/>
                 <outlet property="closeButton" destination="98E-Zo-Ybq" id="1rh-nf-cr0"/>
                 <outlet property="contentView" destination="HrE-dD-aUm" id="hnZ-XN-7Bz"/>
+                <outlet property="informationScrollView" destination="tKk-BD-M8b" id="efW-7O-tMT"/>
+                <outlet property="informationStackView" destination="gf7-rm-s4q" id="P0O-ZR-FaD"/>
                 <outlet property="informationViewArea" destination="SZO-Z6-gQC" id="QTf-gy-M1k"/>
                 <outlet property="pokemonCaptureView" destination="zh6-jU-HqA" id="9aZ-G4-RVA"/>
                 <outlet property="pokemonDescriptionLabel" destination="XUo-Cg-Y24" id="cW8-zz-kGV"/>
@@ -46,10 +48,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6M-a8-uzX" userLabel="Title View">
-                                    <rect key="frame" x="0.0" y="56" width="414" height="27"/>
+                                    <rect key="frame" x="0.0" y="56" width="414" height="37"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98E-Zo-Ybq">
-                                            <rect key="frame" x="16" y="3" width="21" height="21"/>
+                                            <rect key="frame" x="16" y="8" width="21" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="PmC-fI-QW1"/>
                                                 <constraint firstAttribute="width" constant="21" id="mnm-WA-4Y1"/>
@@ -64,7 +66,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Squirtle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVJ-c5-B3y">
-                                            <rect key="frame" x="172" y="1.5" width="70.5" height="24"/>
+                                            <rect key="frame" x="172" y="6.5" width="70.5" height="24"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -75,14 +77,14 @@
                                         <constraint firstItem="98E-Zo-Ybq" firstAttribute="leading" secondItem="B6M-a8-uzX" secondAttribute="leading" constant="16" id="KeW-Pv-xYD"/>
                                         <constraint firstItem="LVJ-c5-B3y" firstAttribute="centerX" secondItem="B6M-a8-uzX" secondAttribute="centerX" id="NfP-Q4-pyj"/>
                                         <constraint firstItem="LVJ-c5-B3y" firstAttribute="centerY" secondItem="B6M-a8-uzX" secondAttribute="centerY" id="Pcx-1d-vYY"/>
-                                        <constraint firstAttribute="height" constant="27" id="R0h-q0-Qge"/>
+                                        <constraint firstAttribute="height" constant="37" id="R0h-q0-Qge"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrE-dD-aUm" userLabel="Content View">
-                                    <rect key="frame" x="0.0" y="83" width="414" height="813"/>
+                                    <rect key="frame" x="0.0" y="93" width="414" height="803"/>
                                     <subviews>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKk-BD-M8b">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="803"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZO-Z6-gQC" userLabel="InformationView">
                                                     <rect key="frame" x="0.0" y="146" width="414" height="1415"/>
@@ -162,10 +164,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1g-h6-z2O" userLabel="Description View">
-                                                                    <rect key="frame" x="0.0" y="162" width="414" height="35"/>
+                                                                    <rect key="frame" x="0.0" y="162" width="414" height="526"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUo-Cg-Y24">
-                                                                            <rect key="frame" x="20" y="18" width="374" height="0.0"/>
+                                                                            <rect key="frame" x="20" y="18" width="374" height="491"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" name="c4F4F4F"/>
                                                                             <nil key="highlightedColor"/>
@@ -180,29 +182,25 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gsm-KB-W5R" customClass="StatsView" customModule="Pokedex" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="197" width="414" height="210"/>
+                                                                    <rect key="frame" x="0.0" y="688" width="414" height="210"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="210" id="sza-9X-CV5"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-dj-HVV" userLabel="Weakness View" customClass="WeaknessView" customModule="Pokedex" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="407" width="414" height="337"/>
+                                                                    <rect key="frame" x="0.0" y="898" width="414" height="337"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="337" id="3uX-K0-3Ms"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zh6-jU-HqA" userLabel="Capture View" customClass="CaptureView" customModule="Pokedex" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="744" width="414" height="180"/>
+                                                                    <rect key="frame" x="0.0" y="1235" width="414" height="180"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="180" id="4h0-tp-nHx"/>
                                                                     </constraints>
-                                                                </view>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeS-x1-LHB" userLabel="Stats View">
-                                                                    <rect key="frame" x="0.0" y="924" width="414" height="491"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                             </subviews>
                                                         </stackView>
@@ -212,7 +210,6 @@
                                                         <constraint firstAttribute="bottom" secondItem="gf7-rm-s4q" secondAttribute="bottom" id="LYV-pk-Hvi"/>
                                                         <constraint firstAttribute="trailing" secondItem="gf7-rm-s4q" secondAttribute="trailing" id="Smw-k2-NOX"/>
                                                         <constraint firstItem="gf7-rm-s4q" firstAttribute="top" secondItem="SZO-Z6-gQC" secondAttribute="top" id="T0F-51-pKl"/>
-                                                        <constraint firstAttribute="height" constant="1415" id="V94-rm-Jru"/>
                                                         <constraint firstItem="gf7-rm-s4q" firstAttribute="leading" secondItem="SZO-Z6-gQC" secondAttribute="leading" id="YoU-6w-ge3"/>
                                                     </constraints>
                                                 </view>

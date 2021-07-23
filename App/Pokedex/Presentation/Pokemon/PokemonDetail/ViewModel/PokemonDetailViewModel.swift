@@ -17,6 +17,8 @@ final class PokemonDetailViewModel: AutoInjectable {
     private var state = PokemonDetailViewState()
     private let pokemonDetailUseCase: PokemonDetailUseCase
     
+    private var cancellable: Cancellable?
+    
     // MARK: Public Properties
     var currentIndex: Int
     
@@ -107,9 +109,11 @@ extension PokemonDetailViewModel {
     
     func fetchPokemonDetail() {
         
+        cancellable?.cancel()
+        
         state.masterPokemonState = .loading(nextPage: false)
         
-        pokemonDetailUseCase.execute(id: currentIndex) { [weak self] result in
+        cancellable = pokemonDetailUseCase.execute(id: currentIndex) { [weak self] result in
             
             guard let self = self else { return }
             

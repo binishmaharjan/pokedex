@@ -19,6 +19,9 @@ final class PokemonDetailView: UIView {
     
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var informationViewArea: UIView!
+    @IBOutlet private weak var informationStackView: UIStackView!
+    @IBOutlet private weak var informationScrollView: UIScrollView!
+    
     @IBOutlet private weak var pokemonImageIcon: UIImageView!
     @IBOutlet private weak var pokemonNameLabel: UILabel!
     @IBOutlet private weak var pokemonTypeOneImageView: UIImageView!
@@ -99,11 +102,13 @@ private extension PokemonDetailView {
     
     @objc private func swipeLeft() {
         viewModel.currentIndex = viewModel.currentIndex + 1
+        informationScrollView.setContentOffset(.zero, animated: false)
         viewModel.fetchPokemonDetail()
     }
     
     @objc private func swipeRight() {
         viewModel.currentIndex = viewModel.currentIndex - 1
+        informationScrollView.setContentOffset(.zero, animated: false)
         viewModel.fetchPokemonDetail()
     }
 }
@@ -112,13 +117,16 @@ private extension PokemonDetailView {
 private extension PokemonDetailView {
     
     func bind() {
-        viewModel.type
+        viewModel
+            .type
             .producer
             .startWithValues { [weak self] type in
                 guard let self = self else { return }
                 
                 self.backgroundView.applyGradient(with: type)
             }
+        
+        informationStackView.reactive.isHidden <~ viewModel.loadingState.map(\.isHiddenSuccess)
         
         pokemonNameLabel.reactive.text <~ viewModel.masterPokemonData.skipNil().map(\.name.capitalized)
         pokemonDescriptionLabel.reactive.text <~ viewModel.flavoredTextEntry
