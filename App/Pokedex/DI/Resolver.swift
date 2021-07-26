@@ -21,6 +21,7 @@ protocol AppResolver: Resolver {
     
     // MARK: Repositories
     func providePokemonRepository() -> PokemonRepository
+    func provideMovesRepository() -> MovesRepository
 }
 
 extension AppResolver {
@@ -56,5 +57,9 @@ extension AppResolver {
     
     func providePokemonRepository() -> PokemonRepository {
         resolveDefaultPokemonRepository()
+    }
+    
+    func provideMovesRepository() -> MovesRepository {
+        resolveDefaultMovesRepository()
     }
 }

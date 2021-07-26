@@ -40,6 +40,11 @@ extension AppResolver {
         return DefaultAPIClient.makeInstance(dependency: .init(httpClient: httpClient))
     }
 
+    func resolveDefaultMovesRepository() -> DefaultMovesRepository {
+        let apiClient = resolveAPIClient()
+        return DefaultMovesRepository.makeInstance(dependency: .init(apiClient: apiClient))
+    }
+
     func resolveDefaultPokemonRepository() -> DefaultPokemonRepository {
         let apiClient = resolveAPIClient()
         return DefaultPokemonRepository.makeInstance(dependency: .init(apiClient: apiClient))
@@ -52,6 +57,31 @@ extension AppResolver {
     func resolveMainViewController() -> MainViewController {
         let appResolver = resolveAppResolver()
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
+    }
+
+    func resolveMovesFullListUseCase() -> MovesFullListUseCase {
+        let movesRepository = resolveMovesRepository()
+        return MovesFullListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
+    }
+
+    func resolveMovesListViewController() -> MovesListViewController {
+        let appResolver = resolveAppResolver()
+        return MovesListViewController.makeInstance(dependency: .init(resolver: appResolver))
+    }
+
+    func resolveMovesListViewModel() -> MovesListViewModel {
+        let movesTypeListUseCase = resolveMovesTypeListUseCase()
+        let movesFullListUseCase = resolveMovesFullListUseCase()
+        return MovesListViewModel.makeInstance(dependency: .init(movesListUseCase: movesTypeListUseCase, movesFullListUseCase: movesFullListUseCase))
+    }
+
+    func resolveMovesRepository() -> MovesRepository {
+        return provideMovesRepository()
+    }
+
+    func resolveMovesTypeListUseCase() -> MovesTypeListUseCase {
+        let movesRepository = resolveMovesRepository()
+        return MovesTypeListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
     }
 
     func resolvePokemonDetailContentViewController(pokemonId: Int) -> PokemonDetailContentViewController {

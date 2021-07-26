@@ -61,6 +61,24 @@ extension DefaultAPIClient: FactoryMethodInjectable {
     }
 }
 
+extension DefaultMovesRepository: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let apiClient: APIClient
+        
+
+        init(apiClient: APIClient) {
+            self.apiClient = apiClient
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> DefaultMovesRepository {
+        DefaultMovesRepository(apiClient: dependency.apiClient)
+    }
+}
+
 extension DefaultPokemonRepository: FactoryMethodInjectable {
 
     struct Dependency {
@@ -94,6 +112,80 @@ extension MainViewController: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> MainViewController {
         MainViewController(resolver: dependency.resolver)
+    }
+}
+
+extension MovesFullListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let movesRepository: MovesRepository
+        
+
+        init(movesRepository: MovesRepository) {
+            self.movesRepository = movesRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesFullListUseCase {
+        MovesFullListUseCase(movesRepository: dependency.movesRepository)
+    }
+}
+
+extension MovesListViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let resolver: AppResolver
+        
+
+        init(resolver: AppResolver) {
+            self.resolver = resolver
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesListViewController {
+        MovesListViewController(resolver: dependency.resolver)
+    }
+}
+
+extension MovesListViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let movesListUseCase: MovesTypeListUseCase
+        let movesFullListUseCase: MovesFullListUseCase
+        
+
+        init(movesListUseCase: MovesTypeListUseCase, movesFullListUseCase: MovesFullListUseCase) {
+            self.movesListUseCase = movesListUseCase
+            self.movesFullListUseCase = movesFullListUseCase
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesListViewModel {
+        MovesListViewModel(movesListUseCase: dependency.movesListUseCase, movesFullListUseCase: dependency.movesFullListUseCase)
+    }
+}
+
+extension MovesTypeListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let movesRepository: MovesRepository
+        
+
+        init(movesRepository: MovesRepository) {
+            self.movesRepository = movesRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesTypeListUseCase {
+        MovesTypeListUseCase(movesRepository: dependency.movesRepository)
     }
 }
 
