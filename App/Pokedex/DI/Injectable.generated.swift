@@ -61,6 +61,24 @@ extension DefaultAPIClient: FactoryMethodInjectable {
     }
 }
 
+extension DefaultItemsRepository: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let apiClient: APIClient
+        
+
+        init(apiClient: APIClient) {
+            self.apiClient = apiClient
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> DefaultItemsRepository {
+        DefaultItemsRepository(apiClient: dependency.apiClient)
+    }
+}
+
 extension DefaultMovesRepository: FactoryMethodInjectable {
 
     struct Dependency {
@@ -94,6 +112,42 @@ extension DefaultPokemonRepository: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> DefaultPokemonRepository {
         DefaultPokemonRepository(apiClient: dependency.apiClient)
+    }
+}
+
+extension ItemsListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let itemsRepository: ItemsRepository
+        
+
+        init(itemsRepository: ItemsRepository) {
+            self.itemsRepository = itemsRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ItemsListUseCase {
+        ItemsListUseCase(itemsRepository: dependency.itemsRepository)
+    }
+}
+
+extension ItemsPriceListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let itemsRepository: ItemsRepository
+        
+
+        init(itemsRepository: ItemsRepository) {
+            self.itemsRepository = itemsRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ItemsPriceListUseCase {
+        ItemsPriceListUseCase(itemsRepository: dependency.itemsRepository)
     }
 }
 

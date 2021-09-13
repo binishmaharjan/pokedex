@@ -40,6 +40,11 @@ extension AppResolver {
         return DefaultAPIClient.makeInstance(dependency: .init(httpClient: httpClient))
     }
 
+    func resolveDefaultItemsRepository() -> DefaultItemsRepository {
+        let apiClient = resolveAPIClient()
+        return DefaultItemsRepository.makeInstance(dependency: .init(apiClient: apiClient))
+    }
+
     func resolveDefaultMovesRepository() -> DefaultMovesRepository {
         let apiClient = resolveAPIClient()
         return DefaultMovesRepository.makeInstance(dependency: .init(apiClient: apiClient))
@@ -52,6 +57,14 @@ extension AppResolver {
 
     func resolveHTTPClient() -> HTTPClient {
         return provideHTTPClient()
+    }
+
+    func resolveItemsListUseCase(itemsRepository: ItemsRepository) -> ItemsListUseCase {
+        return ItemsListUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
+    }
+
+    func resolveItemsPriceListUseCase(itemsRepository: ItemsRepository) -> ItemsPriceListUseCase {
+        return ItemsPriceListUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
     }
 
     func resolveMainViewController() -> MainViewController {
