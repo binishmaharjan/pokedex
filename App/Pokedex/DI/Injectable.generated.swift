@@ -133,21 +133,41 @@ extension MovesFullListUseCase: FactoryMethodInjectable {
     }
 }
 
+extension MovesListCellViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let move: TypeMovesListItem
+        
+
+        init(move: TypeMovesListItem) {
+            self.move = move
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesListCellViewModel {
+        MovesListCellViewModel(move: dependency.move)
+    }
+}
+
 extension MovesListViewController: FactoryMethodInjectable {
 
     struct Dependency {
         
         let resolver: AppResolver
+        let viewModel: MovesListViewModel
         
 
-        init(resolver: AppResolver) {
+        init(resolver: AppResolver, viewModel: MovesListViewModel) {
             self.resolver = resolver
+            self.viewModel = viewModel
             
         }
     }
     
     static func makeInstance(dependency: Dependency) -> MovesListViewController {
-        MovesListViewController(resolver: dependency.resolver)
+        MovesListViewController(resolver: dependency.resolver, viewModel: dependency.viewModel)
     }
 }
 

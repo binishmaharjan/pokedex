@@ -24,6 +24,6 @@ final class MovesFullListUseCase: AutoInjectable {
     func execute(_ handler: @escaping (Result<[MovesListItem], APIError>) -> Void) -> Cancellable? {
         let requestValue = RequestValue()
         
-        return movesRepository.fetchMovesList(offset: requestValue.limit, limit: requestValue.limit, handler)
+        return movesRepository.fetchMovesList(offset: requestValue.offset, limit: requestValue.limit, handler)
     }
 }

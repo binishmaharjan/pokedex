@@ -73,7 +73,7 @@ private extension MainViewController {
             UINavigationController(rootViewController: UIViewController())
                 .withTabBarItem(.iconItems, "Items"),
             
-            UINavigationController(rootViewController: UIViewController())
+            UINavigationController(rootViewController: resolver.resolveMovesListViewController())
                     .withTabBarItem(.iconMoves, "Moves"),
         ]
     }

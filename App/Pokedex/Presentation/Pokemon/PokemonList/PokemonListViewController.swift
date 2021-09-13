@@ -28,10 +28,7 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
         
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder: NSCoder) {
-       nil
-    }
+    required init?(coder: NSCoder) { nil }
     
     override func loadView() {
         view = pokemonListView
@@ -41,9 +38,7 @@ final class PokemonListViewController: UIViewController, AutoInjectable {
         super.viewDidLoad()
         
         setup()
-        
         bind()
-        
         viewModel.fetchPokemonFullList()
     }
 }

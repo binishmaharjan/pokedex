@@ -19,20 +19,13 @@ final class PokemonListCell: UITableViewCell {
     func bind(viewModel: PokemonListCellViewModel) {
         pokemonNameLabel.reactive.text <~ viewModel.name
         pokemonIdLabel.reactive.text <~ viewModel.id.map(\.stringId)
+        typeOneImageView.reactive.image <~ viewModel.typeOne.map { UIImage.from($0) }
+        typeTwoImageView.reactive.image <~ viewModel.typeTwo.map { UIImage.from($0) }
         
-        viewModel.imageUrl.producer.startWithValues { [weak self] (url) in
-            self?.pokemonImageView.loadImage(at: url)
-        }
-        
-        viewModel.typeOne.producer.observe(on: UIScheduler())
-            .startWithValues { [weak self] (type) in
-                
-            self?.typeOneImageView.image = .from(type)
-        }
-        
-        viewModel.typeTwo.producer.observe(on: UIScheduler())
-            .startWithValues { [weak self] (type) in
-            self?.typeTwoImageView.image = .from(type)
-        }
+        viewModel.imageUrl
+            .producer
+            .startWithValues { [weak self] (url) in
+                self?.pokemonImageView.loadImage(at: url)
+            }
     }
 }

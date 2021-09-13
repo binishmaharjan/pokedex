@@ -64,9 +64,14 @@ extension AppResolver {
         return MovesFullListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
     }
 
+    func resolveMovesListCellViewModel(move: TypeMovesListItem) -> MovesListCellViewModel {
+        return MovesListCellViewModel.makeInstance(dependency: .init(move: move))
+    }
+
     func resolveMovesListViewController() -> MovesListViewController {
         let appResolver = resolveAppResolver()
-        return MovesListViewController.makeInstance(dependency: .init(resolver: appResolver))
+        let movesListViewModel = resolveMovesListViewModel()
+        return MovesListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: movesListViewModel))
     }
 
     func resolveMovesListViewModel() -> MovesListViewModel {

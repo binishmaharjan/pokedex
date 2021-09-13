@@ -11,29 +11,34 @@ final class MovesListViewController: UIViewController, AutoInjectable {
     
     // MARK: Enums
     enum Action {
-        case moveDetail
+        case moveDetail(Int)
     }
     
-    // MARK: Private Properites
+    // MARK: Private Properties
     private let resolver: AppResolver
     private var dismissLoading: WindowLoadingView.DismissTrigger?
-    private var movesListView: PokemonListView!
-    private var viewModel: PokemonListViewModel!
+    private var movesListView: MovesListView!
+    private var viewModel: MovesListViewModel!
     
     // MARK: Lifecycle
-    init(resolver: AppResolver) {
+    init(resolver: AppResolver, viewModel: MovesListViewModel) {
         self.resolver = resolver
-        
+        self.viewModel = viewModel
+        self.movesListView = MovesListView(viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
+    required init?(coder: NSCoder) { nil }
     
-    required init?(coder: NSCoder) {
-        nil
+    override func loadView() {
+        view = movesListView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+        bind()
+        viewModel.fetchMovesFullList()
     }
 }
 
@@ -48,7 +53,10 @@ private extension MovesListViewController {
     }
     
     func setupMovesListView() {
-        //TODO
+        movesListView.onPerform = {[weak self] action in
+            guard let self = self else { return }
+            self.perform(action: action)
+        }
     }
 }
 

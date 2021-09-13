@@ -60,7 +60,7 @@ extension MovesListViewModel {
                 
                 self.state.addMovesFullList(list)
                 
-                self.fetchMovesFullList()
+                self.fetchMovesList()
                 
             case .failure(let error):
                 self.state.movesList = .completed(.failure(error))
