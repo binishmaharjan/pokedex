@@ -133,6 +133,26 @@ extension ItemsListUseCase: FactoryMethodInjectable {
     }
 }
 
+extension ItemsListViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let itemsFullListUseCase: ItemsListUseCase
+        let itemPriceListUseCase: ItemsPriceListUseCase
+        
+
+        init(itemsFullListUseCase: ItemsListUseCase, itemPriceListUseCase: ItemsPriceListUseCase) {
+            self.itemsFullListUseCase = itemsFullListUseCase
+            self.itemPriceListUseCase = itemPriceListUseCase
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ItemsListViewModel {
+        ItemsListViewModel(itemsFullListUseCase: dependency.itemsFullListUseCase, itemPriceListUseCase: dependency.itemPriceListUseCase)
+    }
+}
+
 extension ItemsPriceListUseCase: FactoryMethodInjectable {
 
     struct Dependency {

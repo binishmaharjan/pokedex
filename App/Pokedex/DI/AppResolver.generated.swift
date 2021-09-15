@@ -59,12 +59,24 @@ extension AppResolver {
         return provideHTTPClient()
     }
 
-    func resolveItemsListUseCase(itemsRepository: ItemsRepository) -> ItemsListUseCase {
+    func resolveItemsListUseCase() -> ItemsListUseCase {
+        let itemsRepository = resolveItemsRepository()
         return ItemsListUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
     }
 
-    func resolveItemsPriceListUseCase(itemsRepository: ItemsRepository) -> ItemsPriceListUseCase {
+    func resolveItemsListViewModel() -> ItemsListViewModel {
+        let itemsListUseCase = resolveItemsListUseCase()
+        let itemsPriceListUseCase = resolveItemsPriceListUseCase()
+        return ItemsListViewModel.makeInstance(dependency: .init(itemsFullListUseCase: itemsListUseCase, itemPriceListUseCase: itemsPriceListUseCase))
+    }
+
+    func resolveItemsPriceListUseCase() -> ItemsPriceListUseCase {
+        let itemsRepository = resolveItemsRepository()
         return ItemsPriceListUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
+    }
+
+    func resolveItemsRepository() -> ItemsRepository {
+        return provideItemsRepository()
     }
 
     func resolveMainViewController() -> MainViewController {
