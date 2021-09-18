@@ -115,6 +115,24 @@ extension DefaultPokemonRepository: FactoryMethodInjectable {
     }
 }
 
+extension ItemsListCellViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let item: PriceItemsListItem
+        
+
+        init(item: PriceItemsListItem) {
+            self.item = item
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ItemsListCellViewModel {
+        ItemsListCellViewModel(item: dependency.item)
+    }
+}
+
 extension ItemsListUseCase: FactoryMethodInjectable {
 
     struct Dependency {
@@ -130,6 +148,26 @@ extension ItemsListUseCase: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> ItemsListUseCase {
         ItemsListUseCase(itemsRepository: dependency.itemsRepository)
+    }
+}
+
+extension ItemsListViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let resolver: AppResolver
+        let viewModel: ItemsListViewModel
+        
+
+        init(resolver: AppResolver, viewModel: ItemsListViewModel) {
+            self.resolver = resolver
+            self.viewModel = viewModel
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ItemsListViewController {
+        ItemsListViewController(resolver: dependency.resolver, viewModel: dependency.viewModel)
     }
 }
 

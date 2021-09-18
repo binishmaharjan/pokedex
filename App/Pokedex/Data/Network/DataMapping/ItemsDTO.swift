@@ -11,9 +11,9 @@ struct ItemsDTO: Codable {
     
     let name: String
     let id: Int
-    let price: Int
+    let cost: Int
     
     func toDomain() -> Items {
-        Items(name: name, id: id, price: price)
+        Items(name: name, id: id, price: cost)
     }
 }
