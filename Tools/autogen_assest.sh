@@ -117,13 +117,13 @@ function generate_colors() {
 		IFS=. read -ra ARRAY <<<"$COLORSET"
 
 		# get first element which is color name >> ("cFFFFFF@50")
-		local COLOR=${ARRAY[0]}
+        local ORIRGINAL_COLOR=${ARRAY[0]}
 
 		# Replace special characters with "_" >> ("cFFFFFF_50")
-		COLOR=$(echo $COLOR | sed 's/[$&+,:;=?@#|<>.^*()%!-]/_/')
+		local EDITED_COLOR=$(echo $ORIRGINAL_COLOR | sed 's/[$&+,:;=?@#|<>.^*()%!-]/_/')
 
 		# define swift color
-		printf " \t static let ${COLOR} = UIColor(named: \"${COLOR}\")!\n"  >> $COLORS_OUTPUT_FILE 
+		printf " \t static let ${EDITED_COLOR} = UIColor(named: \"${ORIRGINAL_COLOR}\")!\n"  >> $COLORS_OUTPUT_FILE
 
 		# if index is last close extension
 		if [[ $COUNT -eq $((COLORS_COUNT - 1)) ]]; then
