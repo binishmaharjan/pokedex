@@ -27,10 +27,7 @@ final class PokemonDetailViewController: UIViewController, AutoInjectable {
         
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder: NSCoder) {
-        nil
-    }
+    required init?(coder: NSCoder) { nil }
     
     override func loadView() {
         view = pokemonDetailView

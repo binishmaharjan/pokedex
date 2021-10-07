@@ -1,14 +1,14 @@
 //
-//  PokemonDetailView.swift
+//  ItemsDetailView.swift
 //  Pokedex
 //
-//  Created by Maharjan Binish on 2021/04/14.
+//  Created by Maharjan Binish on 2021/09/25.
 //
 
 import UIKit
 import ReactiveSwift
 
-final class PokemonDetailView: UIView {
+final class ItemsDetailView: UIView {
     
     // MARK: IBOutlet
     @IBOutlet private weak var backgroundView: UIView!
@@ -22,25 +22,22 @@ final class PokemonDetailView: UIView {
     @IBOutlet private weak var informationStackView: UIStackView!
     @IBOutlet private weak var informationScrollView: UIScrollView!
     
-    @IBOutlet private weak var pokemonImageIcon: UIImageView!
-    @IBOutlet private weak var pokemonNameLabel: UILabel!
-    @IBOutlet private weak var pokemonTypeOneImageView: UIImageView!
-    @IBOutlet private weak var pokemonTypeTwoImageView: UIImageView!
-    @IBOutlet private weak var pokemonDescriptionLabel: UILabel!
-    @IBOutlet private weak var pokemonStatsView: StatsView!
-    @IBOutlet private weak var pokemonWeaknessView: WeaknessView!
-    @IBOutlet private weak var pokemonCaptureView: CaptureView!
+    @IBOutlet private weak var itemImageIcon: UIImageView!
+    @IBOutlet private weak var itemNameLabel: UILabel!
+    @IBOutlet private weak var itemDescriptionLabel: UILabel!
     
+    @IBOutlet weak var itemEffectLabel: UILabel!
+    @IBOutlet private weak var itemPriceLabel: UILabel!
     
     // MARK: Private Properties
-    private let viewModel: PokemonDetailViewModel
+    private let viewModel: ItemsDetailViewModel
     
     // MARK: Public Properties
-    var perform: ((PokemonDetailViewController.Action) -> Void)?
+    var perform: ((ItemsDetailViewController.Action) -> Void)?
     
     // MARK: LifeCycle
     required init?(coder: NSCoder) { nil }
-    init(viewModel: PokemonDetailViewModel) {
+    init(viewModel: ItemsDetailViewModel) {
         self.viewModel = viewModel
         
         super.init(frame: .zero)
@@ -51,7 +48,7 @@ final class PokemonDetailView: UIView {
         
         bind()
         
-        viewModel.fetchPokemonDetail()
+        viewModel.fetchItemsDetail()
     }
     
     // MARK: IBOutlets
@@ -61,30 +58,21 @@ final class PokemonDetailView: UIView {
 }
 
 // MARK: Setup
-private extension PokemonDetailView {
+private extension ItemsDetailView {
     
     func setup() {
         informationViewArea.layer.cornerRadius = 24
         
-        // Hide type two image at the start
-        pokemonTypeTwoImageView.isHidden = true
+        backgroundView.applyGradient(for: .type(.water))
         
-        setupStatsView()
-        setupWeaknessView()
-        setupCaptureView()
+        setupPriceLabel()
+
         setupSwipeGesture()
     }
     
-    func setupStatsView() {
-        pokemonStatsView.viewModel = viewModel
-    }
-    
-    func setupWeaknessView() {
-        pokemonWeaknessView.viewModel = viewModel
-    }
-    
-    func setupCaptureView() {
-        pokemonCaptureView.viewModel = viewModel
+    func setupPriceLabel() {
+        itemPriceLabel.layer.cornerRadius = 20
+        itemPriceLabel.clipsToBounds = true
     }
     
     func setupSwipeGesture() {
@@ -100,43 +88,35 @@ private extension PokemonDetailView {
     @objc private func swipeLeft() {
         viewModel.currentIndex = viewModel.currentIndex + 1
         informationScrollView.setContentOffset(.zero, animated: false)
-        viewModel.fetchPokemonDetail()
+        viewModel.fetchItemsDetail()
     }
     
     @objc private func swipeRight() {
         viewModel.currentIndex = viewModel.currentIndex - 1
         informationScrollView.setContentOffset(.zero, animated: false)
-        viewModel.fetchPokemonDetail()
+        viewModel.fetchItemsDetail()
     }
 }
 
 // MARK: Bind
-private extension PokemonDetailView {
+private extension ItemsDetailView {
     
     func bind() {
-        viewModel
-            .type
-            .producer
-            .startWithValues { [weak self] type in
-                guard let self = self else { return }
-                
-                self.backgroundView.applyGradient(with: type)
-            }
         
         informationStackView.reactive.isHidden <~ viewModel.loadingState.map(\.isHiddenSuccess)
         
-        pokemonNameLabel.reactive.text <~ viewModel.masterPokemonData.skipNil().map(\.name.capitalized)
-        pokemonDescriptionLabel.reactive.text <~ viewModel.flavoredTextEntry
-        titleNameLabelView.reactive.text <~ viewModel.masterPokemonData.skipNil().map(\.name.capitalized)
+        itemNameLabel.reactive.text <~ viewModel.masterItemData.skipNil().map(\.name.capitalized)
+        itemDescriptionLabel.reactive.text <~ viewModel.flavoredTextEntry.skipNil()
+        itemEffectLabel.reactive.text <~ viewModel.effectText.skipNil()
         
-        pokemonTypeOneImageView.reactive.image <~ viewModel.typeOne.skipNil()
-        pokemonTypeTwoImageView.reactive.image <~ viewModel.typeTwo.skipNil()
-        pokemonTypeTwoImageView.reactive.isHidden <~ viewModel.hideSecondaryType.skipNil()
+        titleNameLabelView.reactive.text <~ viewModel.masterItemData.skipNil().map(\.name.capitalized)
+        
+        itemPriceLabel.reactive.text <~ viewModel.masterItemData.skipNil().map(\.price).map { "\($0)₽" }
         
         viewModel.imageUrl.skipNil().startWithValues { [weak self] url in
             guard let self = self else { return }
             
-            self.pokemonImageIcon.loadImage(at: url)
+            self.itemImageIcon.loadImage(at: url)
         }
     }
 }

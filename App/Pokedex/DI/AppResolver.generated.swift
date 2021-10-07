@@ -59,6 +59,22 @@ extension AppResolver {
         return provideHTTPClient()
     }
 
+    func resolveItemDetailUseCase() -> ItemDetailUseCase {
+        let itemsRepository = resolveItemsRepository()
+        return ItemDetailUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
+    }
+
+    func resolveItemsDetailViewController(currentIndex: Int) -> ItemsDetailViewController {
+        let itemsDetailViewModel = resolveItemsDetailViewModel(currentIndex: currentIndex)
+        let appResolver = resolveAppResolver()
+        return ItemsDetailViewController.makeInstance(dependency: .init(viewModel: itemsDetailViewModel, resolver: appResolver))
+    }
+
+    func resolveItemsDetailViewModel(currentIndex: Int) -> ItemsDetailViewModel {
+        let itemDetailUseCase = resolveItemDetailUseCase()
+        return ItemsDetailViewModel.makeInstance(dependency: .init(currentIndex: currentIndex, itemsDetailUseCase: itemDetailUseCase))
+    }
+
     func resolveItemsListCellViewModel(item: PriceItemsListItem) -> ItemsListCellViewModel {
         return ItemsListCellViewModel.makeInstance(dependency: .init(item: item))
     }

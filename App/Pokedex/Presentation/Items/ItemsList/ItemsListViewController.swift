@@ -92,8 +92,12 @@ private extension ItemsListViewController {
     
     func perform(action: Action) {
         switch action {
-        case .itemDetail:
-            break
+        case .itemDetail(let id):
+            let viewController = resolver.resolveItemsDetailViewController(currentIndex: id)
+            
+            viewController.modalPresentationStyle = .fullScreen
+            
+            self.present(viewController, animated: true)
         }
     }
 }
