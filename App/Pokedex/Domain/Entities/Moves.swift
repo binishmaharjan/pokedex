@@ -8,7 +8,19 @@
 import Foundation
 
 struct Moves {
+    struct FlavorTextEntry {
+        let text: String
+    }
+    
     let name: String
     let id: Int
     let type: TypeInfo
+    let flavorTextEntries: [FlavorTextEntry]
+}
+
+extension Moves {
+    
+    var description: String {
+        flavorTextEntries.first?.text ?? ""
+    }
 }

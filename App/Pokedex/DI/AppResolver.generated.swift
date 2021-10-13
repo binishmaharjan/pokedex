@@ -110,6 +110,22 @@ extension AppResolver {
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
     }
 
+    func resolveMovesDetailUseCase() -> MovesDetailUseCase {
+        let movesRepository = resolveMovesRepository()
+        return MovesDetailUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
+    }
+
+    func resolveMovesDetailViewController(currentIndex: Int, backgroundType: Type?) -> MovesDetailViewController {
+        let movesDetailViewModel = resolveMovesDetailViewModel(currentIndex: currentIndex, backgroundType: backgroundType)
+        let appResolver = resolveAppResolver()
+        return MovesDetailViewController.makeInstance(dependency: .init(viewModel: movesDetailViewModel, resolver: appResolver))
+    }
+
+    func resolveMovesDetailViewModel(currentIndex: Int, backgroundType: Type?) -> MovesDetailViewModel {
+        let movesDetailUseCase = resolveMovesDetailUseCase()
+        return MovesDetailViewModel.makeInstance(dependency: .init(currentIndex: currentIndex, backgroundType: backgroundType, movesDetailUseCase: movesDetailUseCase))
+    }
+
     func resolveMovesFullListUseCase() -> MovesFullListUseCase {
         let movesRepository = resolveMovesRepository()
         return MovesFullListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))

@@ -22,7 +22,7 @@ final class PokemonDetailViewModel: AutoInjectable {
     // MARK: Public Properties
     var currentIndex: Int
     
-    init(pokemonId: Int, backgroundType: Type?,pokemonDetailUseCase: PokemonDetailUseCase) {
+    init(pokemonId: Int, backgroundType: Type?, pokemonDetailUseCase: PokemonDetailUseCase) {
         self.currentIndex = pokemonId
         self.pokemonDetailUseCase = pokemonDetailUseCase
         self.state.backgroundType = backgroundType

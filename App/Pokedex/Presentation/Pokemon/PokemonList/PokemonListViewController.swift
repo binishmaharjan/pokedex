@@ -79,7 +79,8 @@ private extension PokemonListViewController {
                 self?.dismissLoading?()
                 self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: false)
                 
-            case .failure:
+            case .failure(let error):
+                error.actionName
                 self?.dismissLoading?()
                 self?.pokemonListView.showNextPageLoadingIndicator(isLoadingNextPage: false)
                 

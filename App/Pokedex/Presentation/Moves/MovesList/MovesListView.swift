@@ -82,7 +82,7 @@ extension MovesListView {
             guard let self = self else { return }
             
             
-            self.onPerform?(.moveDetail(element.id))
+            self.onPerform?(.moveDetail(element.id, nil))
         }
         
         // Text Field Status
@@ -160,6 +160,6 @@ extension MovesListView: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let moves = sections[indexPath]
         
-        onPerform?(.moveDetail(moves.id))
+        onPerform?(.moveDetail(moves.id, moves.type.name))
     }
 }

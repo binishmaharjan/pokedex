@@ -11,7 +11,7 @@ final class MovesListViewController: UIViewController, AutoInjectable {
     
     // MARK: Enums
     enum Action {
-        case moveDetail(Int)
+        case moveDetail(Int, Type?)
     }
     
     // MARK: Private Properties
@@ -53,7 +53,7 @@ private extension MovesListViewController {
     }
     
     func setupMovesListView() {
-        movesListView.onPerform = {[weak self] action in
+        movesListView.onPerform = { [weak self] action in
             guard let self = self else { return }
             self.perform(action: action)
         }
@@ -92,8 +92,12 @@ private extension MovesListViewController {
     
     func perform(action: Action) {
         switch action {
-        case .moveDetail:
-            break
+        case .moveDetail(let index, let type):
+            let viewController = resolver.resolveMovesDetailViewController(currentIndex: index, backgroundType: type)
+            
+            viewController.modalPresentationStyle = .fullScreen
+            
+            self.present(viewController, animated: true)
         }
     }
 }

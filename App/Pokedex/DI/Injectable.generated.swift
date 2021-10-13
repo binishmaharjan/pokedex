@@ -285,6 +285,66 @@ extension MainViewController: FactoryMethodInjectable {
     }
 }
 
+extension MovesDetailUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let movesRepository: MovesRepository
+        
+
+        init(movesRepository: MovesRepository) {
+            self.movesRepository = movesRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesDetailUseCase {
+        MovesDetailUseCase(movesRepository: dependency.movesRepository)
+    }
+}
+
+extension MovesDetailViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let viewModel: MovesDetailViewModel
+        let resolver: AppResolver
+        
+
+        init(viewModel: MovesDetailViewModel, resolver: AppResolver) {
+            self.viewModel = viewModel
+            self.resolver = resolver
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesDetailViewController {
+        MovesDetailViewController(viewModel: dependency.viewModel, resolver: dependency.resolver)
+    }
+}
+
+extension MovesDetailViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let currentIndex: Int
+        let backgroundType: Type?
+        let movesDetailUseCase: MovesDetailUseCase
+        
+
+        init(currentIndex: Int, backgroundType: Type?, movesDetailUseCase: MovesDetailUseCase) {
+            self.currentIndex = currentIndex
+            self.backgroundType = backgroundType
+            self.movesDetailUseCase = movesDetailUseCase
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesDetailViewModel {
+        MovesDetailViewModel(currentIndex: dependency.currentIndex, backgroundType: dependency.backgroundType, movesDetailUseCase: dependency.movesDetailUseCase)
+    }
+}
+
 extension MovesFullListUseCase: FactoryMethodInjectable {
 
     struct Dependency {
