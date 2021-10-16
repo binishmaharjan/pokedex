@@ -179,6 +179,7 @@
 		64A5CA11271AB0F600919AAB /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5CA10271AB0F600919AAB /* List.swift */; };
 		64A5CA14271AB27B00919AAB /* ListIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5CA13271AB27B00919AAB /* ListIdentifiable.swift */; };
 		64A5CA18271AB32000919AAB /* ListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5CA17271AB32000919AAB /* ListDTO.swift */; };
+		64A5CA21271AC3E300919AAB /* ListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5CA20271AC3E300919AAB /* ListRepository.swift */; };
 		64EEA862268A373600759F1C /* NSLayoutConstraints+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EEA861268A373600759F1C /* NSLayoutConstraints+Extension.swift */; };
 		64EEA866268E208B00759F1C /* WeaknessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EEA865268E208B00759F1C /* WeaknessView.swift */; };
 		64EEA869268E211900759F1C /* WeaknessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EEA868268E211900759F1C /* WeaknessView.xib */; };
@@ -359,6 +360,7 @@
 		64A5CA10271AB0F600919AAB /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		64A5CA13271AB27B00919AAB /* ListIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIdentifiable.swift; sourceTree = "<group>"; };
 		64A5CA17271AB32000919AAB /* ListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDTO.swift; sourceTree = "<group>"; };
+		64A5CA20271AC3E300919AAB /* ListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepository.swift; sourceTree = "<group>"; };
 		64EEA861268A373600759F1C /* NSLayoutConstraints+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraints+Extension.swift"; sourceTree = "<group>"; };
 		64EEA865268E208B00759F1C /* WeaknessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaknessView.swift; sourceTree = "<group>"; };
 		64EEA868268E211900759F1C /* WeaknessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeaknessView.xib; sourceTree = "<group>"; };
@@ -958,6 +960,7 @@
 				6495908B2616159B00DFD840 /* PokemonRepository.swift */,
 				647ED09626ABFE1A006716FB /* MovesRepository.swift */,
 				640BFF7526F0136A009A3947 /* ItemsRepository.swift */,
+				64A5CA20271AC3E300919AAB /* ListRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1333,6 +1336,7 @@
 				6495908C2616159B00DFD840 /* PokemonRepository.swift in Sources */,
 				64A5C9D326FEF58F00919AAB /* ItemDetailViewModel.swift in Sources */,
 				64958F89260BA0C200DFD840 /* HTTPClient.swift in Sources */,
+				64A5CA21271AC3E300919AAB /* ListRepository.swift in Sources */,
 				64958FA0260F91DD00DFD840 /* JSONDecoder+Extension.swift in Sources */,
 				646AB970261817D100FE44C2 /* Pokemon.swift in Sources */,
 				643CFFD126F5F947000C2E8A /* ItemsListCellViewModel.swift in Sources */,
