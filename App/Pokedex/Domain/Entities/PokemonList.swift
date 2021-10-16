@@ -15,12 +15,12 @@ import Foundation
 //}
 //
 //struct PokemonListItem: Equatable, Searchable {
-//    
+//
 //    var id: Int {
 //        guard let lastString = url.split(separator: "/").last, let id = Int(lastString) else {
 //            return 0
 //        }
-//        
+//
 //        return id
 //    }
 //
@@ -39,7 +39,7 @@ struct TypePokemonListItem: Equatable, Comparable {
     
     let name: String
     let id: Int
-    let types: [PokemonType]
+    let types: [Element]
     
     static func from(pokemonInfo: Pokemon) -> TypePokemonListItem {
         TypePokemonListItem(name: pokemonInfo.name, id: pokemonInfo.id, types: pokemonInfo.types)

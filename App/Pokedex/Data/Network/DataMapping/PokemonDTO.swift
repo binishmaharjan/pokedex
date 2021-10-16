@@ -22,8 +22,8 @@ struct PokemonTypeDTO: Codable {
     let slot: Int
     let type: TypeInfoDTO
     
-    func toDomain() -> PokemonType {
-        PokemonType(slot: slot, type: type.toDomain())
+    func toDomain() -> Element {
+        Element(slot: slot, type: type.toDomain())
     }
 }
 
