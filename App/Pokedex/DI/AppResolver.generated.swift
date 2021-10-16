@@ -129,6 +129,11 @@ extension AppResolver {
         return MovesListCellViewModel.makeInstance(dependency: .init(move: move))
     }
 
+    func resolveMovesListUseCase() -> MovesListUseCase {
+        let movesRepository = resolveMovesRepository()
+        return MovesListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
+    }
+
     func resolveMovesListViewController(listRepository: ListRepository) -> MovesListViewController {
         let appResolver = resolveAppResolver()
         let movesListViewModel = resolveMovesListViewModel(listRepository: listRepository)
@@ -136,18 +141,13 @@ extension AppResolver {
     }
 
     func resolveMovesListViewModel(listRepository: ListRepository) -> MovesListViewModel {
-        let movesTypeListUseCase = resolveMovesTypeListUseCase()
+        let movesListUseCase = resolveMovesListUseCase()
         let listUseCase = resolveListUseCase(listRepository: listRepository)
-        return MovesListViewModel.makeInstance(dependency: .init(movesListUseCase: movesTypeListUseCase, movesFullListUseCase: listUseCase))
+        return MovesListViewModel.makeInstance(dependency: .init(movesListUseCase: movesListUseCase, movesFullListUseCase: listUseCase))
     }
 
     func resolveMovesRepository() -> MovesRepository {
         return provideMovesRepository()
-    }
-
-    func resolveMovesTypeListUseCase() -> MovesTypeListUseCase {
-        let movesRepository = resolveMovesRepository()
-        return MovesTypeListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
     }
 
     func resolvePokemonDetailContentViewController(pokemonId: Int) -> PokemonDetailContentViewController {

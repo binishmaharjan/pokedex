@@ -1,5 +1,5 @@
 //
-//  MovesTypeListUseCase.swift
+//  MovesListUseCase.swift
 //  Pokedex
 //
 //  Created by Maharjan Binish on 2021/07/26.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MovesTypeListUseCase: AutoInjectable {
+final class MovesListUseCase: AutoInjectable {
     
     struct RequestValue {
         let range: ClosedRange<Int>

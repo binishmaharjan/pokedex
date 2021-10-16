@@ -13,11 +13,11 @@ final class MovesListViewModel: AutoInjectable {
     @Observable
     private var state = MovesListState()
     private let movesFullListUseCase: ListUseCase
-    private let movesTypeListUseCase: MovesTypeListUseCase
+    private let movesListUseCase: MovesListUseCase
 
-    init(movesListUseCase: MovesTypeListUseCase, movesFullListUseCase: ListUseCase) {
+    init(movesListUseCase: MovesListUseCase, movesFullListUseCase: ListUseCase) {
         self.movesFullListUseCase = movesFullListUseCase
-        self.movesTypeListUseCase = movesListUseCase
+        self.movesListUseCase = movesListUseCase
     }
     
     var loadingState: Property<AnyLoadingState> {
@@ -72,9 +72,9 @@ extension MovesListViewModel {
         let startIndex = (state.currentPage * state.fetchLimit) + 1
         let endIndex = (state.currentPage + 1) * state.fetchLimit
         
-        let requestValue = MovesTypeListUseCase.RequestValue(range: startIndex...endIndex)
+        let requestValue = MovesListUseCase.RequestValue(range: startIndex...endIndex)
         
-        movesTypeListUseCase.execute(requestValue: requestValue) { [weak self] result in
+        movesListUseCase.execute(requestValue: requestValue) { [weak self] result in
             
             guard let self = self else { return }
             
@@ -99,9 +99,9 @@ extension MovesListViewModel {
         let startIndex = (state.currentPage * state.fetchLimit) + 1
         let endIndex = (state.currentPage + 1) * state.fetchLimit
         
-        let requestValue = MovesTypeListUseCase.RequestValue(range: startIndex...endIndex)
+        let requestValue = MovesListUseCase.RequestValue(range: startIndex...endIndex)
         
-        movesTypeListUseCase.execute(requestValue: requestValue) { [weak self] result in
+        movesListUseCase.execute(requestValue: requestValue) { [weak self] result in
             
             guard let self = self else { return }
             

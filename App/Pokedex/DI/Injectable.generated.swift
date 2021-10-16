@@ -363,6 +363,24 @@ extension MovesListCellViewModel: FactoryMethodInjectable {
     }
 }
 
+extension MovesListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let movesRepository: MovesRepository
+        
+
+        init(movesRepository: MovesRepository) {
+            self.movesRepository = movesRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> MovesListUseCase {
+        MovesListUseCase(movesRepository: dependency.movesRepository)
+    }
+}
+
 extension MovesListViewController: FactoryMethodInjectable {
 
     struct Dependency {
@@ -387,11 +405,11 @@ extension MovesListViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let movesListUseCase: MovesTypeListUseCase
+        let movesListUseCase: MovesListUseCase
         let movesFullListUseCase: ListUseCase
         
 
-        init(movesListUseCase: MovesTypeListUseCase, movesFullListUseCase: ListUseCase) {
+        init(movesListUseCase: MovesListUseCase, movesFullListUseCase: ListUseCase) {
             self.movesListUseCase = movesListUseCase
             self.movesFullListUseCase = movesFullListUseCase
             
@@ -400,24 +418,6 @@ extension MovesListViewModel: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> MovesListViewModel {
         MovesListViewModel(movesListUseCase: dependency.movesListUseCase, movesFullListUseCase: dependency.movesFullListUseCase)
-    }
-}
-
-extension MovesTypeListUseCase: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let movesRepository: MovesRepository
-        
-
-        init(movesRepository: MovesRepository) {
-            self.movesRepository = movesRepository
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> MovesTypeListUseCase {
-        MovesTypeListUseCase(movesRepository: dependency.movesRepository)
     }
 }
 

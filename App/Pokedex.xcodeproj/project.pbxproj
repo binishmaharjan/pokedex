@@ -48,7 +48,7 @@
 		647ED09426ABFD94006716FB /* MovesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09326ABFD94006716FB /* MovesRequest.swift */; };
 		647ED09726ABFE1A006716FB /* MovesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09626ABFE1A006716FB /* MovesRepository.swift */; };
 		647ED09A26ABFFA0006716FB /* DefaultMovesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09926ABFFA0006716FB /* DefaultMovesRepository.swift */; };
-		647ED0A026AED835006716FB /* MovesTypeListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */; };
+		647ED0A026AED835006716FB /* MovesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09F26AED835006716FB /* MovesListUseCase.swift */; };
 		647ED0A326AEE26E006716FB /* MovesListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED0A226AEE26E006716FB /* MovesListState.swift */; };
 		648A0CC726888774008B1CE9 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648A0CC626888774008B1CE9 /* StatsView.swift */; };
 		648A0CCB268887A7008B1CE9 /* StatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 648A0CCA268887A7008B1CE9 /* StatsView.xib */; };
@@ -229,7 +229,7 @@
 		647ED09326ABFD94006716FB /* MovesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesRequest.swift; sourceTree = "<group>"; };
 		647ED09626ABFE1A006716FB /* MovesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesRepository.swift; sourceTree = "<group>"; };
 		647ED09926ABFFA0006716FB /* DefaultMovesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovesRepository.swift; sourceTree = "<group>"; };
-		647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesTypeListUseCase.swift; sourceTree = "<group>"; };
+		647ED09F26AED835006716FB /* MovesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesListUseCase.swift; sourceTree = "<group>"; };
 		647ED0A226AEE26E006716FB /* MovesListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesListState.swift; sourceTree = "<group>"; };
 		648A0CC626888774008B1CE9 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		648A0CCA268887A7008B1CE9 /* StatsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsView.xib; sourceTree = "<group>"; };
@@ -1124,7 +1124,7 @@
 			isa = PBXGroup;
 			children = (
 				64A5C9F62711357800919AAB /* MovesDetailUseCase.swift */,
-				647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */,
+				647ED09F26AED835006716FB /* MovesListUseCase.swift */,
 			);
 			path = Moves;
 			sourceTree = "<group>";
@@ -1479,7 +1479,7 @@
 				646AB96D2618179B00FE44C2 /* Element.swift in Sources */,
 				649590C5261636F500DFD840 /* LoadingView.swift in Sources */,
 				6495901626107A4900DFD840 /* SplashViewController.swift in Sources */,
-				647ED0A026AED835006716FB /* MovesTypeListUseCase.swift in Sources */,
+				647ED0A026AED835006716FB /* MovesListUseCase.swift in Sources */,
 				649590A3261623DB00DFD840 /* PokemonListViewModel.swift in Sources */,
 				647ED08526AB057D006716FB /* MovesList.swift in Sources */,
 				64958F0D2602456000DFD840 /* AppResolver.generated.swift in Sources */,
