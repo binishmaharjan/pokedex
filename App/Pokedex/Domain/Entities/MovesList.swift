@@ -7,25 +7,6 @@
 
 import Foundation
 
-//struct MovesList {
-//    let count: Int
-//    let moves: [MovesListItem]
-//}
-//
-//struct MovesListItem: Equatable, Searchable {
-//    
-//    var id: Int {
-//        guard let lastString = url.split(separator: "/").last, let id = Int(lastString) else {
-//            return 0
-//        }
-//        
-//        return id
-//    }
-//    
-//    var name: String
-//    var url: String
-//}
-
 struct TypeMovesList: Equatable {
     
     let moves: [TypeMovesListItem]
