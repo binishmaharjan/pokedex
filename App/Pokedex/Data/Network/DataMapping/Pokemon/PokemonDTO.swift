@@ -31,8 +31,8 @@ struct TypeInfoDTO: Codable {
     let name: Type
     let url: String
     
-    func toDomain() -> TypeInfo {
-        TypeInfo(name: name, url: url)
+    func toDomain() -> ElementInfo {
+        ElementInfo(name: name, url: url)
     }
 }
 

@@ -125,7 +125,7 @@ extension AppResolver {
         return MovesDetailViewModel.makeInstance(dependency: .init(currentIndex: currentIndex, backgroundType: backgroundType, movesDetailUseCase: movesDetailUseCase))
     }
 
-    func resolveMovesListCellViewModel(move: TypeMovesListItem) -> MovesListCellViewModel {
+    func resolveMovesListCellViewModel(move: MovesListItem) -> MovesListCellViewModel {
         return MovesListCellViewModel.makeInstance(dependency: .init(move: move))
     }
 

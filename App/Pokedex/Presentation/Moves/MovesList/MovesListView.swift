@@ -160,6 +160,6 @@ extension MovesListView: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let moves = sections[indexPath]
         
-        onPerform?(.moveDetail(moves.id, moves.type.name))
+        onPerform?(.moveDetail(moves.id, moves.element.name))
     }
 }

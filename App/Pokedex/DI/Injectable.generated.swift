@@ -349,10 +349,10 @@ extension MovesListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let move: TypeMovesListItem
+        let move: MovesListItem
         
 
-        init(move: TypeMovesListItem) {
+        init(move: MovesListItem) {
             self.move = move
             
         }

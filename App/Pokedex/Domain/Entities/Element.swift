@@ -9,10 +9,10 @@ import Foundation
 
 struct Element: Equatable {
     let slot: Int
-    let type: TypeInfo
+    let type: ElementInfo
 }
 
-struct TypeInfo: Equatable  {
+struct ElementInfo: Equatable  {
     let name: Type
     let url: String
 }

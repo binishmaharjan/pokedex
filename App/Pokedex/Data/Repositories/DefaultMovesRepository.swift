@@ -16,7 +16,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
     
     // MARK: Moves Typed List Properties
     private let dispatchGroup = DispatchGroup()
-    private var movesList: [TypeMovesListItem] = []
+    private var movesList: [MovesListItem] = []
     private var error: APIError?
     
     init(apiClient: APIClient) {
@@ -41,7 +41,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
         return task
     }
     
-    func fetchMovesInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[TypeMovesListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchMovesInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[MovesListItem], APIError>) -> Void) -> Cancellable? {
         
         error = nil
         movesList.removeAll()
@@ -57,7 +57,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
                 
                 switch result {
                 case .success(let info):
-                    let typeItem = TypeMovesListItem.from(movesInfo: info.toDomain())
+                    let typeItem = MovesListItem.from(info.toDomain())
                     self.movesList.append(typeItem)
                     
                 case .failure(let error):

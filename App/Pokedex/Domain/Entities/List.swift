@@ -55,4 +55,30 @@ extension PokemonListItem: Comparable {
 
 // MARK: Moves List (Moves List Including Type)
 
+struct MovesList {
+    
+}
+
+struct MovesListItem: Equatable {
+    
+    let name: String
+    let id: Int
+    let element: ElementInfo
+}
+
+extension MovesListItem {
+    
+    static func from(_ moveInfo: Moves) -> MovesListItem {
+        MovesListItem(name: moveInfo.name, id: moveInfo.id, element: moveInfo.type)
+    }
+}
+
+extension MovesListItem: Comparable {
+    
+    static func < (lhs: MovesListItem, rhs: MovesListItem) -> Bool {
+        lhs.id < rhs.id
+    }
+}
+
+
 // MARK: Items List (Items List Including Price)

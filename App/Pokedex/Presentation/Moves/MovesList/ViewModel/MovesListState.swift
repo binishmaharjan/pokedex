@@ -11,7 +11,7 @@ struct MovesListState {
     
     // MARK: Private Properties
     private var movesFullList: [ListItem] = []
-    private var currentMovesList: [TypeMovesListItem] = []
+    private var currentMovesList: [MovesListItem] = []
     
     // MARK: Paging Related
     let initialOffset: Int = 0
@@ -22,7 +22,7 @@ struct MovesListState {
     var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
     
     // MARK: Public Properties
-    var movesList: LoadingState<[TypeMovesListItem], APIError> = .initial
+    var movesList: LoadingState<[MovesListItem], APIError> = .initial
     var searchText: String = ""
     
     var sections: MovesListSections {
@@ -48,23 +48,23 @@ struct MovesListState {
         movesFullList = list
     }
     
-    mutating func initialMoves(_ list: [TypeMovesListItem]) {
+    mutating func initialMoves(_ list: [MovesListItem]) {
         currentMovesList = list
         movesList = .completed(.success(currentMovesList))
     }
     
-    mutating func appendMoves(_ list: [TypeMovesListItem]) {
+    mutating func appendMoves(_ list: [MovesListItem]) {
         currentMovesList.append(contentsOf: list)
         movesList = .completed(.success(currentMovesList))
     }
 }
 
 // MARK: Sections
-typealias MovesListSections = Sections<String, TypeMovesListItem>
+typealias MovesListSections = Sections<String, MovesListItem>
 
 extension MovesListSections {
     
-    static func from(_ moves: [TypeMovesListItem]) -> MovesListSections {
+    static func from(_ moves: [MovesListItem]) -> MovesListSections {
         let sections = MovesListSections(
             sections:[
                 Section(
