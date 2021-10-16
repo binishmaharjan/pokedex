@@ -24,7 +24,8 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     }
     
     /// Fetch pokemon list not including pokemon type
-    func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
+    @discardableResult
+    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListItem], APIError>) -> Void) -> Cancellable? {
         let request = PokemonListRequest(offset: offset, limit: limit)
         
         let task = apiClient.send(request) { (result) in
@@ -66,7 +67,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     }
     
     /// Fetch pokemon list including pokemon type
-    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchPokemonList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
         // Reset Saved values
         error = nil
         pokemonList.removeAll()
