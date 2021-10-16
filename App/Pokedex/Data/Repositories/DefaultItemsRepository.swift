@@ -23,7 +23,7 @@ final class DefaultItemsRepository: ItemsRepository, AutoInjectable {
         self.apiClient = apiClient
     }
     
-    func fetchItemsList(offset: Int, limit: Int, _ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListItem], APIError>) -> Void) -> Cancellable? {
         
         let request = ItemsListRequest(offset: offset, limit: limit)
         

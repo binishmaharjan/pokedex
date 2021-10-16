@@ -233,11 +233,11 @@ extension ItemsListViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let itemsFullListUseCase: ItemsListUseCase
+        let itemsFullListUseCase: ListUseCase
         let itemPriceListUseCase: ItemsPriceListUseCase
         
 
-        init(itemsFullListUseCase: ItemsListUseCase, itemPriceListUseCase: ItemsPriceListUseCase) {
+        init(itemsFullListUseCase: ListUseCase, itemPriceListUseCase: ItemsPriceListUseCase) {
             self.itemsFullListUseCase = itemsFullListUseCase
             self.itemPriceListUseCase = itemPriceListUseCase
             

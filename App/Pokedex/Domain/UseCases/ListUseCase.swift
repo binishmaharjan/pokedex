@@ -12,10 +12,12 @@ final class ListUseCase: AutoInjectable {
     
     enum ListType {
         case pokemon
+        case items
         
         var max: Int {
             switch self {
             case .pokemon: return 1118
+            case .items: return 954
             }
         }
     }

@@ -12,10 +12,10 @@ final class ItemsListViewModel: AutoInjectable {
 
     @Observable
     private var state = ItemsListState()
-    private let itemsFullListUseCase: ItemsListUseCase
+    private let itemsFullListUseCase: ListUseCase
     private let itemPriceListUseCase: ItemsPriceListUseCase
     
-    init(itemsFullListUseCase: ItemsListUseCase, itemPriceListUseCase: ItemsPriceListUseCase) {
+    init(itemsFullListUseCase: ListUseCase, itemPriceListUseCase: ItemsPriceListUseCase) {
         self.itemsFullListUseCase = itemsFullListUseCase
         self.itemPriceListUseCase = itemPriceListUseCase
     }
@@ -48,7 +48,7 @@ extension ItemsListViewModel {
         state.currentPage = 0
         state.totalPageCount = 1
         
-        itemsFullListUseCase.execute { [weak self] result in
+        itemsFullListUseCase.execute(listType: .items) { [weak self] result in
             
             guard let self = self else { return }
             

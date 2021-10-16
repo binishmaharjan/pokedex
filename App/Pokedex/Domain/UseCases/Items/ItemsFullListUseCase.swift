@@ -24,6 +24,6 @@ final class ItemsListUseCase: AutoInjectable {
     func execute(_ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
         let requestValue = RequestValue()
         
-        return itemsRepository.fetchItemsList(offset: requestValue.offset, limit: requestValue.limit, handler)
+        return itemsRepository.fetchList(offset: requestValue.offset, limit: requestValue.limit, handler)
     }
 }

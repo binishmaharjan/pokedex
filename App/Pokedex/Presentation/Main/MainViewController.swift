@@ -74,8 +74,12 @@ private extension MainViewController {
             )
             .withTabBarItem(.iconPokemon, "Pokemon"),
             
-            UINavigationController(rootViewController: resolver.resolveItemsListViewController())
-                .withTabBarItem(.iconItems, "Items"),
+            UINavigationController(
+                rootViewController: resolver.resolveItemsListViewController(
+                    listRepository: resolver.resolveItemsRepository()
+                )
+            )
+            .withTabBarItem(.iconItems, "Items"),
             
             UINavigationController(rootViewController: resolver.resolveMovesListViewController())
                     .withTabBarItem(.iconMoves, "Moves"),

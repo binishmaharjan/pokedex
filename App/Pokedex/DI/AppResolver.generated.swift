@@ -84,16 +84,16 @@ extension AppResolver {
         return ItemsListUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
     }
 
-    func resolveItemsListViewController() -> ItemsListViewController {
+    func resolveItemsListViewController(listRepository: ListRepository) -> ItemsListViewController {
         let appResolver = resolveAppResolver()
-        let itemsListViewModel = resolveItemsListViewModel()
+        let itemsListViewModel = resolveItemsListViewModel(listRepository: listRepository)
         return ItemsListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: itemsListViewModel))
     }
 
-    func resolveItemsListViewModel() -> ItemsListViewModel {
-        let itemsListUseCase = resolveItemsListUseCase()
+    func resolveItemsListViewModel(listRepository: ListRepository) -> ItemsListViewModel {
+        let listUseCase = resolveListUseCase(listRepository: listRepository)
         let itemsPriceListUseCase = resolveItemsPriceListUseCase()
-        return ItemsListViewModel.makeInstance(dependency: .init(itemsFullListUseCase: itemsListUseCase, itemPriceListUseCase: itemsPriceListUseCase))
+        return ItemsListViewModel.makeInstance(dependency: .init(itemsFullListUseCase: listUseCase, itemPriceListUseCase: itemsPriceListUseCase))
     }
 
     func resolveItemsPriceListUseCase() -> ItemsPriceListUseCase {
