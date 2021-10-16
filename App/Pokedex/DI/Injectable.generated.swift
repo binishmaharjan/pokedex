@@ -267,6 +267,24 @@ extension ItemsPriceListUseCase: FactoryMethodInjectable {
     }
 }
 
+extension ListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let listRepository: ListRepository
+        
+
+        init(listRepository: ListRepository) {
+            self.listRepository = listRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ListUseCase {
+        ListUseCase(listRepository: dependency.listRepository)
+    }
+}
+
 extension MainViewController: FactoryMethodInjectable {
 
     struct Dependency {

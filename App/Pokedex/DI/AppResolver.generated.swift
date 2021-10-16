@@ -105,6 +105,10 @@ extension AppResolver {
         return provideItemsRepository()
     }
 
+    func resolveListUseCase(listRepository: ListRepository) -> ListUseCase {
+        return ListUseCase.makeInstance(dependency: .init(listRepository: listRepository))
+    }
+
     func resolveMainViewController() -> MainViewController {
         let appResolver = resolveAppResolver()
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))
