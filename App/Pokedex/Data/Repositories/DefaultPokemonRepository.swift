@@ -24,14 +24,14 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     }
     
     /// Fetch pokemon list not including pokemon type
-    func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
         let request = PokemonListRequest(offset: offset, limit: limit)
         
         let task = apiClient.send(request) { (result) in
             switch result {
             case .success(let responseDTO):
                 let pokemonList = responseDTO.toDomain()
-                handler(.success(pokemonList.pokemons))
+                handler(.success(pokemonList.results))
             case .failure(let error):
                 handler(.failure(error))
             }

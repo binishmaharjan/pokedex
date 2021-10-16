@@ -7,29 +7,29 @@
 
 import Foundation
 
-struct ItemsListDTO: Codable {
-    let count: Int
-    let items: [ItemsListItemDTO]
-    
-    enum CodingKeys: String, CodingKey {
-        case count
-        case items = "results"
-    }
-}
-
-extension ItemsListDTO {
-    func toDomain() -> ItemsList {
-        ItemsList(count: count, items: items.map { $0.toDomain() })
-    }
-}
-
-struct ItemsListItemDTO: Codable {
-    let name: String
-    let url: String
-}
-
-extension ItemsListItemDTO {
-    func toDomain() -> ItemsListItem {
-        ItemsListItem(name: name, url: url)
-    }
-}
+//struct ItemsListDTO: Codable {
+//    let count: Int
+//    let items: [ItemsListItemDTO]
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case count
+//        case items = "results"
+//    }
+//}
+//
+//extension ItemsListDTO {
+//    func toDomain() -> ItemsList {
+//        ItemsList(count: count, items: items.map { $0.toDomain() })
+//    }
+//}
+//
+//struct ItemsListItemDTO: Codable {
+//    let name: String
+//    let url: String
+//}
+//
+//extension ItemsListItemDTO {
+//    func toDomain() -> ItemsListItem {
+//        ItemsListItem(name: name, url: url)
+//    }
+//}

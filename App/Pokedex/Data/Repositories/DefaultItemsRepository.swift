@@ -23,7 +23,7 @@ final class DefaultItemsRepository: ItemsRepository, AutoInjectable {
         self.apiClient = apiClient
     }
     
-    func fetchItemsList(offset: Int, limit: Int, _ handler: @escaping (Result<[ItemsListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchItemsList(offset: Int, limit: Int, _ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
         
         let request = ItemsListRequest(offset: offset, limit: limit)
         
@@ -31,7 +31,7 @@ final class DefaultItemsRepository: ItemsRepository, AutoInjectable {
             switch result {
             case .success(let responseDTO):
                 let itemsList = responseDTO.toDomain()
-                handler(.success(itemsList.items))
+                handler(.success(itemsList.results))
                 
             case .failure(let error):
                 handler(.failure(error))

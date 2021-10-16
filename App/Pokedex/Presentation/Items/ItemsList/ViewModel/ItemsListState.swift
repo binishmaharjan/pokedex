@@ -10,7 +10,7 @@ import Foundation
 struct ItemsListState {
     
     // MARK: Private Properties
-    private var itemsFullList: [ItemsListItem] = []
+    private var itemsFullList: [ListItem] = []
     private var currentItemsList: [PriceItemsListItem] = []
     
     // MARK: Paging Related
@@ -36,7 +36,7 @@ struct ItemsListState {
         }
     }
     
-    var searchItemsList: [ItemsListItem] {
+    var searchItemsList: [ListItem] {
         guard !(searchText.isEmpty) else {
             return itemsFullList
         }
@@ -46,7 +46,7 @@ struct ItemsListState {
         }
     }
     
-    mutating func addItemsFullList(_ list: [ItemsListItem]) {
+    mutating func addItemsFullList(_ list: [ListItem]) {
         itemsFullList = list
     }
     

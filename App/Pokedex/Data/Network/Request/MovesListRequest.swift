@@ -9,7 +9,7 @@ import Foundation
 
 struct MovesListRequest: APIRequest {
     
-    typealias SuccessResponse = MovesListDTO
+    typealias SuccessResponse = ListDTO
     
     private let offset: Int
     private let limit: Int

@@ -8,11 +8,11 @@
 import UIKit
 import ReactiveSwift
 
-protocol SearchResult {
+protocol Searchable {
     var name: String { get set }
 }
 
-final class SearchResultView<Elements: SearchResult>: UIView, UITableViewDataSource, UITableViewDelegate  {
+final class SearchResultView<Elements: Searchable>: UIView, UITableViewDataSource, UITableViewDelegate  {
     
     // MARK: IBOutlets
     @IBOutlet private weak var tableView: UITableView!

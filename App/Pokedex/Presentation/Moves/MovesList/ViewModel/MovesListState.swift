@@ -10,7 +10,7 @@ import Foundation
 struct MovesListState {
     
     // MARK: Private Properties
-    private var movesFullList: [MovesListItem] = []
+    private var movesFullList: [ListItem] = []
     private var currentMovesList: [TypeMovesListItem] = []
     
     // MARK: Paging Related
@@ -36,7 +36,7 @@ struct MovesListState {
         }
     }
     
-    var searchedMovesList: [MovesListItem] {
+    var searchedMovesList: [ListItem] {
         guard !(searchText.isEmpty) else {
             return movesFullList
         }
@@ -44,7 +44,7 @@ struct MovesListState {
         return movesFullList.filter { $0.name.contains(searchText) }
     }
     
-    mutating func addMovesFullList(_ list: [MovesListItem]) {
+    mutating func addMovesFullList(_ list: [ListItem]) {
         movesFullList = list
     }
     

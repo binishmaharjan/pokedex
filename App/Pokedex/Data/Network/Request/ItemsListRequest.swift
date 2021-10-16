@@ -9,7 +9,7 @@ import Foundation
 
 struct ItemsListRequest: APIRequest {
     
-    typealias SuccessResponse = ItemsListDTO
+    typealias SuccessResponse = ListDTO
     
     private let offset: Int
     private let limit: Int

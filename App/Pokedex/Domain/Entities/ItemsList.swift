@@ -7,23 +7,23 @@
 
 import Foundation
 
-struct ItemsList {
-    let count: Int
-    let items: [ItemsListItem]
-}
-
-struct ItemsListItem: Equatable, SearchResult {
-    var id: Int {
-        guard let lastString = url.split(separator: "/").last, let id = Int(lastString) else {
-            return 0
-        }
-        
-        return id
-    }
-    
-    var name: String
-    var url: String
-}
+//struct ItemsList {
+//    let count: Int
+//    let items: [ItemsListItem]
+//}
+//
+//struct ItemsListItem: Equatable, Searchable {
+//    var id: Int {
+//        guard let lastString = url.split(separator: "/").last, let id = Int(lastString) else {
+//            return 0
+//        }
+//        
+//        return id
+//    }
+//    
+//    var name: String
+//    var url: String
+//}
 
 struct PriceItemList: Equatable {
     let items: [PriceItemsListItem]

@@ -19,7 +19,7 @@ final class MovesListView: UIView {
     // MARK: Private Properties
     private let viewModel: MovesListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
-    private var searchResultView: SearchResultView<MovesListItem>!
+    private var searchResultView: SearchResultView<ListItem>!
     private var searchResultHeightConstraints: NSLayoutConstraint?
     
     private var sections: MovesListSections = .empty {

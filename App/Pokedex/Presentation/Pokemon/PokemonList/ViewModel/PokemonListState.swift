@@ -14,7 +14,7 @@ import Foundation
 struct PokemonListState {
     
     // MARK: Private Properties
-    private var pokemonFullList: [PokemonListItem] = []
+    private var pokemonFullList: [ListItem] = []
     private var currentPokemonList: [TypePokemonListItem] = [] // Current loaded pokemon with type
     
     // MARK: Paging Related
@@ -40,7 +40,7 @@ struct PokemonListState {
         }
     }
     
-    var searchedPokemonList: [PokemonListItem] {
+    var searchedPokemonList: [ListItem] {
         guard !(searchText.isEmpty) else {
             return pokemonFullList
         }
@@ -48,7 +48,7 @@ struct PokemonListState {
         return pokemonFullList.filter { $0.name.contains(searchText) }
     }
     
-    mutating func addPokemonFullList(_ list: [PokemonListItem]) {
+    mutating func addPokemonFullList(_ list: [ListItem]) {
         pokemonFullList = list
     }
     

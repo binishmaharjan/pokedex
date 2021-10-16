@@ -9,24 +9,24 @@ import Foundation
 
 /// For Data Transfer Object
 
-struct PokemonList {
-    let count: Int
-    let pokemons: [PokemonListItem]
-}
-
-struct PokemonListItem: Equatable, SearchResult {
-    
-    var id: Int {
-        guard let lastString = url.split(separator: "/").last, let id = Int(lastString) else {
-            return 0
-        }
-        
-        return id
-    }
-
-    var name: String
-    let url: String
-}
+//struct PokemonList {
+//    let count: Int
+//    let pokemons: [PokemonListItem]
+//}
+//
+//struct PokemonListItem: Equatable, Searchable {
+//    
+//    var id: Int {
+//        guard let lastString = url.split(separator: "/").last, let id = Int(lastString) else {
+//            return 0
+//        }
+//        
+//        return id
+//    }
+//
+//    var name: String
+//    let url: String
+//}
 
 
 /// For Displaying in Cell(Contains Type Information)
