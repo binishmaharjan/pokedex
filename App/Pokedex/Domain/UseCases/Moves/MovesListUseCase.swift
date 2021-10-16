@@ -20,7 +20,7 @@ final class MovesListUseCase: AutoInjectable {
     }
     
     @discardableResult
-    func execute(requestValue: RequestValue, _ handler: @escaping(Result<[MovesListItem], APIError>) -> Void) -> Cancellable? {
+    func execute(requestValue: RequestValue, _ handler: @escaping(Result<[MovesListObject], APIError>) -> Void) -> Cancellable? {
         
         return movesRepository.fetchMovesInfoList(requestValue: requestValue.range, handler)
     }

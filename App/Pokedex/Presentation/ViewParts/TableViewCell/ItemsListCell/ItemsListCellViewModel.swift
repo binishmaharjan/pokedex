@@ -10,14 +10,14 @@ import ReactiveSwift
 
 struct ItemsListCellViewModel: AutoInjectable {
     
-    private let item: PriceItemsListItem
+    private let item: ItemsListObject
     
     let name: Property<String>
     let id: Property<Int>
     let price: Property<String>
     let imageUrl: Property<URL>
     
-    init(item: PriceItemsListItem) {
+    init(item: ItemsListObject) {
         self.item = item
         self.name = Property(value: item.name.capitalized)
         self.id = Property(value: item.id)

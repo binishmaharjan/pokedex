@@ -177,10 +177,10 @@ extension ItemsListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let item: PriceItemsListItem
+        let item: ItemsListObject
         
 
-        init(item: PriceItemsListItem) {
+        init(item: ItemsListObject) {
             self.item = item
             
         }
@@ -349,10 +349,10 @@ extension MovesListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let move: MovesListItem
+        let move: MovesListObject
         
 
-        init(move: MovesListItem) {
+        init(move: MovesListObject) {
             self.move = move
             
         }
@@ -523,10 +523,10 @@ extension PokemonListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let pokemon: PokemonListItem
+        let pokemon: PokemonListObject
         
 
-        init(pokemon: PokemonListItem) {
+        init(pokemon: PokemonListObject) {
             self.pokemon = pokemon
             
         }

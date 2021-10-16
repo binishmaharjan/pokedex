@@ -10,7 +10,7 @@ import Foundation
 protocol PokemonRepository: ListRepository {
     
     @discardableResult
-    func fetchPokemonList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable?
+    func fetchPokemonList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonListObject], APIError>) -> Void) -> Cancellable?
     
     @discardableResult
     func fetchMasterPokemonData(id: Int, _ handler: @escaping (Result<MasterPokemonData, APIError>) -> Void) -> Cancellable?

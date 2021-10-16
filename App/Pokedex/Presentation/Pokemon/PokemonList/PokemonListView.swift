@@ -18,7 +18,7 @@ final class PokemonListView: UIView {
     // MARK: Private Properties
     private let viewModel: PokemonListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
-    private var searchResultView: SearchResultView<ListItem>!
+    private var searchResultView: SearchResultView<ListObject>!
     private var searchResultHeightConstraints: NSLayoutConstraint?
     
     private var sections: PokemonListSections = .empty {

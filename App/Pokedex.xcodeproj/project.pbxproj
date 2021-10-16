@@ -12,7 +12,6 @@
 		640BFF5726EDD8D9009A3947 /* MovesListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF5626EDD8D9009A3947 /* MovesListCellViewModel.swift */; };
 		640BFF6026EDDAC8009A3947 /* MovesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF5E26EDDAC8009A3947 /* MovesListCell.swift */; };
 		640BFF6126EDDAC8009A3947 /* MovesListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 640BFF5F26EDDAC8009A3947 /* MovesListCell.xib */; };
-		640BFF6426F00F93009A3947 /* ItemsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF6326F00F93009A3947 /* ItemsList.swift */; };
 		640BFF6726F010BC009A3947 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF6626F010BC009A3947 /* Items.swift */; };
 		640BFF6D26F01261009A3947 /* ItemsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF6C26F01261009A3947 /* ItemsDTO.swift */; };
 		640BFF7026F012AF009A3947 /* ItemsListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF6F26F012AF009A3947 /* ItemsListRequest.swift */; };
@@ -193,7 +192,6 @@
 		640BFF5626EDD8D9009A3947 /* MovesListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesListCellViewModel.swift; sourceTree = "<group>"; };
 		640BFF5E26EDDAC8009A3947 /* MovesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesListCell.swift; sourceTree = "<group>"; };
 		640BFF5F26EDDAC8009A3947 /* MovesListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovesListCell.xib; sourceTree = "<group>"; };
-		640BFF6326F00F93009A3947 /* ItemsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsList.swift; sourceTree = "<group>"; };
 		640BFF6626F010BC009A3947 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 		640BFF6C26F01261009A3947 /* ItemsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsDTO.swift; sourceTree = "<group>"; };
 		640BFF6F26F012AF009A3947 /* ItemsListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListRequest.swift; sourceTree = "<group>"; };
@@ -930,7 +928,6 @@
 				648A0CD3268A15E5008B1CE9 /* Stats.swift */,
 				647ED07826AAFAB0006716FB /* MasterPokemonData.swift */,
 				647ED08726AB075A006716FB /* Moves.swift */,
-				640BFF6326F00F93009A3947 /* ItemsList.swift */,
 				640BFF6626F010BC009A3947 /* Items.swift */,
 				64A5CA10271AB0F600919AAB /* List.swift */,
 				64A5CA13271AB27B00919AAB /* ListIdentifiable.swift */,
@@ -1446,7 +1443,6 @@
 				640BFF7326F01328009A3947 /* ItemsRequest.swift in Sources */,
 				6492318B262F435000B4FC9E /* PokemonDetailContentView.swift in Sources */,
 				64A112A7267F690B0019FC1D /* PokemonSpeciesRequest.swift in Sources */,
-				640BFF6426F00F93009A3947 /* ItemsList.swift in Sources */,
 				649590072610775300DFD840 /* AppRootViewController.swift in Sources */,
 				640BFF7626F0136A009A3947 /* ItemsRepository.swift in Sources */,
 				6495905B2613770800DFD840 /* PokemonListViewController.swift in Sources */,

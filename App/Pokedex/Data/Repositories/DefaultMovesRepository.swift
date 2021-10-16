@@ -16,14 +16,14 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
     
     // MARK: Moves Typed List Properties
     private let dispatchGroup = DispatchGroup()
-    private var movesList: [MovesListItem] = []
+    private var movesList: [MovesListObject] = []
     private var error: APIError?
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
     
-    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListObject], APIError>) -> Void) -> Cancellable? {
         
         let request = MovesListRequest(offset: offset, limit: limit)
         
@@ -41,7 +41,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
         return task
     }
     
-    func fetchMovesInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[MovesListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchMovesInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[MovesListObject], APIError>) -> Void) -> Cancellable? {
         
         error = nil
         movesList.removeAll()
@@ -57,7 +57,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
                 
                 switch result {
                 case .success(let info):
-                    let typeItem = MovesListItem.from(info.toDomain())
+                    let typeItem = MovesListObject.from(info.toDomain())
                     self.movesList.append(typeItem)
                     
                 case .failure(let error):

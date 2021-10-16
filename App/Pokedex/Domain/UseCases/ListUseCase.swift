@@ -35,7 +35,7 @@ final class ListUseCase: AutoInjectable {
     }
     
     @discardableResult
-    func execute(listType: ListType, _ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
+    func execute(listType: ListType, _ handler: @escaping (Result<[ListObject], APIError>) -> Void) -> Cancellable? {
         let requestValue = ListUseCase.requestValue(for: listType)
         return listRepository.fetchList(offset: requestValue.offset, limit: requestValue.limit, handler)
     }

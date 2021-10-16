@@ -10,8 +10,8 @@ import Foundation
 struct MovesListState {
     
     // MARK: Private Properties
-    private var movesFullList: [ListItem] = []
-    private var currentMovesList: [MovesListItem] = []
+    private var movesFullList: [ListObject] = []
+    private var currentMovesList: [MovesListObject] = []
     
     // MARK: Paging Related
     let initialOffset: Int = 0
@@ -22,7 +22,7 @@ struct MovesListState {
     var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
     
     // MARK: Public Properties
-    var movesList: LoadingState<[MovesListItem], APIError> = .initial
+    var movesList: LoadingState<[MovesListObject], APIError> = .initial
     var searchText: String = ""
     
     var sections: MovesListSections {
@@ -36,7 +36,7 @@ struct MovesListState {
         }
     }
     
-    var searchedMovesList: [ListItem] {
+    var searchedMovesList: [ListObject] {
         guard !(searchText.isEmpty) else {
             return movesFullList
         }
@@ -44,27 +44,27 @@ struct MovesListState {
         return movesFullList.filter { $0.name.contains(searchText) }
     }
     
-    mutating func addMovesFullList(_ list: [ListItem]) {
+    mutating func addMovesFullList(_ list: [ListObject]) {
         movesFullList = list
     }
     
-    mutating func initialMoves(_ list: [MovesListItem]) {
+    mutating func initialMoves(_ list: [MovesListObject]) {
         currentMovesList = list
         movesList = .completed(.success(currentMovesList))
     }
     
-    mutating func appendMoves(_ list: [MovesListItem]) {
+    mutating func appendMoves(_ list: [MovesListObject]) {
         currentMovesList.append(contentsOf: list)
         movesList = .completed(.success(currentMovesList))
     }
 }
 
 // MARK: Sections
-typealias MovesListSections = Sections<String, MovesListItem>
+typealias MovesListSections = Sections<String, MovesListObject>
 
 extension MovesListSections {
     
-    static func from(_ moves: [MovesListItem]) -> MovesListSections {
+    static func from(_ moves: [MovesListObject]) -> MovesListSections {
         let sections = MovesListSections(
             sections:[
                 Section(

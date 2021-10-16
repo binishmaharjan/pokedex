@@ -16,14 +16,14 @@ final class DefaultItemsRepository: ItemsRepository, AutoInjectable {
     
     // MARK: Moves Typed List Properties
     private let dispatchGroup = DispatchGroup()
-    private var itemsList: [PriceItemsListItem] = []
+    private var itemsList: [ItemsListObject] = []
     private var error: APIError?
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
     
-    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListObject], APIError>) -> Void) -> Cancellable? {
         
         let request = ItemsListRequest(offset: offset, limit: limit)
         
@@ -40,7 +40,7 @@ final class DefaultItemsRepository: ItemsRepository, AutoInjectable {
         return task
     }
     
-    func fetchItemsList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PriceItemsListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchItemsList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[ItemsListObject], APIError>) -> Void) -> Cancellable? {
         
         error = nil
         itemsList.removeAll()
@@ -56,7 +56,7 @@ final class DefaultItemsRepository: ItemsRepository, AutoInjectable {
                 
                 switch result {
                 case .success(let info):
-                    let priceItem = PriceItemsListItem.from(itemInfo: info.toDomain())
+                    let priceItem = ItemsListObject.from(info.toDomain())
                     self.itemsList.append(priceItem)
                     
                 case .failure(let error):

@@ -10,7 +10,7 @@ import Foundation
 struct ListDTO: Codable {
     
     let count: Int
-    let results: [ListItemDTO]
+    let results: [ListObjectDTO]
 }
 
 extension ListDTO {
@@ -21,14 +21,14 @@ extension ListDTO {
     }
 }
 
-struct ListItemDTO: Codable {
+struct ListObjectDTO: Codable {
     
     let name: String
     let url: String
 }
 
-extension ListItemDTO {
-    func toDomain() -> ListItem {
-        ListItem(name: name, url: url)
+extension ListObjectDTO {
+    func toDomain() -> ListObject {
+        ListObject(name: name, url: url)
     }
 }

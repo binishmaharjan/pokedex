@@ -13,11 +13,11 @@ import Foundation
 struct List {
     
     let count: Int
-    let results: [ListItem]
+    let results: [ListObject]
 }
 
 /// Common List Model Received From API
-struct ListItem: Equatable, Searchable, ListIdentifiable {
+struct ListObject: Equatable, Searchable, ListIdentifiable {
     
     var name: String
     let url: String
@@ -26,24 +26,24 @@ struct ListItem: Equatable, Searchable, ListIdentifiable {
 // MARK: Pokemon List (Pokemon List Including Types)
 
 /// Pokemon List Including Both Primary And Secondary Types That Is Used To Display In List View Controller
-struct PokemonListItem: Equatable {
+struct PokemonListObject: Equatable {
     
     let id: Int
     let name: String
     let elements: [Element]
 }
 
-extension PokemonListItem {
+extension PokemonListObject {
     
-    static func from(_ pokemonInfo: Pokemon) -> PokemonListItem {
-        PokemonListItem(id: pokemonInfo.id,
+    static func from(_ pokemonInfo: Pokemon) -> PokemonListObject {
+        PokemonListObject(id: pokemonInfo.id,
                         name: pokemonInfo.name,
                         elements: pokemonInfo.types)
     }
 }
 
-extension PokemonListItem: Comparable {
-    static func < (lhs: PokemonListItem, rhs: PokemonListItem) -> Bool {
+extension PokemonListObject: Comparable {
+    static func < (lhs: PokemonListObject, rhs: PokemonListObject) -> Bool {
         lhs.id < rhs.id
     }
 }
@@ -51,26 +51,45 @@ extension PokemonListItem: Comparable {
 // MARK: Moves List (Moves List Including Type)
 
 /// Moves List Including Types That Is Used To Display In List View Controller
-struct MovesListItem: Equatable {
+struct MovesListObject: Equatable {
     
     let name: String
     let id: Int
     let element: ElementInfo
 }
 
-extension MovesListItem {
+extension MovesListObject {
     
-    static func from(_ moveInfo: Moves) -> MovesListItem {
-        MovesListItem(name: moveInfo.name, id: moveInfo.id, element: moveInfo.type)
+    static func from(_ moveInfo: Moves) -> MovesListObject {
+        MovesListObject(name: moveInfo.name, id: moveInfo.id, element: moveInfo.type)
     }
 }
 
-extension MovesListItem: Comparable {
+extension MovesListObject: Comparable {
     
-    static func < (lhs: MovesListItem, rhs: MovesListItem) -> Bool {
+    static func < (lhs: MovesListObject, rhs: MovesListObject) -> Bool {
         lhs.id < rhs.id
     }
 }
 
 
 // MARK: Items List (Items List Including Price)
+struct ItemsListObject: Equatable {
+    let id: Int
+    let name: String
+    let price: Int
+}
+
+extension ItemsListObject {
+    
+    static func from(_ itemInfo: Items) -> ItemsListObject {
+        ItemsListObject(id: itemInfo.id, name: itemInfo.name, price: itemInfo.price)
+    }
+}
+
+extension ItemsListObject: Comparable {
+    
+    static func < (lhs: ItemsListObject, rhs: ItemsListObject) -> Bool {
+        lhs.id < rhs.id
+    }
+}

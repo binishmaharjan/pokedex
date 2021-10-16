@@ -35,7 +35,7 @@ final class PokemonListViewModel: AutoInjectable {
             .skipRepeats()
     }
     
-    var searchedPokemonList: Property<[ListItem]> {
+    var searchedPokemonList: Property<[ListObject]> {
         $state
             .map(\.searchedPokemonList)
             .skipRepeats()

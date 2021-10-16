@@ -10,13 +10,13 @@ import ReactiveSwift
 
 struct MovesListCellViewModel: AutoInjectable {
     
-    private let move: MovesListItem
+    private let move: MovesListObject
     
     let name: Property<String>
     let id: Property<Int>
     let type: Property<Type>
     
-    init(move: MovesListItem) {
+    init(move: MovesListObject) {
         self.move = move
         
         self.name = Property(value: move.name.capitalized)

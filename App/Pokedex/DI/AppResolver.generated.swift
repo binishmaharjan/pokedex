@@ -75,7 +75,7 @@ extension AppResolver {
         return ItemsDetailViewModel.makeInstance(dependency: .init(currentIndex: currentIndex, itemsDetailUseCase: itemDetailUseCase))
     }
 
-    func resolveItemsListCellViewModel(item: PriceItemsListItem) -> ItemsListCellViewModel {
+    func resolveItemsListCellViewModel(item: ItemsListObject) -> ItemsListCellViewModel {
         return ItemsListCellViewModel.makeInstance(dependency: .init(item: item))
     }
 
@@ -125,7 +125,7 @@ extension AppResolver {
         return MovesDetailViewModel.makeInstance(dependency: .init(currentIndex: currentIndex, backgroundType: backgroundType, movesDetailUseCase: movesDetailUseCase))
     }
 
-    func resolveMovesListCellViewModel(move: MovesListItem) -> MovesListCellViewModel {
+    func resolveMovesListCellViewModel(move: MovesListObject) -> MovesListCellViewModel {
         return MovesListCellViewModel.makeInstance(dependency: .init(move: move))
     }
 
@@ -176,7 +176,7 @@ extension AppResolver {
         return PokemonDetailViewModel.makeInstance(dependency: .init(pokemonId: pokemonId, backgroundType: backgroundType, pokemonDetailUseCase: pokemonDetailUseCase))
     }
 
-    func resolvePokemonListCellViewModel(pokemon: PokemonListItem) -> PokemonListCellViewModel {
+    func resolvePokemonListCellViewModel(pokemon: PokemonListObject) -> PokemonListCellViewModel {
         return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
     }
 

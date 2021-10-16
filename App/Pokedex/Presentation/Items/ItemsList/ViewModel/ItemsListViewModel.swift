@@ -33,7 +33,7 @@ final class ItemsListViewModel: AutoInjectable {
             .skipRepeats()
     }
     
-    var searchedItemsList: Property<[ListItem]> {
+    var searchedItemsList: Property<[ListObject]> {
         $state
             .map(\.searchItemsList)
             .skipRepeats()
