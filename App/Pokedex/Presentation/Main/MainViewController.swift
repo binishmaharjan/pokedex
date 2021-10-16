@@ -81,8 +81,12 @@ private extension MainViewController {
             )
             .withTabBarItem(.iconItems, "Items"),
             
-            UINavigationController(rootViewController: resolver.resolveMovesListViewController())
-                    .withTabBarItem(.iconMoves, "Moves"),
+            UINavigationController(
+                rootViewController: resolver.resolveMovesListViewController(
+                    listRepository: resolver.resolveMovesRepository()
+                )
+            )
+            .withTabBarItem(.iconMoves, "Moves"),
         ]
     }
 }

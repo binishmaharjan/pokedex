@@ -12,10 +12,10 @@ final class MovesListViewModel: AutoInjectable {
     
     @Observable
     private var state = MovesListState()
-    private let movesFullListUseCase: MovesFullListUseCase
+    private let movesFullListUseCase: ListUseCase
     private let movesTypeListUseCase: MovesTypeListUseCase
 
-    init(movesListUseCase: MovesTypeListUseCase, movesFullListUseCase: MovesFullListUseCase) {
+    init(movesListUseCase: MovesTypeListUseCase, movesFullListUseCase: ListUseCase) {
         self.movesFullListUseCase = movesFullListUseCase
         self.movesTypeListUseCase = movesListUseCase
     }
@@ -48,7 +48,7 @@ extension MovesListViewModel {
         state.currentPage = 0
         state.totalPageCount = 1
         
-        movesFullListUseCase.execute { [weak self] result in
+        movesFullListUseCase.execute(listType: .moves) { [weak self] result in
             
             guard let self = self else { return }
             

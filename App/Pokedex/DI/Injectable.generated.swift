@@ -345,24 +345,6 @@ extension MovesDetailViewModel: FactoryMethodInjectable {
     }
 }
 
-extension MovesFullListUseCase: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let movesRepository: MovesRepository
-        
-
-        init(movesRepository: MovesRepository) {
-            self.movesRepository = movesRepository
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> MovesFullListUseCase {
-        MovesFullListUseCase(movesRepository: dependency.movesRepository)
-    }
-}
-
 extension MovesListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
@@ -406,10 +388,10 @@ extension MovesListViewModel: FactoryMethodInjectable {
     struct Dependency {
         
         let movesListUseCase: MovesTypeListUseCase
-        let movesFullListUseCase: MovesFullListUseCase
+        let movesFullListUseCase: ListUseCase
         
 
-        init(movesListUseCase: MovesTypeListUseCase, movesFullListUseCase: MovesFullListUseCase) {
+        init(movesListUseCase: MovesTypeListUseCase, movesFullListUseCase: ListUseCase) {
             self.movesListUseCase = movesListUseCase
             self.movesFullListUseCase = movesFullListUseCase
             

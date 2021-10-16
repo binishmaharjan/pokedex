@@ -48,7 +48,6 @@
 		647ED09426ABFD94006716FB /* MovesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09326ABFD94006716FB /* MovesRequest.swift */; };
 		647ED09726ABFE1A006716FB /* MovesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09626ABFE1A006716FB /* MovesRepository.swift */; };
 		647ED09A26ABFFA0006716FB /* DefaultMovesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09926ABFFA0006716FB /* DefaultMovesRepository.swift */; };
-		647ED09D26AED6F7006716FB /* MovesFullListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09C26AED6F7006716FB /* MovesFullListUseCase.swift */; };
 		647ED0A026AED835006716FB /* MovesTypeListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */; };
 		647ED0A326AEE26E006716FB /* MovesListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647ED0A226AEE26E006716FB /* MovesListState.swift */; };
 		648A0CC726888774008B1CE9 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648A0CC626888774008B1CE9 /* StatsView.swift */; };
@@ -230,7 +229,6 @@
 		647ED09326ABFD94006716FB /* MovesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesRequest.swift; sourceTree = "<group>"; };
 		647ED09626ABFE1A006716FB /* MovesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesRepository.swift; sourceTree = "<group>"; };
 		647ED09926ABFFA0006716FB /* DefaultMovesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMovesRepository.swift; sourceTree = "<group>"; };
-		647ED09C26AED6F7006716FB /* MovesFullListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesFullListUseCase.swift; sourceTree = "<group>"; };
 		647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesTypeListUseCase.swift; sourceTree = "<group>"; };
 		647ED0A226AEE26E006716FB /* MovesListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovesListState.swift; sourceTree = "<group>"; };
 		648A0CC626888774008B1CE9 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -1116,7 +1114,6 @@
 		64A5CA27271ACCF200919AAB /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
-				64A5C9F62711357800919AAB /* MovesDetailUseCase.swift */,
 				649590902616167D00DFD840 /* PokemonListUseCase.swift */,
 				64A11292266D213B0019FC1D /* PokemonDetailUseCase.swift */,
 			);
@@ -1126,7 +1123,7 @@
 		64A5CA28271ACCFE00919AAB /* Moves */ = {
 			isa = PBXGroup;
 			children = (
-				647ED09C26AED6F7006716FB /* MovesFullListUseCase.swift */,
+				64A5C9F62711357800919AAB /* MovesDetailUseCase.swift */,
 				647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */,
 			);
 			path = Moves;
@@ -1359,7 +1356,6 @@
 				64958F492602609800DFD840 /* ApplicationConfiguration.swift in Sources */,
 				647ED07926AAFAB0006716FB /* MasterPokemonData.swift in Sources */,
 				64A5CA032711DAD500919AAB /* MovesDetailView.swift in Sources */,
-				647ED09D26AED6F7006716FB /* MovesFullListUseCase.swift in Sources */,
 				64EEA87626960B9B00759F1C /* CaptureView.swift in Sources */,
 				649231732627373600B4FC9E /* PokemonDetailViewModel.swift in Sources */,
 				647ED08826AB075A006716FB /* Moves.swift in Sources */,

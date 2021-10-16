@@ -7,10 +7,7 @@
 
 import Foundation
 
-protocol MovesRepository {
-    
-    @discardableResult
-    func fetchMovesList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListItem], APIError>) -> Void) -> Cancellable?
+protocol MovesRepository: ListRepository {
     
     @discardableResult
     func fetchMovesInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping(Result<[TypeMovesListItem], APIError>) -> Void) -> Cancellable?

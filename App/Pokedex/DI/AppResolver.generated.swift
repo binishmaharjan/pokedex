@@ -125,25 +125,20 @@ extension AppResolver {
         return MovesDetailViewModel.makeInstance(dependency: .init(currentIndex: currentIndex, backgroundType: backgroundType, movesDetailUseCase: movesDetailUseCase))
     }
 
-    func resolveMovesFullListUseCase() -> MovesFullListUseCase {
-        let movesRepository = resolveMovesRepository()
-        return MovesFullListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
-    }
-
     func resolveMovesListCellViewModel(move: TypeMovesListItem) -> MovesListCellViewModel {
         return MovesListCellViewModel.makeInstance(dependency: .init(move: move))
     }
 
-    func resolveMovesListViewController() -> MovesListViewController {
+    func resolveMovesListViewController(listRepository: ListRepository) -> MovesListViewController {
         let appResolver = resolveAppResolver()
-        let movesListViewModel = resolveMovesListViewModel()
+        let movesListViewModel = resolveMovesListViewModel(listRepository: listRepository)
         return MovesListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: movesListViewModel))
     }
 
-    func resolveMovesListViewModel() -> MovesListViewModel {
+    func resolveMovesListViewModel(listRepository: ListRepository) -> MovesListViewModel {
         let movesTypeListUseCase = resolveMovesTypeListUseCase()
-        let movesFullListUseCase = resolveMovesFullListUseCase()
-        return MovesListViewModel.makeInstance(dependency: .init(movesListUseCase: movesTypeListUseCase, movesFullListUseCase: movesFullListUseCase))
+        let listUseCase = resolveListUseCase(listRepository: listRepository)
+        return MovesListViewModel.makeInstance(dependency: .init(movesListUseCase: movesTypeListUseCase, movesFullListUseCase: listUseCase))
     }
 
     func resolveMovesRepository() -> MovesRepository {

@@ -23,7 +23,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
         self.apiClient = apiClient
     }
     
-    func fetchMovesList(offset: Int, limit: Int, _ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListItem], APIError>) -> Void) -> Cancellable? {
         
         let request = MovesListRequest(offset: offset, limit: limit)
         
