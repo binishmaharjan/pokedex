@@ -8,6 +8,7 @@
 import Foundation
 
 protocol ListRepository {
+    
     @discardableResult
     func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListItem], APIError>) -> Void) -> Cancellable?
 }
