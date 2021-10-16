@@ -13,9 +13,9 @@ final class ItemsListViewModel: AutoInjectable {
     @Observable
     private var state = ItemsListState()
     private let itemsFullListUseCase: ListUseCase
-    private let itemPriceListUseCase: ItemsPriceListUseCase
+    private let itemPriceListUseCase: ItemsListUseCase
     
-    init(itemsFullListUseCase: ListUseCase, itemPriceListUseCase: ItemsPriceListUseCase) {
+    init(itemsFullListUseCase: ListUseCase, itemPriceListUseCase: ItemsListUseCase) {
         self.itemsFullListUseCase = itemsFullListUseCase
         self.itemPriceListUseCase = itemPriceListUseCase
     }
@@ -72,7 +72,7 @@ extension ItemsListViewModel {
         let startIndex = (state.currentPage * state.fetchLimit) + 1
         let endIndex = (state.currentPage + 1) * state.fetchLimit
         
-        let requestValue = ItemsPriceListUseCase.RequestValue(range: startIndex ... endIndex)
+        let requestValue = ItemsListUseCase.RequestValue(range: startIndex ... endIndex)
         
         itemPriceListUseCase.execute(requestValue: requestValue) { [weak self] result in
         
@@ -98,7 +98,7 @@ extension ItemsListViewModel {
         let startIndex = (state.currentPage * state.fetchLimit) + 1
         let endIndex = (state.currentPage + 1) * state.fetchLimit
         
-        let requestValue = ItemsPriceListUseCase.RequestValue(range: startIndex...endIndex)
+        let requestValue = ItemsListUseCase.RequestValue(range: startIndex...endIndex)
         
         itemPriceListUseCase.execute(requestValue: requestValue) { [weak self] result in
         

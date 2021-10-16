@@ -92,13 +92,8 @@ extension AppResolver {
 
     func resolveItemsListViewModel(listRepository: ListRepository) -> ItemsListViewModel {
         let listUseCase = resolveListUseCase(listRepository: listRepository)
-        let itemsPriceListUseCase = resolveItemsPriceListUseCase()
-        return ItemsListViewModel.makeInstance(dependency: .init(itemsFullListUseCase: listUseCase, itemPriceListUseCase: itemsPriceListUseCase))
-    }
-
-    func resolveItemsPriceListUseCase() -> ItemsPriceListUseCase {
-        let itemsRepository = resolveItemsRepository()
-        return ItemsPriceListUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
+        let itemsListUseCase = resolveItemsListUseCase()
+        return ItemsListViewModel.makeInstance(dependency: .init(itemsFullListUseCase: listUseCase, itemPriceListUseCase: itemsListUseCase))
     }
 
     func resolveItemsRepository() -> ItemsRepository {

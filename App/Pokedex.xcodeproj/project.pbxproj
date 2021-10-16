@@ -19,8 +19,7 @@
 		640BFF7326F01328009A3947 /* ItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF7226F01328009A3947 /* ItemsRequest.swift */; };
 		640BFF7626F0136A009A3947 /* ItemsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF7526F0136A009A3947 /* ItemsRepository.swift */; };
 		640BFF7926F0147E009A3947 /* DefaultItemsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF7826F0147E009A3947 /* DefaultItemsRepository.swift */; };
-		640BFF7C26F01794009A3947 /* ItemsFullListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF7B26F01794009A3947 /* ItemsFullListUseCase.swift */; };
-		640BFF7F26F01881009A3947 /* ItemsPriceListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF7E26F01881009A3947 /* ItemsPriceListUseCase.swift */; };
+		640BFF7F26F01881009A3947 /* ItemsListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF7E26F01881009A3947 /* ItemsListUseCase.swift */; };
 		640BFF8426F019BF009A3947 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF8326F019BF009A3947 /* ItemsListViewController.swift */; };
 		640BFF8926F01A7B009A3947 /* ItemsListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF8826F01A7B009A3947 /* ItemsListState.swift */; };
 		640BFF8C26F2524A009A3947 /* ItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFF8B26F2524A009A3947 /* ItemsListViewModel.swift */; };
@@ -203,8 +202,7 @@
 		640BFF7226F01328009A3947 /* ItemsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRequest.swift; sourceTree = "<group>"; };
 		640BFF7526F0136A009A3947 /* ItemsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsRepository.swift; sourceTree = "<group>"; };
 		640BFF7826F0147E009A3947 /* DefaultItemsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultItemsRepository.swift; sourceTree = "<group>"; };
-		640BFF7B26F01794009A3947 /* ItemsFullListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsFullListUseCase.swift; sourceTree = "<group>"; };
-		640BFF7E26F01881009A3947 /* ItemsPriceListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPriceListUseCase.swift; sourceTree = "<group>"; };
+		640BFF7E26F01881009A3947 /* ItemsListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListUseCase.swift; sourceTree = "<group>"; };
 		640BFF8326F019BF009A3947 /* ItemsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListViewController.swift; sourceTree = "<group>"; };
 		640BFF8826F01A7B009A3947 /* ItemsListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListState.swift; sourceTree = "<group>"; };
 		640BFF8B26F2524A009A3947 /* ItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListViewModel.swift; sourceTree = "<group>"; };
@@ -1137,8 +1135,7 @@
 		64A5CA2B271ACD0E00919AAB /* Items */ = {
 			isa = PBXGroup;
 			children = (
-				640BFF7B26F01794009A3947 /* ItemsFullListUseCase.swift */,
-				640BFF7E26F01881009A3947 /* ItemsPriceListUseCase.swift */,
+				640BFF7E26F01881009A3947 /* ItemsListUseCase.swift */,
 				64A5C9D826FEF90400919AAB /* ItemsDetailUseCase.swift */,
 			);
 			path = Items;
@@ -1375,7 +1372,7 @@
 				64923179262B2ED900B4FC9E /* UIView+Gradient.swift in Sources */,
 				64958F7E260B8C2800DFD840 /* HTTPHeaderFields.swift in Sources */,
 				6495901D2610933F00DFD840 /* Colors.generated.swift in Sources */,
-				640BFF7F26F01881009A3947 /* ItemsPriceListUseCase.swift in Sources */,
+				640BFF7F26F01881009A3947 /* ItemsListUseCase.swift in Sources */,
 				64958F05260244AD00DFD840 /* Resolver.swift in Sources */,
 				647ED08226AB0447006716FB /* MovesListViewModel.swift in Sources */,
 				64958FCD260F9ED500DFD840 /* APIKitAdaptor.swift in Sources */,
@@ -1431,7 +1428,6 @@
 				6492317E262C38A800B4FC9E /* PageViewController.swift in Sources */,
 				64A5CA14271AB27B00919AAB /* ListIdentifiable.swift in Sources */,
 				640BFF8426F019BF009A3947 /* ItemsListViewController.swift in Sources */,
-				640BFF7C26F01794009A3947 /* ItemsFullListUseCase.swift in Sources */,
 				64958FEB26106EDB00DFD840 /* KeychainAccessDataStoreAdaptor.swift in Sources */,
 				647ED0A326AEE26E006716FB /* MovesListState.swift in Sources */,
 				64958FD1260FA11E00DFD840 /* APIKitRequest.swift in Sources */,

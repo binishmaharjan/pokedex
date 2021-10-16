@@ -10,7 +10,7 @@ import Foundation
 protocol ItemsRepository: ListRepository {
     
     @discardableResult
-    func fetchItemsInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping(Result<[PriceItemsListItem], APIError>) -> Void) -> Cancellable?
+    func fetchItemsList(requestValue: ClosedRange<Int>, _ handler: @escaping(Result<[PriceItemsListItem], APIError>) -> Void) -> Cancellable?
     
     @discardableResult
     func fetchMasterItemsData(id: Int, _ handler: @escaping(Result<Items, APIError>) -> Void) -> Cancellable?

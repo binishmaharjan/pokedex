@@ -1,5 +1,5 @@
 //
-//  ItemsPriceListUseCase.swift
+//  ItemsListUseCase.swift
 //  Pokedex
 //
 //  Created by Maharjan Binish on 2021/09/14.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ItemsPriceListUseCase: AutoInjectable {
+final class ItemsListUseCase: AutoInjectable {
     
     struct RequestValue {
         let range: ClosedRange<Int>
@@ -21,6 +21,6 @@ final class ItemsPriceListUseCase: AutoInjectable {
     
     @discardableResult
     func execute(requestValue: RequestValue, _ handler: @escaping(Result<[PriceItemsListItem], APIError>) -> Void) -> Cancellable? {
-        return itemsRepository.fetchItemsInfoList(requestValue: requestValue.range, handler)
+        return itemsRepository.fetchItemsList(requestValue: requestValue.range, handler)
     }
 }

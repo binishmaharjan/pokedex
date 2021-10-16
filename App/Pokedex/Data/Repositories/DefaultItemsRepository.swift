@@ -40,7 +40,7 @@ final class DefaultItemsRepository: ItemsRepository, AutoInjectable {
         return task
     }
     
-    func fetchItemsInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PriceItemsListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchItemsList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PriceItemsListItem], APIError>) -> Void) -> Cancellable? {
         
         error = nil
         itemsList.removeAll()
