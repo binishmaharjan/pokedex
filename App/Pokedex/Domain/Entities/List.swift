@@ -26,11 +26,6 @@ struct ListItem: Equatable, Searchable, ListIdentifiable {
 // MARK: Pokemon List (Pokemon List Including Types)
 
 /// Pokemon List Including Both Primary And Secondary Types That Is Used To Display In List View Controller
-struct PokemonList {
-    
-    let pokemons: [PokemonListItem]
-}
-
 struct PokemonListItem: Equatable {
     
     let id: Int
@@ -55,10 +50,7 @@ extension PokemonListItem: Comparable {
 
 // MARK: Moves List (Moves List Including Type)
 
-struct MovesList {
-    
-}
-
+/// Moves List Including Types That Is Used To Display In List View Controller
 struct MovesListItem: Equatable {
     
     let name: String
