@@ -186,11 +186,6 @@ extension AppResolver {
         return PokemonDetailViewModel.makeInstance(dependency: .init(pokemonId: pokemonId, backgroundType: backgroundType, pokemonDetailUseCase: pokemonDetailUseCase))
     }
 
-    func resolvePokemonFullListUseCase() -> PokemonFullListUseCase {
-        let pokemonRepository = resolvePokemonRepository()
-        return PokemonFullListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
-    }
-
     func resolvePokemonListCellViewModel(pokemon: PokemonListItem) -> PokemonListCellViewModel {
         return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
     }
@@ -200,16 +195,16 @@ extension AppResolver {
         return PokemonListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
     }
 
-    func resolvePokemonListViewController() -> PokemonListViewController {
+    func resolvePokemonListViewController(listRepository: ListRepository) -> PokemonListViewController {
         let appResolver = resolveAppResolver()
-        let pokemonListViewModel = resolvePokemonListViewModel()
+        let pokemonListViewModel = resolvePokemonListViewModel(listRepository: listRepository)
         return PokemonListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: pokemonListViewModel))
     }
 
-    func resolvePokemonListViewModel() -> PokemonListViewModel {
+    func resolvePokemonListViewModel(listRepository: ListRepository) -> PokemonListViewModel {
         let pokemonListUseCase = resolvePokemonListUseCase()
-        let pokemonFullListUseCase = resolvePokemonFullListUseCase()
-        return PokemonListViewModel.makeInstance(dependency: .init(pokemonListUseCase: pokemonListUseCase, pokemonFullListUseCase: pokemonFullListUseCase))
+        let listUseCase = resolveListUseCase(listRepository: listRepository)
+        return PokemonListViewModel.makeInstance(dependency: .init(pokemonListUseCase: pokemonListUseCase, pokemonFullListUseCase: listUseCase))
     }
 
     func resolvePokemonRepository() -> PokemonRepository {

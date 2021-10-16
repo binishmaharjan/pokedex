@@ -12,7 +12,7 @@ final class PokemonListViewModel: AutoInjectable {
     
     @Observable
     private var state = PokemonListState()
-    private let pokemonFullListUseCase: PokemonFullListUseCase
+    private let pokemonFullListUseCase: ListUseCase
     private let pokemonListUseCase: PokemonListUseCase
     
     private let initialOffSet: Int = 0
@@ -41,7 +41,7 @@ final class PokemonListViewModel: AutoInjectable {
             .skipRepeats()
     }
     
-    init(pokemonListUseCase: PokemonListUseCase, pokemonFullListUseCase: PokemonFullListUseCase) {
+    init(pokemonListUseCase: PokemonListUseCase, pokemonFullListUseCase: ListUseCase) {
         self.pokemonFullListUseCase = pokemonFullListUseCase
         self.pokemonListUseCase = pokemonListUseCase
     }
@@ -55,7 +55,7 @@ extension PokemonListViewModel {
         currentPage = 0
         totalPageCount = 1
         
-        pokemonFullListUseCase.execute { [weak self] (result) in
+        pokemonFullListUseCase.execute(listType: .pokemon) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let list):

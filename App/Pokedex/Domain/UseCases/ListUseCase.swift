@@ -1,8 +1,8 @@
 //
-//  PokemonFullListUseCase.swift
+//  ListUseCase.swift
 //  Pokedex
 //
-//  Created by Maharjan Binish on 2021/04/05.
+//  Created by Maharjan Binish on 2021/10/16.
 //
 
 import Foundation
@@ -41,25 +41,5 @@ extension ListUseCase {
     
     static func requestValue(for listType: ListType) -> RequestValue {
         RequestValue(offset: 0, limit: listType.max)
-    }
-}
-
-final class PokemonFullListUseCase: AutoInjectable {
-    
-    struct RequestValue {
-        let offset = 0
-        let limit = 1118
-    }
-    
-    private let pokemonRepository: PokemonRepository
-    
-    init(pokemonRepository: PokemonRepository) {
-        self.pokemonRepository = pokemonRepository
-    }
-    
-    @discardableResult
-    func execute(_ handler: @escaping (Result<[ListItem], APIError>) -> Void) -> Cancellable? {
-        let requestValue = RequestValue()
-        return pokemonRepository.fetchList(offset: requestValue.offset, limit: requestValue.limit, handler)
     }
 }

@@ -555,24 +555,6 @@ extension PokemonDetailViewModel: FactoryMethodInjectable {
     }
 }
 
-extension PokemonFullListUseCase: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let pokemonRepository: PokemonRepository
-        
-
-        init(pokemonRepository: PokemonRepository) {
-            self.pokemonRepository = pokemonRepository
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> PokemonFullListUseCase {
-        PokemonFullListUseCase(pokemonRepository: dependency.pokemonRepository)
-    }
-}
-
 extension PokemonListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
@@ -634,10 +616,10 @@ extension PokemonListViewModel: FactoryMethodInjectable {
     struct Dependency {
         
         let pokemonListUseCase: PokemonListUseCase
-        let pokemonFullListUseCase: PokemonFullListUseCase
+        let pokemonFullListUseCase: ListUseCase
         
 
-        init(pokemonListUseCase: PokemonListUseCase, pokemonFullListUseCase: PokemonFullListUseCase) {
+        init(pokemonListUseCase: PokemonListUseCase, pokemonFullListUseCase: ListUseCase) {
             self.pokemonListUseCase = pokemonListUseCase
             self.pokemonFullListUseCase = pokemonFullListUseCase
             
