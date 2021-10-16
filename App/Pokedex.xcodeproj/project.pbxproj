@@ -968,14 +968,9 @@
 		6495908F2616166400DFD840 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				649590902616167D00DFD840 /* PokemonListUseCase.swift */,
-				64A11292266D213B0019FC1D /* PokemonDetailUseCase.swift */,
-				647ED09C26AED6F7006716FB /* MovesFullListUseCase.swift */,
-				647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */,
-				640BFF7B26F01794009A3947 /* ItemsFullListUseCase.swift */,
-				640BFF7E26F01881009A3947 /* ItemsPriceListUseCase.swift */,
-				64A5C9D826FEF90400919AAB /* ItemsDetailUseCase.swift */,
-				64A5C9F62711357800919AAB /* MovesDetailUseCase.swift */,
+				64A5CA2B271ACD0E00919AAB /* Items */,
+				64A5CA28271ACCFE00919AAB /* Moves */,
+				64A5CA27271ACCF200919AAB /* Pokemon */,
 				64A5CA23271ACC4000919AAB /* ListUseCase.swift */,
 			);
 			path = UseCases;
@@ -1003,12 +998,10 @@
 		6495909826161AF300DFD840 /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
+				64A5CA30271ACD4200919AAB /* Items */,
+				64A5CA2F271ACD3B00919AAB /* Moves */,
+				64A5CA2E271ACD2900919AAB /* Pokemon */,
 				64A5CA16271AB31300919AAB /* List */,
-				646AB9732618188F00FE44C2 /* PokemonDTO.swift */,
-				64A112A2267F67D00019FC1D /* PokemonSpeciesDTO.swift */,
-				648A0CD6268A169A008B1CE9 /* StatsDTO.swift */,
-				647ED08D26AB0930006716FB /* MovesDTO.swift */,
-				640BFF6C26F01261009A3947 /* ItemsDTO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -1120,6 +1113,61 @@
 				64A5CA17271AB32000919AAB /* ListDTO.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		64A5CA27271ACCF200919AAB /* Pokemon */ = {
+			isa = PBXGroup;
+			children = (
+				64A5C9F62711357800919AAB /* MovesDetailUseCase.swift */,
+				649590902616167D00DFD840 /* PokemonListUseCase.swift */,
+				64A11292266D213B0019FC1D /* PokemonDetailUseCase.swift */,
+			);
+			path = Pokemon;
+			sourceTree = "<group>";
+		};
+		64A5CA28271ACCFE00919AAB /* Moves */ = {
+			isa = PBXGroup;
+			children = (
+				647ED09C26AED6F7006716FB /* MovesFullListUseCase.swift */,
+				647ED09F26AED835006716FB /* MovesTypeListUseCase.swift */,
+			);
+			path = Moves;
+			sourceTree = "<group>";
+		};
+		64A5CA2B271ACD0E00919AAB /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				640BFF7B26F01794009A3947 /* ItemsFullListUseCase.swift */,
+				640BFF7E26F01881009A3947 /* ItemsPriceListUseCase.swift */,
+				64A5C9D826FEF90400919AAB /* ItemsDetailUseCase.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		64A5CA2E271ACD2900919AAB /* Pokemon */ = {
+			isa = PBXGroup;
+			children = (
+				648A0CD6268A169A008B1CE9 /* StatsDTO.swift */,
+				646AB9732618188F00FE44C2 /* PokemonDTO.swift */,
+				64A112A2267F67D00019FC1D /* PokemonSpeciesDTO.swift */,
+			);
+			path = Pokemon;
+			sourceTree = "<group>";
+		};
+		64A5CA2F271ACD3B00919AAB /* Moves */ = {
+			isa = PBXGroup;
+			children = (
+				647ED08D26AB0930006716FB /* MovesDTO.swift */,
+			);
+			path = Moves;
+			sourceTree = "<group>";
+		};
+		64A5CA30271ACD4200919AAB /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				640BFF6C26F01261009A3947 /* ItemsDTO.swift */,
+			);
+			path = Items;
 			sourceTree = "<group>";
 		};
 		64EEA864268E207400759F1C /* WeaknessView */ = {
