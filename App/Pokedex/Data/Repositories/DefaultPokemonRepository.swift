@@ -16,7 +16,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     
     // MARK: Pokemon Typed List Properties
     private let dispatchGroup = DispatchGroup()
-    private var pokemonList: [TypePokemonListItem] = []
+    private var pokemonList: [PokemonListItem] = []
     private var error: APIError?
     
     init(apiClient: APIClient) {
@@ -66,7 +66,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     }
     
     /// Fetch pokemon list including pokemon type
-    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[TypePokemonListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
         // Reset Saved values
         error = nil
         pokemonList.removeAll()
@@ -83,7 +83,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
                 
                 switch result {
                 case .success(let info):
-                    let typeItem = TypePokemonListItem.from(pokemonInfo: info.toDomain())
+                    let typeItem = PokemonListItem.from(info.toDomain())
                     self.pokemonList.append(typeItem)
                     
                 case .failure(let error):

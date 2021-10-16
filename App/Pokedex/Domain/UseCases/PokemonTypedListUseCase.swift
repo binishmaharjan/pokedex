@@ -20,7 +20,7 @@ final class PokemonTypedListUseCase: AutoInjectable {
     }
     
     @discardableResult
-    func execute(requestValue: RequestValue, _ handler: @escaping(Result<[TypePokemonListItem], APIError>) -> Void) -> Cancellable? {
+    func execute(requestValue: RequestValue, _ handler: @escaping(Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
         
         return pokemonRepository.fetchPokemonInfoList(requestValue: requestValue.range, handler)
     }

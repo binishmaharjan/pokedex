@@ -15,7 +15,7 @@ struct PokemonListState {
     
     // MARK: Private Properties
     private var pokemonFullList: [ListItem] = []
-    private var currentPokemonList: [TypePokemonListItem] = [] // Current loaded pokemon with type
+    private var currentPokemonList: [PokemonListItem] = [] // Current loaded pokemon with type
     
     // MARK: Paging Related
     private let initialOffSet: Int = 0
@@ -26,7 +26,7 @@ struct PokemonListState {
     private var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
     
     // MARK: Public Properties
-    var pokemonList: LoadingState<[TypePokemonListItem], APIError> = .initial
+    var pokemonList: LoadingState<[PokemonListItem], APIError> = .initial
     var searchText: String = ""
     
     var sections: PokemonListSections {
@@ -52,12 +52,12 @@ struct PokemonListState {
         pokemonFullList = list
     }
     
-    mutating func initialPokemons(_ list: [TypePokemonListItem]) {
+    mutating func initialPokemons(_ list: [PokemonListItem]) {
         currentPokemonList = list
         pokemonList = .completed(.success(currentPokemonList))
     }
     
-    mutating func appendPokemons(_ list: [TypePokemonListItem]) {
+    mutating func appendPokemons(_ list: [PokemonListItem]) {
         currentPokemonList.append(contentsOf: list)
         pokemonList = .completed(.success(currentPokemonList))
     }
@@ -65,11 +65,11 @@ struct PokemonListState {
 
 
 // MARK: Sections
-typealias PokemonListSections = Sections<String, TypePokemonListItem>
+typealias PokemonListSections = Sections<String, PokemonListItem>
 
 extension PokemonListSections {
     
-    static func from(_ pokemons: [TypePokemonListItem]) -> PokemonListSections {
+    static func from(_ pokemons: [PokemonListItem]) -> PokemonListSections {
         let sections = PokemonListSections(
             sections: [
                 Section(

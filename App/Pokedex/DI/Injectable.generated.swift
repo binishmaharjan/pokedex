@@ -559,10 +559,10 @@ extension PokemonListCellViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let pokemon: TypePokemonListItem
+        let pokemon: PokemonListItem
         
 
-        init(pokemon: TypePokemonListItem) {
+        init(pokemon: PokemonListItem) {
             self.pokemon = pokemon
             
         }

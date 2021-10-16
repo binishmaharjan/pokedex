@@ -163,6 +163,6 @@ extension PokemonListView: UITableViewDelegate {
         
         let pokemon = sections[indexPath]
         
-        onPerform?(.pokemonDetail(pokemon.id, pokemon.types[0].type.name))
+        onPerform?(.pokemonDetail(pokemon.id, pokemon.elements[0].type.name))
     }
 }
