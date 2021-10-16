@@ -573,6 +573,24 @@ extension PokemonListCellViewModel: FactoryMethodInjectable {
     }
 }
 
+extension PokemonListUseCase: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let pokemonRepository: PokemonRepository
+        
+
+        init(pokemonRepository: PokemonRepository) {
+            self.pokemonRepository = pokemonRepository
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> PokemonListUseCase {
+        PokemonListUseCase(pokemonRepository: dependency.pokemonRepository)
+    }
+}
+
 extension PokemonListViewController: FactoryMethodInjectable {
 
     struct Dependency {
@@ -597,11 +615,11 @@ extension PokemonListViewModel: FactoryMethodInjectable {
 
     struct Dependency {
         
-        let pokemonListUseCase: PokemonTypedListUseCase
+        let pokemonListUseCase: PokemonListUseCase
         let pokemonFullListUseCase: PokemonFullListUseCase
         
 
-        init(pokemonListUseCase: PokemonTypedListUseCase, pokemonFullListUseCase: PokemonFullListUseCase) {
+        init(pokemonListUseCase: PokemonListUseCase, pokemonFullListUseCase: PokemonFullListUseCase) {
             self.pokemonListUseCase = pokemonListUseCase
             self.pokemonFullListUseCase = pokemonFullListUseCase
             
@@ -610,24 +628,6 @@ extension PokemonListViewModel: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> PokemonListViewModel {
         PokemonListViewModel(pokemonListUseCase: dependency.pokemonListUseCase, pokemonFullListUseCase: dependency.pokemonFullListUseCase)
-    }
-}
-
-extension PokemonTypedListUseCase: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let pokemonRepository: PokemonRepository
-        
-
-        init(pokemonRepository: PokemonRepository) {
-            self.pokemonRepository = pokemonRepository
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> PokemonTypedListUseCase {
-        PokemonTypedListUseCase(pokemonRepository: dependency.pokemonRepository)
     }
 }
 

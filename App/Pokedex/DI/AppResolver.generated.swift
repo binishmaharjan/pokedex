@@ -191,6 +191,11 @@ extension AppResolver {
         return PokemonListCellViewModel.makeInstance(dependency: .init(pokemon: pokemon))
     }
 
+    func resolvePokemonListUseCase() -> PokemonListUseCase {
+        let pokemonRepository = resolvePokemonRepository()
+        return PokemonListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
+    }
+
     func resolvePokemonListViewController() -> PokemonListViewController {
         let appResolver = resolveAppResolver()
         let pokemonListViewModel = resolvePokemonListViewModel()
@@ -198,18 +203,13 @@ extension AppResolver {
     }
 
     func resolvePokemonListViewModel() -> PokemonListViewModel {
-        let pokemonTypedListUseCase = resolvePokemonTypedListUseCase()
+        let pokemonListUseCase = resolvePokemonListUseCase()
         let pokemonFullListUseCase = resolvePokemonFullListUseCase()
-        return PokemonListViewModel.makeInstance(dependency: .init(pokemonListUseCase: pokemonTypedListUseCase, pokemonFullListUseCase: pokemonFullListUseCase))
+        return PokemonListViewModel.makeInstance(dependency: .init(pokemonListUseCase: pokemonListUseCase, pokemonFullListUseCase: pokemonFullListUseCase))
     }
 
     func resolvePokemonRepository() -> PokemonRepository {
         return providePokemonRepository()
-    }
-
-    func resolvePokemonTypedListUseCase() -> PokemonTypedListUseCase {
-        let pokemonRepository = resolvePokemonRepository()
-        return PokemonTypedListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
     }
 
     func resolveSession() -> Session {

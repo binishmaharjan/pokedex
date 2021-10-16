@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PokemonTypedListUseCase: AutoInjectable {
+final class PokemonListUseCase: AutoInjectable {
     
     struct RequestValue {
         let range: ClosedRange<Int>
