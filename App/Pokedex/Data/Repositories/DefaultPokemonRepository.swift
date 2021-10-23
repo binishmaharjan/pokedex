@@ -16,7 +16,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     
     // MARK: Pokemon Typed List Properties
     private let dispatchGroup = DispatchGroup()
-    private var pokemonList: [TypePokemonListItem] = []
+    private var pokemonList: [PokemonListObject] = []
     private var error: APIError?
     
     init(apiClient: APIClient) {
@@ -24,14 +24,15 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     }
     
     /// Fetch pokemon list not including pokemon type
-    func fetchPokemonList(offset: Int, limit: Int, _ handler: @escaping (Result<[PokemonListItem], APIError>) -> Void) -> Cancellable? {
+    @discardableResult
+    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListObject], APIError>) -> Void) -> Cancellable? {
         let request = PokemonListRequest(offset: offset, limit: limit)
         
         let task = apiClient.send(request) { (result) in
             switch result {
             case .success(let responseDTO):
                 let pokemonList = responseDTO.toDomain()
-                handler(.success(pokemonList.pokemons))
+                handler(.success(pokemonList.results))
             case .failure(let error):
                 handler(.failure(error))
             }
@@ -66,7 +67,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
     }
     
     /// Fetch pokemon list including pokemon type
-    func fetchPokemonInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[TypePokemonListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchPokemonList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[PokemonListObject], APIError>) -> Void) -> Cancellable? {
         // Reset Saved values
         error = nil
         pokemonList.removeAll()
@@ -83,7 +84,7 @@ final class DefaultPokemonRepository: PokemonRepository, AutoInjectable {
                 
                 switch result {
                 case .success(let info):
-                    let typeItem = TypePokemonListItem.from(pokemonInfo: info.toDomain())
+                    let typeItem = PokemonListObject.from(info.toDomain())
                     self.pokemonList.append(typeItem)
                     
                 case .failure(let error):

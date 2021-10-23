@@ -1,5 +1,5 @@
 //
-//  Type.swift
+//  Element.swift
 //  Pokedex
 //
 //  Created by Maharjan Binish on 2021/04/03.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct PokemonType: Equatable {
+struct Element: Equatable {
     let slot: Int
-    let type: TypeInfo
+    let type: ElementInfo
 }
 
-struct TypeInfo: Equatable  {
+struct ElementInfo: Equatable  {
     let name: Type
     let url: String
 }

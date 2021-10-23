@@ -11,7 +11,7 @@ struct MasterPokemonData {
     var id: Int
     var name: String
     
-    var types: [PokemonType]
+    var types: [Element]
     
     var stats: [Stats]
     

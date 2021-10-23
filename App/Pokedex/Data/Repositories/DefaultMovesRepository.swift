@@ -16,14 +16,14 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
     
     // MARK: Moves Typed List Properties
     private let dispatchGroup = DispatchGroup()
-    private var movesList: [TypeMovesListItem] = []
+    private var movesList: [MovesListObject] = []
     private var error: APIError?
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
     
-    func fetchMovesList(offset: Int, limit: Int, _ handler: @escaping (Result<[MovesListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchList(offset: Int, limit: Int, _ handler: @escaping(Result<[ListObject], APIError>) -> Void) -> Cancellable? {
         
         let request = MovesListRequest(offset: offset, limit: limit)
         
@@ -31,7 +31,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
             switch result {
             case .success(let responseDTO):
                 let movesList = responseDTO.toDomain()
-                handler(.success(movesList.moves))
+                handler(.success(movesList.results))
                 
             case .failure(let error):
                 handler(.failure(error))
@@ -41,7 +41,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
         return task
     }
     
-    func fetchMovesInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[TypeMovesListItem], APIError>) -> Void) -> Cancellable? {
+    func fetchMovesInfoList(requestValue: ClosedRange<Int>, _ handler: @escaping (Result<[MovesListObject], APIError>) -> Void) -> Cancellable? {
         
         error = nil
         movesList.removeAll()
@@ -57,7 +57,7 @@ final class DefaultMovesRepository: MovesRepository, AutoInjectable {
                 
                 switch result {
                 case .success(let info):
-                    let typeItem = TypeMovesListItem.from(movesInfo: info.toDomain())
+                    let typeItem = MovesListObject.from(info.toDomain())
                     self.movesList.append(typeItem)
                     
                 case .failure(let error):

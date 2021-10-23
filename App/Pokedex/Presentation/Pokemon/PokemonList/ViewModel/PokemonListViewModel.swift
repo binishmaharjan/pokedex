@@ -12,8 +12,8 @@ final class PokemonListViewModel: AutoInjectable {
     
     @Observable
     private var state = PokemonListState()
-    private let pokemonFullListUseCase: PokemonFullListUseCase
-    private let pokemonTypedListUseCase: PokemonTypedListUseCase
+    private let pokemonFullListUseCase: ListUseCase
+    private let pokemonListUseCase: PokemonListUseCase
     
     private let initialOffSet: Int = 0
     private let fetchLimit: Int = 50
@@ -35,15 +35,15 @@ final class PokemonListViewModel: AutoInjectable {
             .skipRepeats()
     }
     
-    var searchedPokemonList: Property<[PokemonListItem]> {
+    var searchedPokemonList: Property<[ListObject]> {
         $state
             .map(\.searchedPokemonList)
             .skipRepeats()
     }
     
-    init(pokemonListUseCase: PokemonTypedListUseCase, pokemonFullListUseCase: PokemonFullListUseCase) {
+    init(pokemonListUseCase: PokemonListUseCase, pokemonFullListUseCase: ListUseCase) {
         self.pokemonFullListUseCase = pokemonFullListUseCase
-        self.pokemonTypedListUseCase = pokemonListUseCase
+        self.pokemonListUseCase = pokemonListUseCase
     }
 }
 
@@ -55,7 +55,7 @@ extension PokemonListViewModel {
         currentPage = 0
         totalPageCount = 1
         
-        pokemonFullListUseCase.execute { [weak self] (result) in
+        pokemonFullListUseCase.execute(listType: .pokemon) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let list):
@@ -79,9 +79,9 @@ extension PokemonListViewModel {
     func fetchPokemonList() {
         let startIndex = (currentPage * fetchLimit) + 1
         let endIndex = (currentPage + 1) * fetchLimit
-        let requestValue = PokemonTypedListUseCase.RequestValue(range: startIndex...endIndex)
+        let requestValue = PokemonListUseCase.RequestValue(range: startIndex...endIndex)
         
-        pokemonTypedListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
+        pokemonListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let pokemonList):
@@ -104,9 +104,9 @@ extension PokemonListViewModel {
         
         let startIndex = (currentPage * fetchLimit) + 1
         let endIndex = (currentPage + 1) * fetchLimit
-        let requestValue = PokemonTypedListUseCase.RequestValue(range: startIndex...endIndex)
+        let requestValue = PokemonListUseCase.RequestValue(range: startIndex...endIndex)
         
-        pokemonTypedListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
+        pokemonListUseCase.execute(requestValue: requestValue) { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
@@ -122,7 +122,7 @@ extension PokemonListViewModel {
     }
 }
 
-// MARK: Filter
+// MARK: Filter // TODO
 extension PokemonListViewModel {
     
     func filter(with text: String) {

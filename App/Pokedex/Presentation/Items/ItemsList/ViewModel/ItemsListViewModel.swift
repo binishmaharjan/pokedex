@@ -12,10 +12,10 @@ final class ItemsListViewModel: AutoInjectable {
 
     @Observable
     private var state = ItemsListState()
-    private let itemsFullListUseCase: ItemsListUseCase
-    private let itemPriceListUseCase: ItemsPriceListUseCase
+    private let itemsFullListUseCase: ListUseCase
+    private let itemPriceListUseCase: ItemsListUseCase
     
-    init(itemsFullListUseCase: ItemsListUseCase, itemPriceListUseCase: ItemsPriceListUseCase) {
+    init(itemsFullListUseCase: ListUseCase, itemPriceListUseCase: ItemsListUseCase) {
         self.itemsFullListUseCase = itemsFullListUseCase
         self.itemPriceListUseCase = itemPriceListUseCase
     }
@@ -33,7 +33,7 @@ final class ItemsListViewModel: AutoInjectable {
             .skipRepeats()
     }
     
-    var searchedItemsList: Property<[ItemsListItem]> {
+    var searchedItemsList: Property<[ListObject]> {
         $state
             .map(\.searchItemsList)
             .skipRepeats()
@@ -48,7 +48,7 @@ extension ItemsListViewModel {
         state.currentPage = 0
         state.totalPageCount = 1
         
-        itemsFullListUseCase.execute { [weak self] result in
+        itemsFullListUseCase.execute(listType: .items) { [weak self] result in
             
             guard let self = self else { return }
             
@@ -72,7 +72,7 @@ extension ItemsListViewModel {
         let startIndex = (state.currentPage * state.fetchLimit) + 1
         let endIndex = (state.currentPage + 1) * state.fetchLimit
         
-        let requestValue = ItemsPriceListUseCase.RequestValue(range: startIndex ... endIndex)
+        let requestValue = ItemsListUseCase.RequestValue(range: startIndex ... endIndex)
         
         itemPriceListUseCase.execute(requestValue: requestValue) { [weak self] result in
         
@@ -98,7 +98,7 @@ extension ItemsListViewModel {
         let startIndex = (state.currentPage * state.fetchLimit) + 1
         let endIndex = (state.currentPage + 1) * state.fetchLimit
         
-        let requestValue = ItemsPriceListUseCase.RequestValue(range: startIndex...endIndex)
+        let requestValue = ItemsListUseCase.RequestValue(range: startIndex...endIndex)
         
         itemPriceListUseCase.execute(requestValue: requestValue) { [weak self] result in
         

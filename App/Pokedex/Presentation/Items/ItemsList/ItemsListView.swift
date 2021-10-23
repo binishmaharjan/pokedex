@@ -19,7 +19,7 @@ final class ItemsListView: UIView {
     // MARK: Private Properties
     private let viewModel: ItemsListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
-    private var searchResultView: SearchResultView<ItemsListItem>!
+    private var searchResultView: SearchResultView<ListObject>!
     private var searchResultHeightConstraints: NSLayoutConstraint?
     
     private var sections: ItemsListSections = .empty {

@@ -10,8 +10,8 @@ import Foundation
 struct MovesListState {
     
     // MARK: Private Properties
-    private var movesFullList: [MovesListItem] = []
-    private var currentMovesList: [TypeMovesListItem] = []
+    private var movesFullList: [ListObject] = []
+    private var currentMovesList: [MovesListObject] = []
     
     // MARK: Paging Related
     let initialOffset: Int = 0
@@ -22,7 +22,7 @@ struct MovesListState {
     var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
     
     // MARK: Public Properties
-    var movesList: LoadingState<[TypeMovesListItem], APIError> = .initial
+    var movesList: LoadingState<[MovesListObject], APIError> = .initial
     var searchText: String = ""
     
     var sections: MovesListSections {
@@ -36,7 +36,7 @@ struct MovesListState {
         }
     }
     
-    var searchedMovesList: [MovesListItem] {
+    var searchedMovesList: [ListObject] {
         guard !(searchText.isEmpty) else {
             return movesFullList
         }
@@ -44,27 +44,27 @@ struct MovesListState {
         return movesFullList.filter { $0.name.contains(searchText) }
     }
     
-    mutating func addMovesFullList(_ list: [MovesListItem]) {
+    mutating func addMovesFullList(_ list: [ListObject]) {
         movesFullList = list
     }
     
-    mutating func initialMoves(_ list: [TypeMovesListItem]) {
+    mutating func initialMoves(_ list: [MovesListObject]) {
         currentMovesList = list
         movesList = .completed(.success(currentMovesList))
     }
     
-    mutating func appendMoves(_ list: [TypeMovesListItem]) {
+    mutating func appendMoves(_ list: [MovesListObject]) {
         currentMovesList.append(contentsOf: list)
         movesList = .completed(.success(currentMovesList))
     }
 }
 
 // MARK: Sections
-typealias MovesListSections = Sections<String, TypeMovesListItem>
+typealias MovesListSections = Sections<String, MovesListObject>
 
 extension MovesListSections {
     
-    static func from(_ moves: [TypeMovesListItem]) -> MovesListSections {
+    static func from(_ moves: [MovesListObject]) -> MovesListSections {
         let sections = MovesListSections(
             sections:[
                 Section(

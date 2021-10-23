@@ -10,8 +10,8 @@ import Foundation
 struct ItemsListState {
     
     // MARK: Private Properties
-    private var itemsFullList: [ItemsListItem] = []
-    private var currentItemsList: [PriceItemsListItem] = []
+    private var itemsFullList: [ListObject] = []
+    private var currentItemsList: [ItemsListObject] = []
     
     // MARK: Paging Related
     let initialOffset: Int = 0
@@ -22,7 +22,7 @@ struct ItemsListState {
     var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
     
     // MARK: Public Properties
-    var itemsList: LoadingState<[PriceItemsListItem], APIError> = .initial
+    var itemsList: LoadingState<[ItemsListObject], APIError> = .initial
     var searchText: String = ""
     
     var sections: ItemsListSections {
@@ -36,7 +36,7 @@ struct ItemsListState {
         }
     }
     
-    var searchItemsList: [ItemsListItem] {
+    var searchItemsList: [ListObject] {
         guard !(searchText.isEmpty) else {
             return itemsFullList
         }
@@ -46,27 +46,27 @@ struct ItemsListState {
         }
     }
     
-    mutating func addItemsFullList(_ list: [ItemsListItem]) {
+    mutating func addItemsFullList(_ list: [ListObject]) {
         itemsFullList = list
     }
     
-    mutating func initialItems(_ list: [PriceItemsListItem]) {
+    mutating func initialItems(_ list: [ItemsListObject]) {
         currentItemsList = list
         itemsList = .completed(.success(currentItemsList))
     }
     
-    mutating func appendItems(_ list: [PriceItemsListItem]) {
+    mutating func appendItems(_ list: [ItemsListObject]) {
         currentItemsList.append(contentsOf: list)
         itemsList = .completed(.success(currentItemsList))
     }
 }
 
 // MARK: Sections
-typealias ItemsListSections = Sections<String, PriceItemsListItem>
+typealias ItemsListSections = Sections<String, ItemsListObject>
 
 extension ItemsListSections {
     
-    static func from(items: [PriceItemsListItem]) -> ItemsListSections {
+    static func from(items: [ItemsListObject]) -> ItemsListSections {
         let sections = ItemsListSections(
             sections: [
                 Section(

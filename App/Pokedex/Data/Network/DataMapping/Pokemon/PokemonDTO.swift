@@ -22,8 +22,8 @@ struct PokemonTypeDTO: Codable {
     let slot: Int
     let type: TypeInfoDTO
     
-    func toDomain() -> PokemonType {
-        PokemonType(slot: slot, type: type.toDomain())
+    func toDomain() -> Element {
+        Element(slot: slot, type: type.toDomain())
     }
 }
 
@@ -31,8 +31,8 @@ struct TypeInfoDTO: Codable {
     let name: Type
     let url: String
     
-    func toDomain() -> TypeInfo {
-        TypeInfo(name: name, url: url)
+    func toDomain() -> ElementInfo {
+        ElementInfo(name: name, url: url)
     }
 }
 

@@ -9,7 +9,7 @@ import Foundation
 
 struct PokemonListRequest: APIRequest {
     
-    typealias SuccessResponse = PokemonListDTO
+    typealias SuccessResponse = ListDTO
     
     private let offset: Int
     private let limit: Int

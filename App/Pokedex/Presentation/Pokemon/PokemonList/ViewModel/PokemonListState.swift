@@ -14,8 +14,8 @@ import Foundation
 struct PokemonListState {
     
     // MARK: Private Properties
-    private var pokemonFullList: [PokemonListItem] = []
-    private var currentPokemonList: [TypePokemonListItem] = [] // Current loaded pokemon with type
+    private var pokemonFullList: [ListObject] = []
+    private var currentPokemonList: [PokemonListObject] = [] // Current loaded pokemon with type
     
     // MARK: Paging Related
     private let initialOffSet: Int = 0
@@ -26,7 +26,7 @@ struct PokemonListState {
     private var nextPage: Int { hasMorePage ? (currentPage + 1) : currentPage }
     
     // MARK: Public Properties
-    var pokemonList: LoadingState<[TypePokemonListItem], APIError> = .initial
+    var pokemonList: LoadingState<[PokemonListObject], APIError> = .initial
     var searchText: String = ""
     
     var sections: PokemonListSections {
@@ -40,7 +40,7 @@ struct PokemonListState {
         }
     }
     
-    var searchedPokemonList: [PokemonListItem] {
+    var searchedPokemonList: [ListObject] {
         guard !(searchText.isEmpty) else {
             return pokemonFullList
         }
@@ -48,16 +48,16 @@ struct PokemonListState {
         return pokemonFullList.filter { $0.name.contains(searchText) }
     }
     
-    mutating func addPokemonFullList(_ list: [PokemonListItem]) {
+    mutating func addPokemonFullList(_ list: [ListObject]) {
         pokemonFullList = list
     }
     
-    mutating func initialPokemons(_ list: [TypePokemonListItem]) {
+    mutating func initialPokemons(_ list: [PokemonListObject]) {
         currentPokemonList = list
         pokemonList = .completed(.success(currentPokemonList))
     }
     
-    mutating func appendPokemons(_ list: [TypePokemonListItem]) {
+    mutating func appendPokemons(_ list: [PokemonListObject]) {
         currentPokemonList.append(contentsOf: list)
         pokemonList = .completed(.success(currentPokemonList))
     }
@@ -65,11 +65,11 @@ struct PokemonListState {
 
 
 // MARK: Sections
-typealias PokemonListSections = Sections<String, TypePokemonListItem>
+typealias PokemonListSections = Sections<String, PokemonListObject>
 
 extension PokemonListSections {
     
-    static func from(_ pokemons: [TypePokemonListItem]) -> PokemonListSections {
+    static func from(_ pokemons: [PokemonListObject]) -> PokemonListSections {
         let sections = PokemonListSections(
             sections: [
                 Section(

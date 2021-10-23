@@ -14,7 +14,7 @@ struct Moves {
     
     let name: String
     let id: Int
-    let type: TypeInfo
+    let type: ElementInfo
     let flavorTextEntries: [FlavorTextEntry]
 }
 

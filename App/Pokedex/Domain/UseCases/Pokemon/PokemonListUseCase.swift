@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PokemonTypedListUseCase: AutoInjectable {
+final class PokemonListUseCase: AutoInjectable {
     
     struct RequestValue {
         let range: ClosedRange<Int>
@@ -20,8 +20,8 @@ final class PokemonTypedListUseCase: AutoInjectable {
     }
     
     @discardableResult
-    func execute(requestValue: RequestValue, _ handler: @escaping(Result<[TypePokemonListItem], APIError>) -> Void) -> Cancellable? {
+    func execute(requestValue: RequestValue, _ handler: @escaping(Result<[PokemonListObject], APIError>) -> Void) -> Cancellable? {
         
-        return pokemonRepository.fetchPokemonInfoList(requestValue: requestValue.range, handler)
+        return pokemonRepository.fetchPokemonList(requestValue: requestValue.range, handler)
     }
 }

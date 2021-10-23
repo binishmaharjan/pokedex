@@ -10,7 +10,7 @@ import ReactiveSwift
 
 struct PokemonListCellViewModel: AutoInjectable {
     
-    private let pokemon: TypePokemonListItem
+    private let pokemon: PokemonListObject
     
     let name: Property<String>
     let id: Property<Int>
@@ -18,7 +18,7 @@ struct PokemonListCellViewModel: AutoInjectable {
     let typeOne: Property<Type?>
     let typeTwo: Property<Type?>
     
-    init(pokemon: TypePokemonListItem) {
+    init(pokemon: PokemonListObject) {
         
         self.pokemon = pokemon
         
@@ -26,11 +26,11 @@ struct PokemonListCellViewModel: AutoInjectable {
         self.id = Property(value: pokemon.id)
         self.imageUrl = Property(value: ApplicationConfiguration.current.spriteUrl(appending: "/pokemon/other/official-artwork/\(pokemon.id).png"))
         
-        let slot1 = pokemon.types.filter { $0.slot == 1 }
+        let slot1 = pokemon.elements.filter { $0.slot == 1 }
         let typeOne = slot1.first?.type.name ?? nil
         self.typeOne = Property(value: typeOne)
 
-        let slot2 = pokemon.types.filter { $0.slot == 2 }
+        let slot2 = pokemon.elements.filter { $0.slot == 2 }
         let typeTwo = slot2.first?.type.name ?? nil
         self.typeTwo = Property(value: typeTwo)
     }

@@ -19,7 +19,7 @@ final class MovesListView: UIView {
     // MARK: Private Properties
     private let viewModel: MovesListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
-    private var searchResultView: SearchResultView<MovesListItem>!
+    private var searchResultView: SearchResultView<ListObject>!
     private var searchResultHeightConstraints: NSLayoutConstraint?
     
     private var sections: MovesListSections = .empty {
@@ -160,6 +160,6 @@ extension MovesListView: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let moves = sections[indexPath]
         
-        onPerform?(.moveDetail(moves.id, moves.type.name))
+        onPerform?(.moveDetail(moves.id, moves.element.name))
     }
 }

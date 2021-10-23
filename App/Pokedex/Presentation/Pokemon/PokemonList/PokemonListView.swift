@@ -18,7 +18,7 @@ final class PokemonListView: UIView {
     // MARK: Private Properties
     private let viewModel: PokemonListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
-    private var searchResultView: SearchResultView<PokemonListItem>!
+    private var searchResultView: SearchResultView<ListObject>!
     private var searchResultHeightConstraints: NSLayoutConstraint?
     
     private var sections: PokemonListSections = .empty {
@@ -163,6 +163,6 @@ extension PokemonListView: UITableViewDelegate {
         
         let pokemon = sections[indexPath]
         
-        onPerform?(.pokemonDetail(pokemon.id, pokemon.types[0].type.name))
+        onPerform?(.pokemonDetail(pokemon.id, pokemon.elements[0].type.name))
     }
 }
