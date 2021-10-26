@@ -37,7 +37,7 @@ final class ListViewController: UIViewController, AutoInjectable {
         
         setup()
         bindLoadingState()
-        viewModel.fetchList()
+        viewModel.fetchFullList()
     }
     
     override func loadView() {
