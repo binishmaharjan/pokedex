@@ -104,6 +104,20 @@ extension AppResolver {
         return ListUseCase.makeInstance(dependency: .init(listRepository: listRepository))
     }
 
+    func resolveListViewController(listType: ListUseCase.ListType, listRepository: ListRepository) -> ListViewController {
+        let appResolver = resolveAppResolver()
+        let listViewModel = resolveListViewModel(listType: listType, listRepository: listRepository)
+        return ListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: listViewModel))
+    }
+
+    func resolveListViewModel(listType: ListUseCase.ListType, listRepository: ListRepository) -> ListViewModel {
+        let listUseCase = resolveListUseCase(listRepository: listRepository)
+        let pokemonListUseCase = resolvePokemonListUseCase()
+        let itemsListUseCase = resolveItemsListUseCase()
+        let movesListUseCase = resolveMovesListUseCase()
+        return ListViewModel.makeInstance(dependency: .init(listType: listType, fullListUseCase: listUseCase, pokemonListUseCase: pokemonListUseCase, itemsListUseCase: itemsListUseCase, movesListUseCase: movesListUseCase))
+    }
+
     func resolveMainViewController() -> MainViewController {
         let appResolver = resolveAppResolver()
         return MainViewController.makeInstance(dependency: .init(resolver: appResolver))

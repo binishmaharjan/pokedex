@@ -7,16 +7,60 @@
 
 import UIKit
 
-class ListViewController<T: ListViewModel>: UIViewController {
+final class ListViewController: UIViewController, AutoInjectable {
     
-    private var viewModel: T!
-    private var baseView: ListView<T>!
+    // MARK: Enums
+    enum Action {
+        case pokemonDetail(Int, Type?)
+        case itemsDetail(Int)
+        case moveDetail(Type?)
+    }
+    
+    // MARK: Private Properties
+    private let resolver: AppResolver
+    private var viewModel: ListViewModel!
+    private var baseView: ListView!
     private var dismissLoading: WindowLoadingView.DismissTrigger?
+    
+    // MARK: LifeCycle
+    init(resolver: AppResolver, viewModel: ListViewModel) {
+        self.resolver = resolver
+        self.viewModel = viewModel
+        self.baseView = ListView(viewModel: viewModel)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) { nil }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
         bindLoadingState()
+        viewModel.fetchList()
+    }
+    
+    override func loadView() {
+        view = baseView
+    }
+}
+
+// MARK: Setup
+private extension ListViewController {
+    
+    func setup() {
+        addBehaviors([TransparentNavigationBarBehavior()])
+        title = "Pokemon"
+        
+        setupListView()
+    }
+    
+    func setupListView() {
+        baseView.onPerform = { [weak self] action in
+            guard let self = self else { return }
+            
+            self.perform(action: action)
+        }
     }
 }
 
@@ -65,12 +109,21 @@ extension ListViewController {
     }
 }
 
-
-
-class ListView<T: ListViewModel>: UIView {
+// MARK: Actions
+private extension ListViewController {
     
-    
-    func showNextPageLoadingIndicator(isLoadingNextPage: Bool) {
-        
+    func perform(action: Action) {
+        switch action {
+        case let .pokemonDetail(pokemonId, backgroundType):
+            let viewController = resolver.resolvePokemonDetailViewController(
+                pokemonId: pokemonId,
+                backgroundType: backgroundType
+            )
+            viewController.modalPresentationStyle = .fullScreen
+            
+            self.present(viewController, animated: true)
+        default:
+            break
+        }
     }
 }

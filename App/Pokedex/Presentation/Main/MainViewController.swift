@@ -68,7 +68,11 @@ private extension MainViewController {
     func makeChildren() -> [UIViewController] {
         [
             UINavigationController(
-                rootViewController: resolver.resolvePokemonListViewController(
+//                rootViewController: resolver.resolvePokemonListViewController(
+//                    listRepository: resolver.resolvePokemonRepository()
+//                )
+                rootViewController: resolver.resolveListViewController(
+                    listType: .pokemon,
                     listRepository: resolver.resolvePokemonRepository()
                 )
             )
