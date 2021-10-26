@@ -250,7 +250,7 @@ extension ListViewModel {
     }
 }
 
-
+// MARK: State
 struct ListState {
     
     // MARK: Private Properties
@@ -288,6 +288,7 @@ struct ListState {
         return fullList.filter { $0.name.contains(searchText) }
     }
     
+    // MARK: Mutating Methods
     mutating func addFullList(_ list: [ListObject]) {
         fullList = list
     }
