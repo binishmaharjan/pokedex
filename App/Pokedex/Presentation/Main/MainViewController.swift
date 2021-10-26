@@ -68,9 +68,6 @@ private extension MainViewController {
     func makeChildren() -> [UIViewController] {
         [
             UINavigationController(
-//                rootViewController: resolver.resolvePokemonListViewController(
-//                    listRepository: resolver.resolvePokemonRepository()
-//                )
                 rootViewController: resolver.resolveListViewController(
                     listType: .pokemon,
                     listRepository: resolver.resolvePokemonRepository()
@@ -79,14 +76,16 @@ private extension MainViewController {
             .withTabBarItem(.iconPokemon, "Pokemon"),
             
             UINavigationController(
-                rootViewController: resolver.resolveItemsListViewController(
+                rootViewController: resolver.resolveListViewController(
+                    listType: .items,
                     listRepository: resolver.resolveItemsRepository()
                 )
             )
             .withTabBarItem(.iconItems, "Items"),
             
             UINavigationController(
-                rootViewController: resolver.resolveMovesListViewController(
+                rootViewController: resolver.resolveListViewController(
+                    listType: .moves,
                     listRepository: resolver.resolveMovesRepository()
                 )
             )

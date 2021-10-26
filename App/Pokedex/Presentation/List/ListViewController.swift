@@ -50,7 +50,7 @@ private extension ListViewController {
     
     func setup() {
         addBehaviors([TransparentNavigationBarBehavior()])
-        title = "Pokemon"
+        title = viewModel.listType.title
         
         setupListView()
     }

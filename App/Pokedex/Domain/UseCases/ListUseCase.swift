@@ -22,6 +22,14 @@ final class ListUseCase: AutoInjectable {
             case .moves: return 844
             }
         }
+        
+        var title: String {
+            switch self {
+            case .pokemon: return "Pokemon"
+            case .items: return "Items"
+            case .moves: return "Moves"
+            }
+        }
     }
     
     struct RequestValue {

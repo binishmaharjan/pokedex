@@ -61,6 +61,8 @@ extension ListView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerXib(of: PokemonListCell.self)
+        tableView.registerXib(of: ItemsListCell.self)
+        tableView.registerXib(of: MovesListCell.self)
         tableView.tableFooterView = UIView()
     }
     
