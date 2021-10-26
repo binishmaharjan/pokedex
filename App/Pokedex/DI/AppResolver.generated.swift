@@ -84,24 +84,26 @@ extension AppResolver {
         return ItemsListUseCase.makeInstance(dependency: .init(itemsRepository: itemsRepository))
     }
 
-    func resolveItemsListViewController(listRepository: ListRepository) -> ItemsListViewController {
-        let appResolver = resolveAppResolver()
-        let itemsListViewModel = resolveItemsListViewModel(listRepository: listRepository)
-        return ItemsListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: itemsListViewModel))
-    }
-
-    func resolveItemsListViewModel(listRepository: ListRepository) -> ItemsListViewModel {
-        let listUseCase = resolveListUseCase(listRepository: listRepository)
-        let itemsListUseCase = resolveItemsListUseCase()
-        return ItemsListViewModel.makeInstance(dependency: .init(itemsFullListUseCase: listUseCase, itemPriceListUseCase: itemsListUseCase))
-    }
-
     func resolveItemsRepository() -> ItemsRepository {
         return provideItemsRepository()
     }
 
     func resolveListUseCase(listRepository: ListRepository) -> ListUseCase {
         return ListUseCase.makeInstance(dependency: .init(listRepository: listRepository))
+    }
+
+    func resolveListViewController(listType: ListUseCase.ListType, listRepository: ListRepository) -> ListViewController {
+        let appResolver = resolveAppResolver()
+        let listViewModel = resolveListViewModel(listType: listType, listRepository: listRepository)
+        return ListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: listViewModel))
+    }
+
+    func resolveListViewModel(listType: ListUseCase.ListType, listRepository: ListRepository) -> ListViewModel {
+        let listUseCase = resolveListUseCase(listRepository: listRepository)
+        let pokemonListUseCase = resolvePokemonListUseCase()
+        let itemsListUseCase = resolveItemsListUseCase()
+        let movesListUseCase = resolveMovesListUseCase()
+        return ListViewModel.makeInstance(dependency: .init(listType: listType, fullListUseCase: listUseCase, pokemonListUseCase: pokemonListUseCase, itemsListUseCase: itemsListUseCase, movesListUseCase: movesListUseCase))
     }
 
     func resolveMainViewController() -> MainViewController {
@@ -134,30 +136,8 @@ extension AppResolver {
         return MovesListUseCase.makeInstance(dependency: .init(movesRepository: movesRepository))
     }
 
-    func resolveMovesListViewController(listRepository: ListRepository) -> MovesListViewController {
-        let appResolver = resolveAppResolver()
-        let movesListViewModel = resolveMovesListViewModel(listRepository: listRepository)
-        return MovesListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: movesListViewModel))
-    }
-
-    func resolveMovesListViewModel(listRepository: ListRepository) -> MovesListViewModel {
-        let movesListUseCase = resolveMovesListUseCase()
-        let listUseCase = resolveListUseCase(listRepository: listRepository)
-        return MovesListViewModel.makeInstance(dependency: .init(movesListUseCase: movesListUseCase, movesFullListUseCase: listUseCase))
-    }
-
     func resolveMovesRepository() -> MovesRepository {
         return provideMovesRepository()
-    }
-
-    func resolvePokemonDetailContentViewController(pokemonId: Int) -> PokemonDetailContentViewController {
-        let pokemonDetailContentViewModel = resolvePokemonDetailContentViewModel(pokemonId: pokemonId)
-        return PokemonDetailContentViewController.makeInstance(dependency: .init(viewModel: pokemonDetailContentViewModel))
-    }
-
-    func resolvePokemonDetailContentViewModel(pokemonId: Int) -> PokemonDetailContentViewModel {
-        let pokemonDetailUseCase = resolvePokemonDetailUseCase()
-        return PokemonDetailContentViewModel.makeInstance(dependency: .init(pokemonId: pokemonId, pokemonDetailUseCase: pokemonDetailUseCase))
     }
 
     func resolvePokemonDetailUseCase() -> PokemonDetailUseCase {
@@ -183,18 +163,6 @@ extension AppResolver {
     func resolvePokemonListUseCase() -> PokemonListUseCase {
         let pokemonRepository = resolvePokemonRepository()
         return PokemonListUseCase.makeInstance(dependency: .init(pokemonRepository: pokemonRepository))
-    }
-
-    func resolvePokemonListViewController(listRepository: ListRepository) -> PokemonListViewController {
-        let appResolver = resolveAppResolver()
-        let pokemonListViewModel = resolvePokemonListViewModel(listRepository: listRepository)
-        return PokemonListViewController.makeInstance(dependency: .init(resolver: appResolver, viewModel: pokemonListViewModel))
-    }
-
-    func resolvePokemonListViewModel(listRepository: ListRepository) -> PokemonListViewModel {
-        let pokemonListUseCase = resolvePokemonListUseCase()
-        let listUseCase = resolveListUseCase(listRepository: listRepository)
-        return PokemonListViewModel.makeInstance(dependency: .init(pokemonListUseCase: pokemonListUseCase, pokemonFullListUseCase: listUseCase))
     }
 
     func resolvePokemonRepository() -> PokemonRepository {

@@ -1,60 +1,51 @@
 //
-//  PokemonListView.swift
+//  ListView.swift
 //  Pokedex
 //
-//  Created by Maharjan Binish on 2021/01/06.
+//  Created by Maharjan Binish on 2021/10/23.
 //
 
 import UIKit
 import ReactiveSwift
+import ReactiveCocoa
 
-final class PokemonListView: UIView {
-
+final class ListView: UIView {
+    
     // MARK: IBOutlets
     @IBOutlet private weak var overlayView: UIView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var searchField: SearchField!
     
     // MARK: Private Properties
-    private let viewModel: PokemonListViewModel
+    private let viewModel: ListViewModel
     private var nextPageLoadingSpinner: UIActivityIndicatorView?
     private var searchResultView: SearchResultView<ListObject>!
     private var searchResultHeightConstraints: NSLayoutConstraint?
     
-    private var sections: PokemonListSections = .empty {
-        didSet { tableView.reloadData() }
+    private var sections: ListSections = .empty {
+        didSet {
+            tableView.reloadData()
+        }
     }
     
     // MARK: Public Properties
-    var onPerform: ((PokemonListViewController.Action) -> Void)?
+    var onPerform: ((ListViewController.Action) -> Void)?
     
     // MARK: Lifecycle
     required init?(coder: NSCoder) { nil }
-    init(viewModel: PokemonListViewModel) {
+    init(viewModel: ListViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
         loadOwnedXib()
+        
         setup()
         bind()
     }
 }
 
-// MARK: Bind
-extension PokemonListView {
-    
-    func bind() {
-        reactive[\.sections] <~ viewModel.sections
-        
-        searchField.searchedText.signal.observeValues { [weak self] (searchedText) in
-            guard let self = self else { return }
-            self.viewModel.filter(with: searchedText)
-        }
-    }
-}
-
-// MARK: Setup
-extension PokemonListView {
+//  MARK: Setup
+extension ListView {
     
     private func setup() {
         setupBackground()
@@ -70,20 +61,26 @@ extension PokemonListView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerXib(of: PokemonListCell.self)
+        tableView.registerXib(of: ItemsListCell.self)
+        tableView.registerXib(of: MovesListCell.self)
         tableView.tableFooterView = UIView()
     }
     
     private func setupSearchResultView() {
-        // Initialize
-        searchResultView = SearchResultView(elements: viewModel.searchedPokemonList) { [weak self] element in
+        searchResultView = SearchResultView(elements: viewModel.searchedList) { [weak self] element in
             
             guard let self = self else { return }
             
-            
-            self.onPerform?(.pokemonDetail(element.id, nil))
+            switch self.viewModel.listType {
+            case .pokemon:
+                self.onPerform?(.pokemonDetail(element.id, nil))
+            case .items:
+                self.onPerform?(.itemsDetail(element.id))
+            case .moves:
+                self.onPerform?(.moveDetail(element.id, nil))
+            }
         }
         
-        // Text Field Status
         searchField.onEditingStatusChanged = { [weak self] status in
             
             guard let self = self else { return }
@@ -96,7 +93,6 @@ extension PokemonListView {
             }
         }
         
-        // Constraints
         addSubview(searchResultView)
         searchResultView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -125,8 +121,21 @@ extension PokemonListView {
     }
 }
 
-// MARK: TableViewDataSource
-extension PokemonListView: UITableViewDataSource {
+// MARK: Bind
+extension ListView {
+    
+    private func bind() {
+        reactive[\.sections] <~ viewModel.sections
+        
+        searchField.searchedText.signal.observeValues { [weak self] searchedText in
+            guard let self = self else { return }
+            self.viewModel.filter(with: searchedText)
+        }
+    }
+}
+
+// MARK: TableView DataSource
+extension ListView: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.numberOfSections()
@@ -137,22 +146,46 @@ extension PokemonListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(of: PokemonListCell.self, for: indexPath)
-        let cellViewModel = PokemonListCellViewModel(pokemon: sections[indexPath])
-        cell.bind(viewModel: cellViewModel)
         
-        
-        //Uncomment this for paging
-        if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
-            viewModel.fetchNextPokemonList()
+        switch  sections[indexPath] {
+        case .pokemon(let pokemonObject):
+            let cell = tableView.dequeueCell(of: PokemonListCell.self, for: indexPath)
+            let cellViewModel = PokemonListCellViewModel(pokemon: pokemonObject)
+            cell.bind(viewModel: cellViewModel)
+            
+            if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
+                viewModel.fetchNextList()
+            }
+            
+            return cell
+            
+        case .moves(let movesObject):
+            let cell = tableView.dequeueCell(of: MovesListCell.self, for: indexPath)
+            let cellViewModel = MovesListCellViewModel(move: movesObject)
+            cell.bind(viewModel: cellViewModel)
+            
+            if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
+                viewModel.fetchNextList()
+            }
+            
+            return cell
+            
+        case .items(let itemsObject):
+            let cell = tableView.dequeueCell(of: ItemsListCell.self, for: indexPath)
+            let cellViewModel = ItemsListCellViewModel(item: itemsObject)
+            cell.bind(viewModel: cellViewModel)
+            
+            if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
+                viewModel.fetchNextList()
+            }
+            
+            return cell
         }
-        
-        return cell
     }
 }
 
-// MARK: TableViewDelegate
-extension PokemonListView: UITableViewDelegate {
+// MARK: TableView Delegate
+extension ListView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
@@ -161,8 +194,13 @@ extension PokemonListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let pokemon = sections[indexPath]
-        
-        onPerform?(.pokemonDetail(pokemon.id, pokemon.elements[0].type.name))
+        switch sections[indexPath] {
+        case .pokemon(let pokemonObject):
+            onPerform?(.pokemonDetail(pokemonObject.id, pokemonObject.elements[0].type.name))
+        case .items(let itemsObject):
+            onPerform?(.itemsDetail(itemsObject.id))
+        case .moves(let movesObject):
+            onPerform?(.moveDetail(movesObject.id, movesObject.element.name))
+        }
     }
 }

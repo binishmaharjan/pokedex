@@ -209,46 +209,6 @@ extension ItemsListUseCase: FactoryMethodInjectable {
     }
 }
 
-extension ItemsListViewController: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let resolver: AppResolver
-        let viewModel: ItemsListViewModel
-        
-
-        init(resolver: AppResolver, viewModel: ItemsListViewModel) {
-            self.resolver = resolver
-            self.viewModel = viewModel
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> ItemsListViewController {
-        ItemsListViewController(resolver: dependency.resolver, viewModel: dependency.viewModel)
-    }
-}
-
-extension ItemsListViewModel: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let itemsFullListUseCase: ListUseCase
-        let itemPriceListUseCase: ItemsListUseCase
-        
-
-        init(itemsFullListUseCase: ListUseCase, itemPriceListUseCase: ItemsListUseCase) {
-            self.itemsFullListUseCase = itemsFullListUseCase
-            self.itemPriceListUseCase = itemPriceListUseCase
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> ItemsListViewModel {
-        ItemsListViewModel(itemsFullListUseCase: dependency.itemsFullListUseCase, itemPriceListUseCase: dependency.itemPriceListUseCase)
-    }
-}
-
 extension ListUseCase: FactoryMethodInjectable {
 
     struct Dependency {
@@ -264,6 +224,52 @@ extension ListUseCase: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> ListUseCase {
         ListUseCase(listRepository: dependency.listRepository)
+    }
+}
+
+extension ListViewController: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let resolver: AppResolver
+        let viewModel: ListViewModel
+        
+
+        init(resolver: AppResolver, viewModel: ListViewModel) {
+            self.resolver = resolver
+            self.viewModel = viewModel
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ListViewController {
+        ListViewController(resolver: dependency.resolver, viewModel: dependency.viewModel)
+    }
+}
+
+extension ListViewModel: FactoryMethodInjectable {
+
+    struct Dependency {
+        
+        let listType: ListUseCase.ListType
+        let fullListUseCase: ListUseCase
+        let pokemonListUseCase: PokemonListUseCase
+        let itemsListUseCase: ItemsListUseCase
+        let movesListUseCase: MovesListUseCase
+        
+
+        init(listType: ListUseCase.ListType, fullListUseCase: ListUseCase, pokemonListUseCase: PokemonListUseCase, itemsListUseCase: ItemsListUseCase, movesListUseCase: MovesListUseCase) {
+            self.listType = listType
+            self.fullListUseCase = fullListUseCase
+            self.pokemonListUseCase = pokemonListUseCase
+            self.itemsListUseCase = itemsListUseCase
+            self.movesListUseCase = movesListUseCase
+            
+        }
+    }
+    
+    static func makeInstance(dependency: Dependency) -> ListViewModel {
+        ListViewModel(listType: dependency.listType, fullListUseCase: dependency.fullListUseCase, pokemonListUseCase: dependency.pokemonListUseCase, itemsListUseCase: dependency.itemsListUseCase, movesListUseCase: dependency.movesListUseCase)
     }
 }
 
@@ -381,84 +387,6 @@ extension MovesListUseCase: FactoryMethodInjectable {
     }
 }
 
-extension MovesListViewController: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let resolver: AppResolver
-        let viewModel: MovesListViewModel
-        
-
-        init(resolver: AppResolver, viewModel: MovesListViewModel) {
-            self.resolver = resolver
-            self.viewModel = viewModel
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> MovesListViewController {
-        MovesListViewController(resolver: dependency.resolver, viewModel: dependency.viewModel)
-    }
-}
-
-extension MovesListViewModel: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let movesListUseCase: MovesListUseCase
-        let movesFullListUseCase: ListUseCase
-        
-
-        init(movesListUseCase: MovesListUseCase, movesFullListUseCase: ListUseCase) {
-            self.movesListUseCase = movesListUseCase
-            self.movesFullListUseCase = movesFullListUseCase
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> MovesListViewModel {
-        MovesListViewModel(movesListUseCase: dependency.movesListUseCase, movesFullListUseCase: dependency.movesFullListUseCase)
-    }
-}
-
-extension PokemonDetailContentViewController: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let viewModel: PokemonDetailContentViewModel
-        
-
-        init(viewModel: PokemonDetailContentViewModel) {
-            self.viewModel = viewModel
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> PokemonDetailContentViewController {
-        PokemonDetailContentViewController(viewModel: dependency.viewModel)
-    }
-}
-
-extension PokemonDetailContentViewModel: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let pokemonId: Int
-        let pokemonDetailUseCase: PokemonDetailUseCase
-        
-
-        init(pokemonId: Int, pokemonDetailUseCase: PokemonDetailUseCase) {
-            self.pokemonId = pokemonId
-            self.pokemonDetailUseCase = pokemonDetailUseCase
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> PokemonDetailContentViewModel {
-        PokemonDetailContentViewModel(pokemonId: dependency.pokemonId, pokemonDetailUseCase: dependency.pokemonDetailUseCase)
-    }
-}
-
 extension PokemonDetailUseCase: FactoryMethodInjectable {
 
     struct Dependency {
@@ -552,46 +480,6 @@ extension PokemonListUseCase: FactoryMethodInjectable {
     
     static func makeInstance(dependency: Dependency) -> PokemonListUseCase {
         PokemonListUseCase(pokemonRepository: dependency.pokemonRepository)
-    }
-}
-
-extension PokemonListViewController: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let resolver: AppResolver
-        let viewModel: PokemonListViewModel
-        
-
-        init(resolver: AppResolver, viewModel: PokemonListViewModel) {
-            self.resolver = resolver
-            self.viewModel = viewModel
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> PokemonListViewController {
-        PokemonListViewController(resolver: dependency.resolver, viewModel: dependency.viewModel)
-    }
-}
-
-extension PokemonListViewModel: FactoryMethodInjectable {
-
-    struct Dependency {
-        
-        let pokemonListUseCase: PokemonListUseCase
-        let pokemonFullListUseCase: ListUseCase
-        
-
-        init(pokemonListUseCase: PokemonListUseCase, pokemonFullListUseCase: ListUseCase) {
-            self.pokemonListUseCase = pokemonListUseCase
-            self.pokemonFullListUseCase = pokemonFullListUseCase
-            
-        }
-    }
-    
-    static func makeInstance(dependency: Dependency) -> PokemonListViewModel {
-        PokemonListViewModel(pokemonListUseCase: dependency.pokemonListUseCase, pokemonFullListUseCase: dependency.pokemonFullListUseCase)
     }
 }
 

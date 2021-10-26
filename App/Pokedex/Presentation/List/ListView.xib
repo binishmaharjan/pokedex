@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListView" customModule="Pokedex" customModuleProvider="target">
+            <connections>
+                <outlet property="overlayView" destination="X70-7T-Le7" id="rDi-sZ-A9D"/>
+                <outlet property="searchField" destination="w6z-49-GbW" id="q9H-0j-UUY"/>
+                <outlet property="tableView" destination="sEx-nY-EzU" id="pya-6E-LuZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="aIb-eb-Uxd">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="lQW-t4-VY4">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X70-7T-Le7" userLabel="Overlay">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" name="cFAFAFA@70"/>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="K6y-UY-STF">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6z-49-GbW" customClass="SearchField" customModule="Pokedex" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="54" id="Rp2-0d-SNH"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jn3-7y-hQ9">
+                            <rect key="frame" x="0.0" y="54" width="414" height="764"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sEx-nY-EzU">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="764"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="sEx-nY-EzU" secondAttribute="trailing" id="3qm-Zg-FJl"/>
+                                <constraint firstItem="sEx-nY-EzU" firstAttribute="top" secondItem="Jn3-7y-hQ9" secondAttribute="top" id="4R3-j2-pLb"/>
+                                <constraint firstItem="sEx-nY-EzU" firstAttribute="leading" secondItem="Jn3-7y-hQ9" secondAttribute="leading" id="TNR-sC-u2b"/>
+                                <constraint firstAttribute="bottom" secondItem="sEx-nY-EzU" secondAttribute="bottom" id="v5Q-dk-L7x"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="22v-Gi-xEr"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="X70-7T-Le7" firstAttribute="trailing" secondItem="lQW-t4-VY4" secondAttribute="trailing" id="8ET-Li-lE9"/>
+                <constraint firstItem="K6y-UY-STF" firstAttribute="top" secondItem="22v-Gi-xEr" secondAttribute="top" id="GyT-kF-DwM"/>
+                <constraint firstItem="22v-Gi-xEr" firstAttribute="bottom" secondItem="K6y-UY-STF" secondAttribute="bottom" id="H84-X5-ahE"/>
+                <constraint firstItem="22v-Gi-xEr" firstAttribute="trailing" secondItem="lQW-t4-VY4" secondAttribute="trailing" id="KlS-Dy-2zs"/>
+                <constraint firstItem="X70-7T-Le7" firstAttribute="top" secondItem="lQW-t4-VY4" secondAttribute="top" id="TCX-mC-pcG"/>
+                <constraint firstItem="K6y-UY-STF" firstAttribute="leading" secondItem="22v-Gi-xEr" secondAttribute="leading" id="VYJ-Sv-7jX"/>
+                <constraint firstItem="X70-7T-Le7" firstAttribute="leading" secondItem="lQW-t4-VY4" secondAttribute="leading" id="coY-Zn-QPX"/>
+                <constraint firstItem="X70-7T-Le7" firstAttribute="bottom" secondItem="lQW-t4-VY4" secondAttribute="bottom" id="ghG-ww-Ll2"/>
+                <constraint firstItem="K6y-UY-STF" firstAttribute="trailing" secondItem="22v-Gi-xEr" secondAttribute="trailing" id="jx4-d3-0Go"/>
+                <constraint firstItem="lQW-t4-VY4" firstAttribute="leading" secondItem="22v-Gi-xEr" secondAttribute="leading" id="qGg-k1-vhA"/>
+                <constraint firstAttribute="bottom" secondItem="lQW-t4-VY4" secondAttribute="bottom" id="v6V-ip-cIf"/>
+                <constraint firstItem="lQW-t4-VY4" firstAttribute="top" secondItem="aIb-eb-Uxd" secondAttribute="top" id="xFg-Vg-iiF"/>
+            </constraints>
+            <point key="canvasLocation" x="-294" y="-569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background" width="375" height="812"/>
+        <namedColor name="cFAFAFA@70">
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98000001907348633" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
