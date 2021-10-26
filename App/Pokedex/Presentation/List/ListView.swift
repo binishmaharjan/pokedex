@@ -68,7 +68,15 @@ extension ListView {
         searchResultView = SearchResultView(elements: viewModel.searchedList) { [weak self] element in
             
             guard let self = self else { return }
-            self.onPerform?(.pokemonDetail(element.id, nil))
+            
+            switch self.viewModel.listType {
+            case .pokemon:
+                self.onPerform?(.pokemonDetail(element.id, nil))
+            case .items:
+                self.onPerform?(.itemsDetail(element.id))
+            case .moves:
+                self.onPerform?(.moveDetail(element.id, nil))
+            }
         }
         
         searchField.onEditingStatusChanged = { [weak self] status in
@@ -143,14 +151,33 @@ extension ListView: UITableViewDataSource {
             let cellViewModel = PokemonListCellViewModel(pokemon: pokemonObject)
             cell.bind(viewModel: cellViewModel)
             
-            //Uncomment this for paging
             if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
                 viewModel.fetchNextList()
             }
             
             return cell
-        default:
-            fatalError()
+            
+        case .moves(let movesObject):
+            let cell = tableView.dequeueCell(of: MovesListCell.self, for: indexPath)
+            let cellViewModel = MovesListCellViewModel(move: movesObject)
+            cell.bind(viewModel: cellViewModel)
+            
+            if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
+                viewModel.fetchNextList()
+            }
+            
+            return cell
+            
+        case .items(let itemsObject):
+            let cell = tableView.dequeueCell(of: ItemsListCell.self, for: indexPath)
+            let cellViewModel = ItemsListCellViewModel(item: itemsObject)
+            cell.bind(viewModel: cellViewModel)
+            
+            if indexPath.row == sections.numberOfRow(in: indexPath.section) - 1 {
+                viewModel.fetchNextList()
+            }
+            
+            return cell
         }
     }
 }
@@ -168,8 +195,10 @@ extension ListView: UITableViewDelegate {
         switch sections[indexPath] {
         case .pokemon(let pokemonObject):
             onPerform?(.pokemonDetail(pokemonObject.id, pokemonObject.elements[0].type.name))
-        default:
-            fatalError()
+        case .items(let itemsObject):
+            onPerform?(.itemsDetail(itemsObject.id))
+        case .moves(let movesObject):
+            onPerform?(.moveDetail(movesObject.id, movesObject.element.name))
         }
     }
 }

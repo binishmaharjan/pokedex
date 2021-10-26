@@ -21,13 +21,14 @@ final class ListViewModel: AutoInjectable {
     // MARK: Private Properties
     @Observable
     private var state = ListState()
-    private let listType: ListUseCase.ListType
     private let fullListUseCase: ListUseCase
     private let pokemonListUseCase: PokemonListUseCase
     private let itemsListUseCase: ItemsListUseCase
     private let movesListUseCase: MovesListUseCase
     
     // MARK: Public Properties
+    let listType: ListUseCase.ListType
+    
     var loadingState: Property<AnyLoadingState> {
         $state
             .map(\.list)

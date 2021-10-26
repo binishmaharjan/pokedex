@@ -13,7 +13,7 @@ final class ListViewController: UIViewController, AutoInjectable {
     enum Action {
         case pokemonDetail(Int, Type?)
         case itemsDetail(Int)
-        case moveDetail(Type?)
+        case moveDetail(Int, Type?)
     }
     
     // MARK: Private Properties
@@ -113,17 +113,28 @@ extension ListViewController {
 private extension ListViewController {
     
     func perform(action: Action) {
+        let viewController: UIViewController
         switch action {
         case let .pokemonDetail(pokemonId, backgroundType):
-            let viewController = resolver.resolvePokemonDetailViewController(
+            viewController = resolver.resolvePokemonDetailViewController(
                 pokemonId: pokemonId,
                 backgroundType: backgroundType
             )
-            viewController.modalPresentationStyle = .fullScreen
             
-            self.present(viewController, animated: true)
-        default:
-            break
+        case let .itemsDetail(itemsId):
+            viewController = resolver.resolveItemsDetailViewController(
+                currentIndex: itemsId
+            )
+            
+        case let .moveDetail(movesId, backgroundType):
+            viewController = resolver.resolveMovesDetailViewController(
+                currentIndex: movesId,
+                backgroundType: backgroundType
+            )
         }
+        
+        viewController.modalPresentationStyle = .fullScreen
+        
+        self.present(viewController, animated: true)
     }
 }
