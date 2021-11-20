@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/Platform-iOS-success) ![](https://img.shields.io/badge/Xcode-12.3-blue) ![](https://img.shields.io/badge/iOS-14.0-orange) ![](https://img.shields.io/badge/Swift-5.0-red)
+
 # Pokedex 
 
 ![Screenshot](https://github.com/binishmaharjan/pokedex/blob/master/images/screeshot.png)
