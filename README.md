@@ -36,9 +36,10 @@ PokeAPI provides a RESTful API interface to highly detailed objects built from t
 |[Reactive Swift](https://github.com/ReactiveCocoa/ReactiveSwift)| Reactive Framework |
 |[Reactive Cocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)| Reactive Framework |
 
-## App Architecture
+## App Architecture(MVVM+Clean Architecture)
 <img src="https://github.com/binishmaharjan/pokedex/blob/master/images/clean-architecture.png" width="413" height="320" />
-### MVVM+Clean Architecture
+
+### Clean Architecture
 
 In Clean Architecture, we have different layers. The main rule is not to have dependencies from inner layers to outers layers
 
@@ -53,3 +54,14 @@ This layer contains UI (UIViewControllers or SwiftUI Views). Views are coordinat
 
 #### - Data Repositories Layer = Repositories Implementations + API(Network) + Persistence DB
 This layer contains Repository Implementations and one or many Data Sources. Repositories are responsible for coordinating data from different Data Sources. Data Source can be Remote or Local (for example persistent database). Data Layer depends only on the Domain Layer. In this layer, we can also add mapping of Network JSON Data (e.g. Decodable conformance) to Domain Models.
+
+### MVVM(Model-View-View Model)
+
+#### - View Controller
+It only performs things related to UI — Show/get information. Part of the view layer
+
+#### - View Model
+It receives information from VC, handles all this information, and sends it back to VC.
+
+#### - Model
+This is only your model, nothing much here. It’s the same model as in MVC. It is used by VM and updates whenever VM sends new updates
