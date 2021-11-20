@@ -1,5 +1,7 @@
 # Pokedex 
 
+![Screenshot](https://github.com/binishmaharjan/pokedex/blob/master/images/screeshot.png)
+
 A demo pokedex app built for iOS. This is just practice app for MVVM+Clean Architecture in iOS. 
 
 ## Features
@@ -35,10 +37,19 @@ PokeAPI provides a RESTful API interface to highly detailed objects built from t
 |[Reactive Cocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)| Reactive Framework |
 
 ## App Architecture
-MVVM+Clean Architecture
-Dependency Direction
-Presentation Layer -> Domain Layer <- Data Repositories Layer
+<img src="https://github.com/binishmaharjan/pokedex/blob/master/images/clean-architecture.png" width="413" height="320" />
+### MVVM+Clean Architecture
 
-Presentation Layer (MVVM) = ViewModels(Presenters) + Views(UI)
-Domain Layer = Entities + Use Cases + Repositories Interfaces
-Data Repositories Layer = Repositories Implementations + API(Network) + Persistence DB
+In Clean Architecture, we have different layers. The main rule is not to have dependencies from inner layers to outers layers
+
+### Dependency Direction
+`Presentation Layer -> Domain Layer <- Data Repositories Layer`
+
+#### - Domain Layer (Business logic) = Entities + Use Cases + Repositories Interfaces
+The inner-most part of the onion (without dependencies to other layers, it is totally isolated). It contains Entities(Business Models), Use Cases, and Repository Interfaces. This layer could be potentially reused within different projects. Domain Layer should not include anything from other layers(e.g Presentation — UIKit or SwiftUI or Data Layer — Mapping Codable)
+
+#### - Presentation Layer (MVVM) = ViewModels(Presenters) + Views(UI)
+This layer contains UI (UIViewControllers or SwiftUI Views). Views are coordinated by ViewModels (Presenters) which execute one or many Use Cases. Presentation Layer depends only on the Domain Layer.
+
+#### - Data Repositories Layer = Repositories Implementations + API(Network) + Persistence DB
+This layer contains Repository Implementations and one or many Data Sources. Repositories are responsible for coordinating data from different Data Sources. Data Source can be Remote or Local (for example persistent database). Data Layer depends only on the Domain Layer. In this layer, we can also add mapping of Network JSON Data (e.g. Decodable conformance) to Domain Models.
