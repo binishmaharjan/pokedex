@@ -7,13 +7,14 @@
 A demo pokedex app built for iOS. This is just practice app for MVVM+Clean Architecture in iOS. 
 
 ## Features
-- Show list of all Pokemon, with detail 
-- Show list of all available Pokemon Moves
-- Show list of all available Items
+- Show list of all Pokemon with detail and search functionality
+- Show list of all available Pokemon Moves  with detail and search functionality
+- Show list of all available Items with detail and search functionality
 
 ## Requirements
 - iOS 14.0
 - Xcode 12.3
+- Swift 5.0
 
 ## How To Run
 - Clone the repo
