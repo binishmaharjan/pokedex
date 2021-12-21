@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/Platform-iOS-success) ![](https://img.shields.io/badge/Xcode-12.3-blue) ![](https://img.shields.io/badge/iOS-14.0-orange) ![](https://img.shields.io/badge/Swift-5.0-red)
+
 # Pokedex 
 
 ![Screenshot](https://github.com/binishmaharjan/pokedex/blob/master/images/screeshot.png)
@@ -5,13 +7,14 @@
 A demo pokedex app built for iOS. This is just practice app for MVVM+Clean Architecture in iOS. 
 
 ## Features
-- Show list of all Pokemon, with detail 
-- Show list of all available Pokemon Moves
-- Show list of all available Items
+- Show list of all Pokemon with detail and search functionality
+- Show list of all available Pokemon Moves  with detail and search functionality
+- Show list of all available Items with detail and search functionality
 
 ## Requirements
 - iOS 14.0
 - Xcode 12.3
+- Swift 5.0
 
 ## How To Run
 - Clone the repo
@@ -37,9 +40,10 @@ PokeAPI provides a RESTful API interface to highly detailed objects built from t
 |[Reactive Cocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)| Reactive Framework |
 
 ## App Architecture(MVVM+Clean Architecture)
-<img src="https://github.com/binishmaharjan/pokedex/blob/master/images/clean-architecture.png" width="413" height="320" />
 
 ### Clean Architecture
+
+<img src="https://github.com/binishmaharjan/pokedex/blob/master/images/clean-architecture.png" width="413" height="320" />
 
 In Clean Architecture, we have different layers. The main rule is not to have dependencies from inner layers to outers layers
 
@@ -56,6 +60,8 @@ This layer contains UI (UIViewControllers or SwiftUI Views). Views are coordinat
 This layer contains Repository Implementations and one or many Data Sources. Repositories are responsible for coordinating data from different Data Sources. Data Source can be Remote or Local (for example persistent database). Data Layer depends only on the Domain Layer. In this layer, we can also add mapping of Network JSON Data (e.g. Decodable conformance) to Domain Models.
 
 ### MVVM(Model-View-View Model)
+
+![Screenshot](https://github.com/binishmaharjan/pokedex/blob/master/images/mvvm.png)
 
 #### - View Controller
 It only performs things related to UI — Show/get information. Part of the view layer
